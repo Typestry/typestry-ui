@@ -12,7 +12,7 @@ const tooltip = (title, element) => {
     tooltip.role = "tooltip"
     tooltip.className = "absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700"
     tooltip.textContent = title
-    
+
     element.appendChild(tooltip)
 }
 
@@ -27,7 +27,7 @@ window.onload = () => {
         link.setAttribute("aria-label", item.alt);
 
         const image = document.createElement("img");
-        image.className = "h-full";
+        image.className = "h-10";
         image.src = item.image;
         link.appendChild(image);
 
