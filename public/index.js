@@ -27,7 +27,7 @@ window.onload = () => {
         link.setAttribute("aria-label", item.alt);
 
         const image = document.createElement("img");
-        image.className = "h-6 md:h-10";
+        image.className = "h-8 md:h-10";
         image.src = item.image;
         link.appendChild(image);
 
