@@ -1,11 +1,11 @@
-const social = {
+const socialMetaData = {
     spotify: { url: "https://open.spotify.com/album/5tGuHNvKJGT97QXkjDuHL8?si=AePd7DnBSX6L8hH4x8FRGw", image: "./assets/spotify.svg", alt: "listen to on spotify", title: "Spotify" },
     apple: { url: "http://itunes.apple.com/album/id/1702315264", image: "./assets/apple.svg", alt: "listen to on apple music", title: "Apple Music" },
     instagram: { url: "https://www.instagram.com/carriedbybees", image: "./assets/instagram.svg", alt: "vistit carried by bees profile on instagram", title: "Instagram" },
     bandcamp: { url: "https://carriedbybees.bandcamp.com/album/bliss", image: "./assets/bandcamp.svg", alt: "purchase on bandcamp", title: "Bandcamp" },
 }
 
-const tooltip = (title, element) => {
+const createTooltip = (title, element) => {
     const tooltip = document.createElement("div")
 
     tooltip.id = `tooltip-default-${title}`
@@ -16,25 +16,30 @@ const tooltip = (title, element) => {
     element.appendChild(tooltip)
 }
 
+const createSocialLink = (item) => {
+    const link = document.createElement("a");
+    const image = document.createElement("img");
+    const onClick = () => navigator.vibrate()
+
+    link.setAttribute("data-tooltip-target", `tooltip-default-${item.title}`);
+    link.className = "mb-auto bg-[#222222] mx-auto p-2 rounded-xl";
+    link.href = item.url;
+    link.setAttribute("aria-label", item.alt);
+    link.onclick = onClick
+    link.target = "_blank"
+
+    image.className = "h-8 md:h-10 hover:opacity-[0.5]";
+    image.src = item.image;
+    link.appendChild(image);
+
+    createTooltip(item.title, link);
+
+    return link
+}
+
 window.onload = () => {
-    const socialContainer = document.getElementById("#social")
+    const socialContainer = document.getElementById("social")
+    const socialLinks = Object.values(socialMetaData).map(createSocialLink)
 
-    const elements = Object.values(social).map((item) => {
-        const link = document.createElement("a");
-        link.setAttribute("data-tooltip-target", `tooltip-default-${item.title}`);
-        link.className = "h-full m-auto";
-        link.href = item.url;
-        link.setAttribute("aria-label", item.alt);
-
-        const image = document.createElement("img");
-        image.className = "h-8 md:h-10 hover:opacity-[0.5]";
-        image.src = item.image;
-        link.appendChild(image);
-
-        tooltip(item.title, link);
-
-        return link
-    })
-
-    elements.forEach((el) => socialContainer.appendChild(el))
+    socialLinks.forEach((el) => socialContainer.appendChild(el))
 } 
