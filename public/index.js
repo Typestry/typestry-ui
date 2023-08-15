@@ -19,7 +19,7 @@ const createTooltip = (title, element) => {
 const createSocialLink = (item) => {
     const link = document.createElement("a");
     const image = document.createElement("img");
-    const onClick = () => navigator.vibrate()
+    const onClick = () => navigator.vibrate(200)
 
     link.setAttribute("data-tooltip-target", `tooltip-default-${item.title}`);
     link.className = "mb-auto bg-[#222222] mx-auto p-2 rounded-xl";
