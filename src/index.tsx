@@ -1,6 +1,11 @@
-import { render } from "solid-js/web"
+import ReactDOM from "react-dom/client"
+import React from "react"
 import { App } from "./components/App"
 import "./index.css"
 import "flowbite"
 
-render(() => <App />, document.getElementById("app") as HTMLElement)
+ReactDOM.createRoot(document.getElementById("root")!).render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>,
+)

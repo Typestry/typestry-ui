@@ -1,12 +1,12 @@
-import { JSXElement } from "solid-js"
+import { ReactNode } from "react"
 
 interface SocialContainerProps {
-  children: JSXElement
+  children: ReactNode
 }
 
 export const SocialContainer = ({ children }: SocialContainerProps) => {
   return (
-    <section class="grid grid-flow-col gap-x-8 grid-cols-4 h-full">
+    <section className="grid grid-flow-col gap-x-8 grid-cols-4 h-full">
       {children}
     </section>
   )

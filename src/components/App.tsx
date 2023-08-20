@@ -1,25 +1,24 @@
-import { Meta, MetaProvider, Title } from "@solidjs/meta"
-import { MainLayout } from "../layouts/Main"
+import { Helmet } from "react-helmet"
+import { MainLayout } from "../layouts/MainLayout"
 import { Main } from "../pages/Main"
+import { metaData, linkData } from "../constants/metaData"
 import { bandAssets } from "../constants/bandAssets"
+import FirebaseService from "../services/firebaseService"
+
+FirebaseService.init()
 
 export const App = () => {
   return (
     <MainLayout>
-      <MetaProvider>
-        <Meta
-          name="keywords"
-          content="Carried by Bees, indie music, alternative rock, Kansas City band, John Benda, Justin Klaas"
-        />
-        <Meta name="description" content={bandAssets.shortBio} />
-        <Meta property="og:title" content="Carried by Bees" />
-        <Meta property="og:description" content={bandAssets.shortBio} />
-        <Meta
-          property="og:image"
-          content="https://www.carriedbybees.com/assets/Bliss_fixed.png"
-        />
-        <Title>Carried by Bees</Title>
-      </MetaProvider>
+      <Helmet>
+        {metaData.map((datum, index) => (
+          <meta key={String(index)} {...datum} />
+        ))}
+        {linkData.map((datum, index) => (
+          <link key={String(index)} {...datum} />
+        ))}
+        <title>{bandAssets.bandName} - Home</title>
+      </Helmet>
       <Main />
     </MainLayout>
   )

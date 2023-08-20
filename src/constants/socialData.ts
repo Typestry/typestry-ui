@@ -1,7 +1,7 @@
-import spotify from "../../assets/spotify.svg"
-import apple from "../../assets/apple.svg"
-import instagram from "../../assets/instagram.svg"
-import bandcamp from "../../assets/bandcamp.svg"
+import spotify from "../assets/spotify.svg"
+import apple from "../assets/apple.svg"
+import instagram from "../assets/instagram.svg"
+import bandcamp from "../assets/bandcamp.svg"
 
 export const socialData = {
   spotify: {

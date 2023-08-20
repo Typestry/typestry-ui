@@ -6,7 +6,30 @@ export default {
     "./node_modules/flowbite/**/*.js", // configure the Flowbite JS source template paths
   ],
   theme: {
-    extend: {},
+    fontFamily: {
+      serif: ["NotoSerif-Variable"],
+      heading: ["NotoSerif"],
+    },
+    extend: {
+      backgroundImage: {
+        grass: "url('/src/assets/grass.jpg')",
+      },
+      colors: {
+        "french-pass": {
+          50: "#eff8ff",
+          100: "#dbedfe",
+          200: "#b8defe",
+          300: "#93cffd",
+          400: "#60b4fa",
+          500: "#3b94f6",
+          600: "#2576eb",
+          700: "#1d60d8",
+          800: "#1e4eaf",
+          900: "#1e458a",
+          950: "#172b54",
+        },
+      },
+    },
   },
   plugins: [
     require("flowbite/plugin"), // require Flowbite's plugin for Tailwind CSS

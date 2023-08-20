@@ -1,26 +1,22 @@
 import { SocialData } from "../constants/socialData"
-import { Tooltip } from "./Tooltip"
 
-interface SocialLinkProps {
-  item: SocialData[keyof SocialData]
-}
+type SocialLinkProps = SocialData[keyof SocialData]
 
-export const SocialLink = ({ item }: SocialLinkProps) => {
-  const tooltipId = `tooltip-default-${item.title}`
-
+export const SocialLink = ({ image, url, alt, ...rest }: SocialLinkProps) => {
   return (
-    <>
+    <div
+      className="h-10 transition-colors duration-300 hover:bg-fuchsia-300 bg-[#33333] rounded-lg p-2 cursor-pointer"
+      {...rest}
+    >
       <a
         type="button"
         target="_blank"
-        class="bg-[#222222] mx-auto p-2 rounded-xl"
-        href={item.url}
-        aria-label={item.alt}
-        data-tooltip-target={tooltipId}
+        className="h-full"
+        href={url}
+        aria-label={alt}
       >
-        <img class="h-8 md:h-10 hover:opacity-[0.5]" src={item.image} />
+        <img className="h-full" src={image} />
       </a>
-      <Tooltip title={item.title} id={tooltipId} />
-    </>
+    </div>
   )
 }
