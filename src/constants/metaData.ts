@@ -30,6 +30,11 @@ export const metaData: MetaData = [
     property: "og:image",
     content: socialImage,
   },
+  {
+    httpEquiv: "Content-Security-Policy",
+    content:
+      "default-src 'self' https://us-central1-carriedbybees-923b7.cloudfunctions.net/*",
+  },
 ]
 
 export const linkData: LinkData = [

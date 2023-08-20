@@ -1,13 +1,9 @@
 import { TextField } from "./TextField"
 import { useFormState } from "../hooks/useFormState"
 import { Button } from "./Button"
+import { Contact } from "../../global/types/Contact"
 
-interface FormValues {
-  firstName: string
-  lastName: string
-  email: string
-  message: string
-}
+type FormValues = Contact
 
 interface ContactFormProps {
   onSubmit: (values: FormValues) => void
