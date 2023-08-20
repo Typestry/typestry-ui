@@ -1,9 +1,9 @@
 import { BandCampPlayer } from "../components/BandcampPlayer"
 import { ContactForm } from "../components/ContactForm"
-import { useAddDocument } from "../hooks/useAddDocument"
+import { useFirebaseFunction } from "../hooks/useFirebaseFunction"
 
 export const Main = () => {
-  const { addDocument } = useAddDocument()
+  const { runHttpsFunction } = useFirebaseFunction()
 
   return (
     <div className="grid grid-flow-row gap-y-24 md:max-w-2xl w-full">
@@ -15,7 +15,9 @@ export const Main = () => {
           Contact
         </h4>
         <ContactForm
-          onSubmit={async (payload) => await addDocument("contact", payload)}
+          onSubmit={async (payload) =>
+            await runHttpsFunction("sendEmail", payload)
+          }
         />
       </section>
     </div>

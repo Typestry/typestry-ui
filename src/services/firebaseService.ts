@@ -1,3 +1,4 @@
+import axios from "axios"
 import { initializeApp } from "firebase/app"
 import {
   DocumentData,
@@ -8,17 +9,18 @@ import {
 } from "firebase/firestore"
 
 const FirebaseService = {
-  firebaseConfig: () => ({
-    apiKey: import.meta.env.VITE_APP_API_KEY,
-    authDomain: import.meta.env.VITE_APP_AUTH_DOMAIN,
-    projectId: import.meta.env.VITE_APP_PROJECT_ID,
-    storageBucket: import.meta.env.VITE_APP_STORAGE_BUCKET,
-    messagingSenderId: import.meta.env.VITE_APP_MESSAGING_SENDER_ID,
-    appId: import.meta.env.VITE_APP_APP_ID,
-    measurementId: import.meta.env.VITE_APP_MEASUREMENT_ID,
+  getFirebaseFunctionsUrl: () => import.meta.env.VITE_APP_FUNCTIONS_URL,
+  getFirebaseConfig: () => ({
+    apiKey: import.meta.env.VITE_APP_API_KEY as string,
+    authDomain: import.meta.env.VITE_APP_AUTH_DOMAIN as string,
+    projectId: import.meta.env.VITE_APP_PROJECT_ID as string,
+    storageBucket: import.meta.env.VITE_APP_STORAGE_BUCKET as string,
+    messagingSenderId: import.meta.env.VITE_APP_MESSAGING_SENDER_ID as string,
+    appId: import.meta.env.VITE_APP_APP_ID as string,
+    measurementId: import.meta.env.VITE_APP_MEASUREMENT_ID as string,
   }),
   init: () => {
-    initializeApp(FirebaseService.firebaseConfig())
+    initializeApp(FirebaseService.getFirebaseConfig())
   },
   db: () => {
     return getFirestore()
@@ -32,6 +34,13 @@ const FirebaseService = {
   ) => {
     const ref = col(FirebaseService.db(), collection)
     return addDoc(ref, payload)
+  },
+  runHttpsFunction: <Payload = Record<string, any>>(
+    name: string,
+    payload: Payload,
+  ) => {
+    const url = `${FirebaseService.getFirebaseFunctionsUrl()}/${name}`
+    return axios.post(url, payload)
   },
 }
 
