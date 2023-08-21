@@ -8,9 +8,9 @@ const PASSWORD = defineSecret("PASSWORD")
 export const sendEmail = functions.https.onRequest(
   {
     secrets: [EMAIL, PASSWORD],
-    cors: ["https://www.carriedbybees.com", "http://localhost:5173"],
+    cors: ["https://www.carriedbybees.com"],
   },
-  (req, res) => {
+  async (req, res) => {
     try {
       const { email, firstName, lastName, message } = req.body
 
@@ -33,7 +33,7 @@ export const sendEmail = functions.https.onRequest(
         text: message,
       }
 
-      transporter.sendMail(mailOptions, function (error, info) {
+      transporter.sendMail(mailOptions, (error) => {
         if (error) {
           throw Error("MAIL_SEND_FAILURE")
         } else {

@@ -14,6 +14,8 @@ export const useFirebaseFunction = () => {
       setLoading(false)
     } catch (err) {
       setError(err)
+    } finally {
+      setLoading(false)
     }
   }
 

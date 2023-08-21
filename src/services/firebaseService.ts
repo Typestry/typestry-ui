@@ -9,7 +9,8 @@ import {
 } from "firebase/firestore"
 
 const FirebaseService = {
-  getFirebaseFunctionsUrl: () => import.meta.env.VITE_APP_FUNCTIONS_URL,
+  getFirebaseFunctionsUrl: () =>
+    import.meta.env.VITE_APP_FUNCTIONS_URL as string,
   getFirebaseConfig: () => ({
     apiKey: import.meta.env.VITE_APP_API_KEY as string,
     authDomain: import.meta.env.VITE_APP_AUTH_DOMAIN as string,
