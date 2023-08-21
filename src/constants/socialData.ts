@@ -1,7 +1,7 @@
-import spotify from "../assets/spotify.svg"
-import apple from "../assets/apple.svg"
-import instagram from "../assets/instagram.svg"
-import bandcamp from "../assets/bandcamp.svg"
+import { ReactComponent as spotify } from "../assets/spotify.svg"
+import { ReactComponent as apple } from "../assets/apple.svg"
+import { ReactComponent as instagram } from "../assets/instagram.svg"
+import { ReactComponent as bandcamp } from "../assets/bandcamp.svg"
 
 export const socialData = {
   spotify: {

@@ -1,4 +1,4 @@
-export const BandCampPlayer = () => {
+export const BandcampPlayer = () => {
   return (
     <iframe
       className="w-full min-h-[768px] shadow-2xl shadow-[#333333]"

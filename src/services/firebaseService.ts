@@ -6,6 +6,7 @@ import {
   getFirestore,
   addDoc,
   collection as col,
+  getDocs,
 } from "firebase/firestore"
 
 const FirebaseService = {
@@ -35,6 +36,10 @@ const FirebaseService = {
   ) => {
     const ref = col(FirebaseService.db(), collection)
     return addDoc(ref, payload)
+  },
+  getDocuments: <Collection extends string>(collection: Collection) => {
+    const ref = col(FirebaseService.db(), collection)
+    return getDocs(ref)
   },
   runHttpsFunction: <Payload = Record<string, any>>(
     name: string,
