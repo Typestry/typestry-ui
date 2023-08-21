@@ -1,8 +1,13 @@
-import { SocialData } from "../constants/socialData"
+import { SocialData } from "../../constants/socialData"
 
 type SocialLinkProps = SocialData[keyof SocialData]
 
-export const SocialLink = ({ image, url, alt, ...rest }: SocialLinkProps) => {
+export const SocialLink = ({
+  image: Image,
+  url,
+  alt,
+  ...rest
+}: SocialLinkProps) => {
   return (
     <div
       className="h-10 transition-colors duration-300 hover:bg-fuchsia-300 bg-[#33333] rounded-lg p-2 cursor-pointer"
@@ -15,7 +20,7 @@ export const SocialLink = ({ image, url, alt, ...rest }: SocialLinkProps) => {
         href={url}
         aria-label={alt}
       >
-        <img className="h-full" src={image} />
+        <Image fontSize={24} className="fill-white" />
       </a>
     </div>
   )

@@ -11,7 +11,6 @@ export const useFirebaseFunction = () => {
     setLoading(true)
     try {
       await FirebaseService.runHttpsFunction(...args)
-      setLoading(false)
     } catch (err) {
       setError(err)
     } finally {

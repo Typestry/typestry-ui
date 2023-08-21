@@ -1,9 +1,9 @@
 import { useCallback, useEffect, useRef, useState } from "react"
-import { NavItemParams } from "../types/NavItemParams"
-import { NavItem } from "./NavItem"
-import { SocialContainer } from "./SocialContainer"
-import { SocialLink } from "./SocialLink"
-import { socialData } from "../constants/socialData"
+import { NavItemParams } from "../../types/NavItemParams"
+import { NavItem } from "../NavItem"
+import { SocialContainer } from "../SocialContainer"
+import { SocialLink } from "../SocialLink"
+import { socialData } from "../../constants/socialData"
 
 interface NavbarProps {
   navItems: Array<NavItemParams>

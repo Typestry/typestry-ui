@@ -1,7 +1,7 @@
-import { TextField } from "./TextField"
-import { useFormState } from "../hooks/useFormState"
-import { Button } from "./Button"
-import { Contact } from "../../global/types/Contact"
+import { TextField } from "../TextField"
+import { useFormState } from "../../hooks/useFormState"
+import { Button } from "../Button"
+import { Contact } from "../../../global/types/Contact"
 
 type FormValues = Contact
 
