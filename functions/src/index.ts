@@ -6,7 +6,10 @@ const EMAIL = defineSecret("EMAIL")
 const PASSWORD = defineSecret("PASSWORD")
 
 export const sendEmail = functions.https.onRequest(
-  { secrets: [EMAIL, PASSWORD], cors: ["carriedbybees.com"] },
+  {
+    secrets: [EMAIL, PASSWORD],
+    cors: ["https://www.carriedbybees.com", "http://localhost:5173"],
+  },
   (req, res) => {
     try {
       const { email, firstName, lastName, message } = req.body
