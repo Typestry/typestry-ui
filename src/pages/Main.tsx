@@ -17,7 +17,7 @@ export const Main = () => {
       <section className="mt-8" id="listen">
         <BandcampPlayer />
       </section>
-      <section id="show">
+      <section id="shows">
         <h4 className={HEADER_CLASS}>Upcoming Shows</h4>
         <ListShow shows={shows} />
       </section>
