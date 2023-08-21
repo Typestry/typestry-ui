@@ -7,7 +7,7 @@ interface ListShowProps {
 
 export const ListShow = ({ shows }: ListShowProps) => {
   return (
-    <div className="bg-[rgb(51,51,51,0.8)] p-8 grid grid-flow-row gap-y-4">
+    <div className="bg-[rgb(51,51,51,0.8)] px-8 md:px-16 py-12 md:py-24 grid grid-flow-row gap-y-4">
       {shows.length ? (
         shows.map((show) => (
           <div key={show.date}>

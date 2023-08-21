@@ -26,7 +26,7 @@ export const TextField = (props: TextFieldProps) => {
             "invalid:focus:border-b-red-900 invalid:border-b-red-900":
               props.value,
           },
-          "border-b-2 outline-none text-white border-t-0 border-l-0 border-r-0 border-[#222222] text-lg focus:ring-transparent transition-colors duration-500 focus:border-fuchsia-400 hover:border-fuchsia-400 block w-full p-4 bg-[#333333] disabled:opacity-50",
+          "border-b-2 outline-none required:rounded-none text-white border-t-0 border-l-0 border-r-0 border-[#222222] text-lg focus:ring-transparent transition-colors duration-500 focus:border-fuchsia-400 hover:border-fuchsia-400 block w-full p-4 bg-[#333333] disabled:opacity-50",
         )}
       />
     </div>

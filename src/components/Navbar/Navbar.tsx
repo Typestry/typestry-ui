@@ -21,9 +21,11 @@ export const Navbar = ({
     {},
   )
 
+  const navHeight = navRef.current?.getBoundingClientRect().height ?? 0
+
   useEffect(() => {
+    const currentPosition = window.scrollY + navHeight
     navItems.forEach((item) => {
-      const currentPosition = window.scrollY
       const element = document.getElementById(item.id)
       const anchor =
         (element?.getBoundingClientRect().top ?? 0) + currentPosition
@@ -32,8 +34,9 @@ export const Navbar = ({
   }, [navItems])
 
   const onScroll = useCallback(() => {
+    const currentPosition = window.scrollY + navHeight
     for (const section in anchorPoints) {
-      if (anchorPoints[section] >= window.scrollY) {
+      if (anchorPoints[section] >= currentPosition) {
         const item = navItems.find((item) => item.id === section)
         item && setActiveItem(item)
         break
@@ -46,7 +49,7 @@ export const Navbar = ({
     return () => {
       window.removeEventListener("scroll", onScroll)
     }
-  }, [anchorPoints])
+  }, [anchorPoints, onScroll])
 
   return (
     <nav
