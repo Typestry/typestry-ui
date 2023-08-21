@@ -16,7 +16,7 @@ export const MainLayout = ({ children }: MainLayoutProps) => {
   const [activeItem, setActiveItem] = useState<NavItemParams>(navItems[0])
 
   return (
-    <div className="bg-grass bg-no-repeat md:bg-center bg-right bg-blend-color-burn bg-[rgb(0,0,0,0.5)] md:bg-transparent bg-fixed md:bg-cover">
+    <div className="bg-grass bg-no-repeat md:bg-center bg-left bg-[rgb(0,0,0,0.5)] md:bg-transparent bg-fixed bg-cover">
       <Navbar
         navItems={navItems}
         setActiveItem={setActiveItem}

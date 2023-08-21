@@ -1,3 +1,4 @@
+import { useMemo } from "react"
 import { Show } from "../../types/Show"
 import { DateUtils } from "../../utils/dateUtils/dateUtils"
 import { Button } from "../Button"
@@ -7,10 +8,12 @@ interface ListShowProps {
 }
 
 export const ListShow = ({ shows }: ListShowProps) => {
+  const filteredShows = useMemo(() => shows.filter(removePastShows), [shows])
+
   return (
     <div className="bg-[rgb(51,51,51,0.8)] px-8 md:px-16 py-12 md:py-24 grid grid-flow-row gap-y-8">
-      {shows.length ? (
-        shows.map((show) => (
+      {filteredShows.length ? (
+        filteredShows.map((show) => (
           <div key={show.date}>
             <div className="flex justify-between border-b-2 font-bold border-fuchsia-300 pb-1">
               <p>{DateUtils.formatDate({ date: show.date })}</p>
@@ -35,4 +38,8 @@ export const ListShow = ({ shows }: ListShowProps) => {
       )}
     </div>
   )
+}
+
+const removePastShows = (show: Show) => {
+  return !DateUtils.isPast(show.date)
 }
