@@ -8,6 +8,7 @@ interface MainLayoutProps {
 
 const navItems = [
   { name: "LISTEN", id: "listen" },
+  { name: "SHOWS", id: "shows" },
   { name: "CONTACT", id: "contact" },
 ]
 
