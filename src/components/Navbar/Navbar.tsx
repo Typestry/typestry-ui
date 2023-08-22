@@ -4,6 +4,7 @@ import { NavItem } from "../NavItem"
 import { SocialContainer } from "../SocialContainer"
 import { SocialLink } from "../SocialLink"
 import { socialData } from "../../constants/socialData"
+import { mean, range } from "lodash"
 
 interface NavbarProps {
   navItems: Array<NavItemParams>
@@ -24,17 +25,18 @@ export const Navbar = ({
   const navHeight = navRef.current?.getBoundingClientRect().height ?? 0
 
   useEffect(() => {
-    const currentPosition = window.scrollY + navHeight
+    const currentPosition = Math.max(0, window.scrollY) + navHeight
     navItems.forEach((item) => {
       const element = document.getElementById(item.id)
-      const anchor =
-        (element?.getBoundingClientRect().top ?? 0) + currentPosition
+      const { top, bottom } = element?.getBoundingClientRect() as DOMRect
+      const middle = mean([top, bottom])
+      const anchor = middle + currentPosition
       setAnchorPoints((prev) => ({ ...prev, [item.id]: anchor }))
     })
   }, [navItems])
 
   const onScroll = useCallback(() => {
-    const currentPosition = window.scrollY + navHeight
+    const currentPosition = Math.max(0, window.scrollY) + navHeight
     for (const section in anchorPoints) {
       if (anchorPoints[section] >= currentPosition) {
         const item = navItems.find((item) => item.id === section)
