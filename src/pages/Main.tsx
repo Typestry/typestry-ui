@@ -6,22 +6,25 @@ import { useGetDocuments } from "../hooks/useGetDocuments"
 import { Show } from "../types/Show"
 
 const HEADER_CLASS =
-  "text-3xl font-serif font-bold tracking-wide text-fuchsia-300 drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.2)] mb-4"
+  "text-3xl font-serif font-bold tracking-wide text-fuchsia-300 drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.2)]"
 
 export const Main = () => {
   const { runHttpsFunction } = useFirebaseFunction()
   const { data: shows } = useGetDocuments<Show>("shows")
 
   return (
-    <div className="grid grid-flow-row gap-y-24 md:max-w-2xl w-full">
-      <section className="mt-8" id="listen">
+    <div className="flex flex-col md:max-w-2xl w-full">
+      <section id="listen">
         <BandcampPlayer />
       </section>
-      <section id="shows" className="grid grid-flow-row gap-y-4">
+      <section
+        id="shows"
+        className="flex flex-col gap-y-4 min-h-[768px] justify-center"
+      >
         <h4 className={HEADER_CLASS}>Upcoming Shows</h4>
         <ListShow shows={shows} />
       </section>
-      <section id="contact" className="grid grid-flow-row gap-y-4 mb-4">
+      <section id="contact" className="flex flex-col gap-y-4">
         <h4 className={HEADER_CLASS}>Contact</h4>
         <ContactForm
           onSubmit={async (payload) =>

@@ -1,10 +1,6 @@
-import { ReactNode, useState } from "react"
+import { useRef } from "react"
 import { Navbar } from "../components/Navbar"
-import { NavItemParams } from "../types/NavItemParams"
-
-interface MainLayoutProps {
-  children: ReactNode
-}
+import { Outlet } from "react-router"
 
 const navItems = [
   { name: "LISTEN", id: "listen" },
@@ -12,18 +8,20 @@ const navItems = [
   { name: "CONTACT", id: "contact" },
 ]
 
-export const MainLayout = ({ children }: MainLayoutProps) => {
-  const [activeItem, setActiveItem] = useState<NavItemParams>(navItems[0])
+export const MainLayout = () => {
+  const layoutRef = useRef<HTMLDivElement>(null)
 
   return (
-    <div className="bg-grass bg-no-repeat md:bg-center bg-left bg-[rgb(0,0,0,0.5)] md:bg-transparent bg-fixed bg-cover">
-      <Navbar
-        navItems={navItems}
-        setActiveItem={setActiveItem}
-        activeItem={activeItem}
-      />
-      <main className="flex flex-col h-full w-full items-center gap-8 p-4 md:p-8">
-        {children}
+    <div
+      ref={layoutRef}
+      className="bg-grass bg-no-repeat md:bg-center bg-left bg-[rgb(0,0,0,0.5)] md:bg-transparent bg-fixed bg-cover"
+    >
+      <Navbar navItems={navItems} />
+      <main
+        id="home"
+        className="flex flex-col h-full w-full items-center p-4 md:p-8"
+      >
+        <Outlet />
       </main>
     </div>
   )

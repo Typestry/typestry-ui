@@ -4,12 +4,26 @@ import { Main } from "../pages/Main"
 import { metaData, linkData } from "../constants/metaData"
 import { bandAssets } from "../constants/bandAssets"
 import FirebaseService from "../services/firebaseService"
+import { Route, RouterProvider, Routes } from "react-router"
+import { createBrowserRouter } from "react-router-dom"
 
 FirebaseService.init()
 
+const Root = () => {
+  return (
+    <Routes>
+      <Route element={<MainLayout />}>
+        <Route path="/" element={<Main />} />
+      </Route>
+    </Routes>
+  )
+}
+
+const router = createBrowserRouter([{ path: "*", Component: Root }])
+
 export const App = () => {
   return (
-    <MainLayout>
+    <>
       <Helmet>
         {metaData.map((datum, index) => (
           <meta key={String(index)} {...datum} />
@@ -19,7 +33,7 @@ export const App = () => {
         ))}
         <title>{bandAssets.bandName} - Home</title>
       </Helmet>
-      <Main />
-    </MainLayout>
+      <RouterProvider router={router} />
+    </>
   )
 }
