@@ -14,7 +14,6 @@ interface NavbarProps {
 
 export const Navbar = ({ navItems }: NavbarProps) => {
   const location = useLocation()
-  console.log(location)
   const navigate = useNavigate()
 
   useEffect(() => {
