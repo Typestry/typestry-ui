@@ -2,6 +2,7 @@ import { TextField } from "../TextField"
 import { useFormState } from "../../hooks/useFormState"
 import { Button } from "../Button"
 import { Contact } from "../../../global/types/Contact"
+import { TextArea } from "../TextArea"
 
 type FormValues = Contact
 
@@ -45,17 +46,13 @@ export const ContactForm = ({ onSubmit }: ContactFormProps) => {
         aria-label="Enter your email"
         {...registerField("email")}
       />
-      <TextField
+      <TextArea
         label="Message"
         required
         aria-label="Enter your message"
         {...registerField("message")}
       />
-      <Button
-        type="submit"
-        disabled={isSubmitting}
-        className="w-full hover:bg-[rgb(51,51,51,0.5)] bg-[rgb(51,51,51,0.8)] border-2 border-white transition-colors duration-300 py-3 md:py-4 mt-4 uppercase"
-      >
+      <Button type="submit" disabled={isSubmitting}>
         {isSubmitting ? "Submitting..." : "Submit"}
       </Button>
     </form>
