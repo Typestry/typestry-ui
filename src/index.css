@@ -17,7 +17,7 @@ html {
   height: 100%;
   box-sizing: border-box;
   scroll-behavior: smooth;
-  scroll-padding-top: 284px;
+  @apply scroll-pt-[186px] md:scroll-pt-[284px];
 }
 
 html *,

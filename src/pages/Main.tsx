@@ -13,13 +13,13 @@ export const Main = () => {
   const { data: shows } = useGetDocuments<Show>("shows")
 
   return (
-    <div className="flex flex-col md:max-w-2xl w-full">
+    <div className="flex flex-col gap-y-24 md:max-w-2xl w-full">
       <section id="listen">
         <BandcampPlayer />
       </section>
       <section
         id="shows"
-        className="flex flex-col gap-y-4 min-h-[768px] justify-center"
+        className="flex flex-col gap-y-4 min-h-[600px] justify-center"
       >
         <h4 className={HEADER_CLASS}>Upcoming Shows</h4>
         <ListShow shows={shows} />

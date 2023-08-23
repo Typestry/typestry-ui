@@ -51,7 +51,7 @@ export const Navbar = ({ navItems }: NavbarProps) => {
   }, [location])
 
   return (
-    <nav className="bg-[#222222] flex flex-col justify-center items-center gap-y-4 md:gap-y-8 py-4 md:py-8 sticky top-0 z-40 h-full">
+    <nav className="bg-[#222222] flex flex-col justify-center items-center gap-y-4 md:gap-y-8 py-4 md:py-8 sticky top-0 z-40 h-[170px] md:h-[252px]">
       <h1 className="text-3xl md:text-6xl font-serif font-light tracking-[0.3rem]">
         CARRIED BY BEES
       </h1>
