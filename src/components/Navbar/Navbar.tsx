@@ -20,7 +20,7 @@ export const Navbar = ({ navItems }: NavbarProps) => {
     const observer = new IntersectionObserver(
       (entries) => {
         for (const { target, isIntersecting } of entries) {
-          const id = target.getAttribute("id")
+          const id = target.getAttribute("id") ?? "listen"
           if (isIntersecting) {
             navigate(`#${id}`)
           }
