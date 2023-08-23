@@ -7,6 +7,11 @@ export const shows: Show[] = [
     description: "A description",
     price: 15,
     venue: "The Rhino",
+    callToAction: {
+      url: "https://google.com",
+      label: "Tickets",
+      altText: "Purchase tickets",
+    },
   },
   {
     city: "Los Angeles, CA",
@@ -14,6 +19,11 @@ export const shows: Show[] = [
     description: "An exciting show",
     price: 20,
     venue: "The Music Hall",
+    callToAction: {
+      url: "https://google.com",
+      label: "Tickets",
+      altText: "Purchase tickets",
+    },
   },
   {
     city: "New York, NY",
@@ -21,5 +31,10 @@ export const shows: Show[] = [
     description: "A night to remember",
     price: 25,
     venue: "Broadway Theater",
+    callToAction: {
+      url: "https://google.com",
+      label: "Tickets",
+      altText: "Purchase tickets",
+    },
   },
 ]

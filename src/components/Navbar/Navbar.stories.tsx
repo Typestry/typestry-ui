@@ -13,7 +13,6 @@ const navItems = [
 const meta: Meta<typeof Navbar> = {
   component: Navbar,
   args: {
-    activeItem: navItems[0],
     navItems,
   },
 }
