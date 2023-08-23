@@ -19,7 +19,7 @@ export const MainLayout = () => {
       <Navbar navItems={navItems} />
       <main
         id="home"
-        className="flex flex-col h-full w-full items-center p-4 md:p-8"
+        className="flex flex-col h-full w-full items-center px-4 md:px-8 py-12"
       >
         <Outlet />
       </main>

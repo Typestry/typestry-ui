@@ -19,7 +19,7 @@ export const Main = () => {
       </section>
       <section
         id="shows"
-        className="flex flex-col gap-y-4 min-h-[600px] justify-center"
+        className="flex flex-col gap-y-4 h-[400px] md:min-h-[600px] justify-center"
       >
         <h4 className={HEADER_CLASS}>Upcoming Shows</h4>
         <ListShow shows={shows} />
