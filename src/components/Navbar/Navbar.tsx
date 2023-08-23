@@ -4,7 +4,7 @@ import { NavItem } from "../NavItem"
 import { SocialContainer } from "../SocialContainer"
 import { SocialLink } from "../SocialLink"
 import { socialData } from "../../constants/socialData"
-import { useLocation } from "react-router"
+import { Location, useLocation } from "react-router"
 
 const DESKTOP_HEIGHT = 252
 const MOBILE_HEIGHT = 170
@@ -31,7 +31,7 @@ export const Navbar = ({ navItems }: NavbarProps) => {
             <NavItem
               {...item}
               id={item.id}
-              active={location.hash.split("#")[1] === item.id}
+              active={isActive(location, item.id)}
             />
           </li>
         ))}
@@ -43,4 +43,8 @@ export const Navbar = ({ navItems }: NavbarProps) => {
       </SocialContainer>
     </nav>
   )
+}
+
+const isActive = (location: Location, id: string) => {
+  return location.hash.split("#")[1] === id
 }
