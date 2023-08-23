@@ -7,6 +7,8 @@ import {
   useState,
 } from "react"
 
+type Element = HTMLSelectElement | HTMLInputElement | HTMLTextAreaElement
+
 interface UseFormStateProps<V = Record<string, unknown>> {
   onSubmit: (values: V) => void | Promise<(values: V) => void>
   initialValues: V
@@ -36,7 +38,7 @@ export const useFormState = <V>({
     setIsDirty(isDirty)
   }, [touched])
 
-  const handleChange = useCallback((e: ChangeEvent<HTMLInputElement>) => {
+  const handleChange = useCallback((e: ChangeEvent<Element>) => {
     const { name, value } = e.currentTarget
     setValues((prev) => ({ ...prev, [name]: value }))
   }, [])
@@ -58,7 +60,7 @@ export const useFormState = <V>({
   )
 
   const handleBlur = useCallback(
-    (e: FocusEvent<HTMLInputElement>) => {
+    (e: FocusEvent<Element>) => {
       const name = e.currentTarget.name as keyof V
       if (values[name]) {
         setTouched((prev) => ({ ...prev, [name]: true }))

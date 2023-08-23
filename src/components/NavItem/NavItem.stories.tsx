@@ -14,10 +14,6 @@ const meta: Meta<typeof NavItem> = {
 export default meta
 type Story = StoryObj<typeof NavItem>
 
-export const Inactive: Story = {
-  render: (args) => <NavItem {...args} name="Inactive" />,
-}
-
-export const Active: Story = {
-  render: (args) => <NavItem {...args} name="Active" active />,
+export const Example: Story = {
+  render: (args) => <NavItem {...args} name="Example" />,
 }
