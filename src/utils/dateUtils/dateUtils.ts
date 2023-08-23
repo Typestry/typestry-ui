@@ -1,4 +1,5 @@
 import * as DateFns from "date-fns"
+import { Timestamp } from "firebase/firestore"
 
 type DateArg = Date | string | number
 
@@ -10,14 +11,22 @@ interface FormatDate {
 const DATE_ERROR_MESSAGE =
   "An invalid date was passed as an argument for 'date'."
 
-const parseDate = (date: string | number | Date) => {
-  let parsedDate = new Date(date)
+const parseDate = (date: DateArg) => {
+  let parsedDate: Date
 
-  if (typeof date !== "number" && typeof date !== "string") {
+  if (date instanceof Timestamp) {
+    parsedDate = parseTimestamp(date)
+  } else if (typeof date !== "number" && typeof date !== "string") {
     parsedDate = date
+  } else {
+    parsedDate = new Date(date)
   }
 
   return parsedDate
+}
+
+const parseTimestamp = (timestamp: Timestamp) => {
+  return timestamp.toDate()
 }
 
 const formatDate = ({
