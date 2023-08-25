@@ -1,5 +1,6 @@
 import classNames from "classnames"
 import { ComponentProps } from "react"
+import { useBandPageContext } from "../../providers/BandPageProvider"
 
 type InputProps = ComponentProps<"input">
 
@@ -9,6 +10,10 @@ interface TextFieldProps extends InputProps {
 }
 
 export const TextField = (props: TextFieldProps) => {
+  const {
+    bandPageConfig: { theme },
+  } = useBandPageContext()
+
   return (
     <div className="group">
       <label

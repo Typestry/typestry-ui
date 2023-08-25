@@ -3,11 +3,9 @@ import { NavItemParams } from "../../types/NavItemParams"
 import { NavItem } from "../NavItem"
 import { SocialContainer } from "../SocialContainer"
 import { SocialLink } from "../SocialLink"
-import { socialData } from "../../constants/socialData"
 import { Location, useLocation } from "react-router"
-
-const DESKTOP_HEIGHT = 252
-const MOBILE_HEIGHT = 170
+import { useBandPageContext } from "../../providers/BandPageProvider"
+import classNames from "classnames"
 
 interface NavbarProps {
   navItems: Array<NavItemParams>
@@ -15,21 +13,32 @@ interface NavbarProps {
 
 export const Navbar = ({ navItems }: NavbarProps) => {
   const navRef = useRef<HTMLElement>(null)
+  const {
+    bandPageConfig: { bandName, mediaLinks, theme },
+  } = useBandPageContext()
   const location = useLocation()
 
   return (
     <nav
       ref={navRef}
-      className={`bg-[#222222] flex flex-col justify-center items-center gap-y-4 md:gap-y-8 py-4 md:py-8 sticky top-0 z-40 h-[${MOBILE_HEIGHT}px] md:h-[${DESKTOP_HEIGHT}px]`}
+      className={classNames(
+        "flex flex-col justify-center items-center gap-y-4 md:gap-y-8 py-4 md:py-8 h-[170px] md:h-[252px] bg-[#222222]",
+        theme?.bannerClassName,
+      )}
     >
-      <h1 className="text-3xl md:text-6xl font-serif font-light tracking-[0.3rem]">
-        CARRIED BY BEES
+      <h1
+        className={classNames(
+          "text-3xl md:text-6xl font-serif font-light tracking-[0.3rem] uppercase",
+          theme?.bannerTextClassName,
+        )}
+      >
+        {bandName}
       </h1>
       <ul className="flex gap-x-6">
         {navItems.map((item) => (
           <li key={item.id}>
             <NavItem
-              {...item}
+              name={item.name}
               id={item.id}
               active={isActive(location, item.id)}
             />
@@ -37,7 +46,7 @@ export const Navbar = ({ navItems }: NavbarProps) => {
         ))}
       </ul>
       <SocialContainer>
-        {Object.values(socialData).map((datum) => (
+        {Object.values(mediaLinks).map((datum) => (
           <SocialLink key={datum.title} {...datum} />
         ))}
       </SocialContainer>

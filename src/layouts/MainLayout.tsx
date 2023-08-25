@@ -1,22 +1,18 @@
 import { useRef } from "react"
 import { Navbar } from "../components/Navbar"
 import { Outlet } from "react-router"
-
-const navItems = [
-  { name: "LISTEN", id: "listen" },
-  { name: "SHOWS", id: "shows" },
-  { name: "CONTACT", id: "contact" },
-]
+import { useBandPageContext } from "../providers/BandPageProvider"
 
 export const MainLayout = () => {
   const layoutRef = useRef<HTMLDivElement>(null)
+  const {
+    bandPageConfig: { theme },
+  } = useBandPageContext()
+  const { sections } = useBandPageContext()
 
   return (
-    <div
-      ref={layoutRef}
-      className="bg-grass bg-no-repeat md:bg-center bg-left bg-[rgb(0,0,0,0.5)] md:bg-transparent bg-fixed bg-cover"
-    >
-      <Navbar navItems={navItems} />
+    <div ref={layoutRef} className={theme?.backgroundClassName}>
+      <Navbar navItems={sections} />
       <main
         id="home"
         className="flex flex-col h-full w-full items-center px-4 md:px-8 py-12"

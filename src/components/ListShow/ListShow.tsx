@@ -2,12 +2,16 @@ import { useMemo } from "react"
 import { Show } from "../../types/Show"
 import { DateUtils } from "../../utils/dateUtils/dateUtils"
 import { Button } from "../Button"
+import { useBandPageContext } from "../../providers/BandPageProvider"
 
 interface ListShowProps {
   shows: Array<Show>
 }
 
 export const ListShow = ({ shows }: ListShowProps) => {
+  const {
+    bandPageConfig: { theme },
+  } = useBandPageContext()
   const filteredShows = useMemo(() => shows.filter(removePastShows), [shows])
 
   return (
@@ -15,7 +19,14 @@ export const ListShow = ({ shows }: ListShowProps) => {
       {filteredShows.length ? (
         filteredShows.map((show) => (
           <div key={show.date}>
-            <div className="flex justify-between border-b-2 font-bold border-fuchsia-300 pb-1">
+            <div
+              style={{
+                borderColor: theme?.secondaryColor
+                  ? theme.secondaryColor
+                  : "white",
+              }}
+              className="flex justify-between border-b-2 font-bold pb-1"
+            >
               <p>{DateUtils.formatDate({ date: show.date })}</p>
               <p>{show.city}</p>
             </div>

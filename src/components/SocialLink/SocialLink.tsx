@@ -1,13 +1,6 @@
-import { SocialData } from "../../constants/socialData"
+import { MediaLink } from "../../types/MediaLink"
 
-type SocialLinkProps = SocialData[keyof SocialData]
-
-export const SocialLink = ({
-  image: Image,
-  url,
-  alt,
-  ...rest
-}: SocialLinkProps) => {
+export const SocialLink = ({ icon, url, alt, ...rest }: MediaLink) => {
   return (
     <div
       className="h-10 transition-colors duration-300 hover:bg-fuchsia-300 bg-[#33333] rounded-lg p-2 cursor-pointer"
@@ -20,7 +13,7 @@ export const SocialLink = ({
         href={url}
         aria-label={alt}
       >
-        <Image fontSize={24} className="fill-white" />
+        <img src={icon} width={24} height={24} />
       </a>
     </div>
   )

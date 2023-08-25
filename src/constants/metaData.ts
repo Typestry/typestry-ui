@@ -13,16 +13,9 @@ type MetaData = Array<
   DetailedHTMLProps<MetaHTMLAttributes<HTMLMetaElement>, HTMLMetaElement>
 >
 
-const keywords =
-  "Carried by Bees, indie music, alternative rock, Kansas City band, John Benda, Justin Klaas"
-
 const socialImage = "https://www.carriedbybees.com/johnandjustin.jpg"
 
 export const metaData: MetaData = [
-  {
-    name: "keywords",
-    content: keywords,
-  },
   { name: "description", content: bandAssets.shortBio },
   { property: "og:title", content: bandAssets.bandName },
   { property: "og:description", content: bandAssets.shortBio },

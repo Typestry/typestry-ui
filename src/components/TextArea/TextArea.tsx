@@ -1,5 +1,6 @@
 import classNames from "classnames"
 import { ComponentProps } from "react"
+import { useBandPageContext } from "../../providers/BandPageProvider"
 
 type InputProps = ComponentProps<"textarea">
 
@@ -9,6 +10,10 @@ interface TextAreaProps extends InputProps {
 }
 
 export const TextArea = (props: TextAreaProps) => {
+  const {
+    bandPageConfig: { theme },
+  } = useBandPageContext()
+
   return (
     <div className="group">
       <label
