@@ -2,6 +2,7 @@ import { initializeApp } from "firebase-admin/app"
 import { getFirestore } from "firebase-admin/firestore"
 import { defineSecret } from "firebase-functions/params"
 import { HttpsError, onRequest } from "firebase-functions/v2/https"
+import { onDocumentCreated } from "firebase-functions/v2/firestore"
 import { beforeUserCreated } from "firebase-functions/v2/identity"
 import * as nodemailer from "nodemailer"
 
@@ -52,6 +53,36 @@ export const sendEmail = onRequest(
       res.status(500)
       res.send(err)
     }
+  },
+)
+
+export const onInvited = onDocumentCreated(
+  { document: "invitations/{invitation}", secrets: [EMAIL, PASSWORD] },
+  (event) => {
+    const document = event.data?.data()
+    const transporter = nodemailer.createTransport({
+      service: "gmail",
+      auth: {
+        user: EMAIL.value(),
+        pass: PASSWORD.value(),
+      },
+    })
+
+    const mailOptions = {
+      from: EMAIL.value(),
+      to: document?.email,
+      subject:
+        "Carried by Bees has invited you to become a member of their admin portal!",
+      text: "Welcome to Carried by Bees Admin. In order to complete your sign up, go to the following url and sign in!\n\nhttps://admin.carriedbybees.com",
+    }
+
+    transporter.sendMail(mailOptions, (error) => {
+      if (error) {
+        throw Error("MAIL_SEND_FAILURE")
+      } else {
+        console.info("MAIL_SEND_SUCCESS")
+      }
+    })
   },
 )
 
