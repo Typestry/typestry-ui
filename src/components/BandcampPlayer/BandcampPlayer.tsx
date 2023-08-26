@@ -1,10 +1,12 @@
-interface BandcampPlayerProps {
+import { ComponentProps } from "react"
+
+interface BandcampPlayerProps extends ComponentProps<"div"> {
   albumId: number
 }
 
-export const BandcampPlayer = ({ albumId }: BandcampPlayerProps) => {
+export const BandcampPlayer = ({ albumId, ...rest }: BandcampPlayerProps) => {
   return (
-    <div className="w-full">
+    <div {...rest}>
       <div className="left-0 w-full h-0 relative pb-[100%]">
         <iframe
           src={`https://bandcamp.com/EmbeddedPlayer/album=${albumId}/size=large/bgcol=ffffff/linkcol=333333/minimal=true/transparent=true/`}

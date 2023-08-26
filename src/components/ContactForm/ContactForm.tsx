@@ -52,7 +52,7 @@ export const ContactForm = ({ onSubmit }: ContactFormProps) => {
         aria-label="Enter your message"
         {...registerField("message")}
       />
-      <Button type="submit" disabled={isSubmitting}>
+      <Button className="mt-4" type="submit" disabled={isSubmitting}>
         {isSubmitting ? "Submitting..." : "Submit"}
       </Button>
     </form>

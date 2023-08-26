@@ -29,7 +29,7 @@ export const Main = () => {
   }, [])
 
   return (
-    <div className="flex flex-col gap-y-24 md:max-w-2xl w-full">
+    <div className="flex flex-col gap-y-72 md:max-w-2xl w-full">
       {sections.map((section) => {
         return <Section section={section} handleRef={handleRef} />
       })}

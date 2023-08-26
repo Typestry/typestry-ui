@@ -2,6 +2,10 @@ import { createContext, useContext, FC, ReactNode } from "react"
 import { BandPageConfig } from "../types/BandPageConfig"
 import { Helmet } from "react-helmet"
 import { NavItemParams } from "../types/NavItemParams"
+import { Route, RouterProvider, Routes } from "react-router"
+import { MainLayout } from "../layouts/MainLayout"
+import { Main } from "../pages/Main"
+import { createBrowserRouter } from "react-router-dom"
 
 interface BandPageContextProps {
   bandPageConfig: BandPageConfig
@@ -11,6 +15,18 @@ interface BandPageContextProps {
 const BandPageContext = createContext<BandPageContextProps | undefined>(
   undefined,
 )
+
+const Root = () => {
+  return (
+    <Routes>
+      <Route element={<MainLayout />}>
+        <Route path="/" element={<Main />} />
+      </Route>
+    </Routes>
+  )
+}
+
+const router = createBrowserRouter([{ path: "*", Component: Root }])
 
 export const useBandPageContext = (): BandPageContextProps => {
   const context = useContext(BandPageContext)
@@ -25,13 +41,12 @@ export const useBandPageContext = (): BandPageContextProps => {
 interface BandPageProviderProps {
   bandPageConfig: BandPageConfig
   sections: Array<NavItemParams>
-  children: ReactNode
+  children?: ReactNode
 }
 
 export const BandPageProvider: FC<BandPageProviderProps> = ({
   bandPageConfig,
   sections,
-  children,
 }) => {
   return (
     <BandPageContext.Provider value={{ bandPageConfig, sections }}>
@@ -43,7 +58,7 @@ export const BandPageProvider: FC<BandPageProviderProps> = ({
         <meta name="og:image" content={bandPageConfig.socialImage} />
         <title>{bandPageConfig.bandName}</title>
       </Helmet>
-      {children}
+      <RouterProvider router={router} />
     </BandPageContext.Provider>
   )
 }

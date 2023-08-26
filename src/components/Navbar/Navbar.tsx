@@ -22,13 +22,13 @@ export const Navbar = ({ navItems }: NavbarProps) => {
     <nav
       ref={navRef}
       className={classNames(
-        "flex flex-col justify-center items-center gap-y-4 md:gap-y-8 py-4 md:py-8 h-[170px] md:h-[252px] bg-[#222222]",
+        "flex flex-col justify-center items-center gap-y-4 md:gap-y-8 py-4 md:py-8 bg-[#222222]",
         theme?.bannerClassName,
       )}
     >
       <h1
         className={classNames(
-          "text-3xl md:text-6xl font-serif font-light tracking-[0.3rem] uppercase",
+          "text-4xl md:text-8xl font-serif text-center font-light tracking-[0.3rem] uppercase",
           theme?.bannerTextClassName,
         )}
       >

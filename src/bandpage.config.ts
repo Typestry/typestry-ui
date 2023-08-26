@@ -42,8 +42,8 @@ export default createBandPageConfig({
   },
   theme: {
     backgroundClassName:
-      "bg-grass bg-no-repeat md:bg-center bg-left bg-fixed bg-cover bg-[rgb(0,0,0,0.5)] md:bg-transparent",
-    bannerClassName: "sticky top-0 z-40",
+      "bg-no-repeat md:bg-center bg-left bg-fixed bg-cover bg-[rgb(0,0,0,0.6)]",
+    bannerClassName: "min-h-[100vh] bg-grass",
     bannerTextClassName: "uppercase",
     sectionHeaderClassName: "text-fuchsia-300",
     linkClassName: (active: boolean) =>
