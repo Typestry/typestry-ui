@@ -4,7 +4,6 @@ import { useBandPageContext } from "../../providers/BandPageProvider"
 import classNames from "classnames"
 import { useCallback, useRef, useState } from "react"
 import { useEventListener } from "../../hooks/useEventListener"
-import { mean } from "lodash"
 
 export const Navbar = () => {
   const {
@@ -12,7 +11,6 @@ export const Navbar = () => {
   } = useBandPageContext()
   const [isHidden, setIsHidden] = useState(false)
   const navRef = useRef<HTMLElement>(null)
-  const scrollRef = useRef<number>(0)
 
   const onScroll = useCallback(() => {
     const { bottom } = navRef.current?.getBoundingClientRect()!
@@ -26,11 +24,11 @@ export const Navbar = () => {
       <nav
         ref={navRef}
         className={classNames(
-          { "h-0 opacity-0": isHidden },
+          { "opacity-0": isHidden },
           "bg-grass flex flex-col justify-center items-center md:py-8 bg-[#222222] transition-all duration-1000 ease-in-out h-[100vh] snap-end opacity-1 snap-always will-change-scroll",
         )}
       >
-        <div className="flex flex-col items-center gap-y-4 md:gap-y-8 py-4 ">
+        <div className="flex flex-col items-center gap-y-4 md:gap-y-8 py-4">
           <h1>{bandName}</h1>
           <SocialContainer>
             {Object.values(mediaLinks).map((datum) => (

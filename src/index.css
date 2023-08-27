@@ -29,7 +29,6 @@ html {
   height: 100%;
   box-sizing: border-box;
   scroll-behavior: smooth;
-  scroll-snap-type: y mandatory;
 }
 
 html *,
