@@ -1,59 +1,75 @@
-import { useRef } from "react"
-import { NavItemParams } from "../../types/NavItemParams"
-import { NavItem } from "../NavItem"
 import { SocialContainer } from "../SocialContainer"
 import { SocialLink } from "../SocialLink"
-import { Location, useLocation } from "react-router"
 import { useBandPageContext } from "../../providers/BandPageProvider"
 import classNames from "classnames"
+import { useCallback, useRef, useState } from "react"
+import { useEventListener } from "../../hooks/useEventListener"
+import { mean } from "lodash"
 
-interface NavbarProps {
-  navItems: Array<NavItemParams>
-}
-
-export const Navbar = ({ navItems }: NavbarProps) => {
-  const navRef = useRef<HTMLElement>(null)
+export const Navbar = () => {
   const {
-    bandPageConfig: { bandName, mediaLinks, theme },
+    bandPageConfig: { bandName, mediaLinks },
   } = useBandPageContext()
-  const location = useLocation()
+  const [isHidden, setIsHidden] = useState(false)
+  const navRef = useRef<HTMLElement>(null)
+  const scrollRef = useRef<number>(0)
+
+  const onScroll = useCallback(() => {
+    const { bottom } = navRef.current?.getBoundingClientRect()!
+    setIsHidden(bottom < 0)
+  }, [setIsHidden])
+
+  useEventListener(window, "scroll", onScroll)
 
   return (
-    <nav
-      ref={navRef}
-      className={classNames(
-        "flex flex-col justify-center items-center gap-y-4 md:gap-y-8 py-4 md:py-8 bg-[#222222]",
-        theme?.bannerClassName,
-      )}
-    >
-      <h1
+    <>
+      <nav
+        ref={navRef}
         className={classNames(
-          "text-4xl md:text-8xl font-serif text-center font-light tracking-[0.3rem] uppercase",
-          theme?.bannerTextClassName,
+          { "h-0 opacity-0": isHidden },
+          "bg-grass flex flex-col justify-center items-center md:py-8 bg-[#222222] transition-all duration-1000 ease-in-out h-[100vh] snap-end opacity-1 snap-always will-change-scroll",
         )}
       >
-        {bandName}
-      </h1>
-      <ul className="flex gap-x-6">
-        {navItems.map((item) => (
-          <li key={item.id}>
-            <NavItem
-              name={item.name}
-              id={item.id}
-              active={isActive(location, item.id)}
-            />
-          </li>
-        ))}
-      </ul>
-      <SocialContainer>
-        {Object.values(mediaLinks).map((datum) => (
-          <SocialLink key={datum.title} {...datum} />
-        ))}
-      </SocialContainer>
-    </nav>
+        <div className="flex flex-col items-center gap-y-4 md:gap-y-8 py-4 ">
+          <h1>{bandName}</h1>
+          <SocialContainer>
+            {Object.values(mediaLinks).map((datum) => (
+              <SocialLink
+                key={datum.title}
+                {...datum}
+                className="w-8 md:w-12"
+              />
+            ))}
+          </SocialContainer>
+        </div>
+      </nav>
+      <nav
+        className={classNames(
+          {
+            "opacity-1 bg-[#222222] xl:bg-transparent": isHidden,
+          },
+          { "opacity-0": !isHidden },
+          "sticky top-0 z-40 p-8 flex justify-between items-center transition-opacity duration-150 ease-in-out shadow-md xl:shadow-none",
+        )}
+      >
+        <h6
+          className="tracking-widest cursor-pointer"
+          onClick={() => window.scrollTo({ top: 0 })}
+        >
+          {bandName}
+        </h6>
+        <div>
+          <SocialContainer>
+            {Object.values(mediaLinks).map((datum) => (
+              <SocialLink
+                key={datum.title}
+                {...datum}
+                className="w-5 md:w-12"
+              />
+            ))}
+          </SocialContainer>
+        </div>
+      </nav>
+    </>
   )
-}
-
-const isActive = (location: Location, id: string) => {
-  return location.hash.split("#")[1] === id
 }

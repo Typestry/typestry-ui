@@ -6,6 +6,7 @@ import { ContactForm } from "./ContactForm"
 
 const meta: Meta<typeof ContactForm> = {
   component: ContactForm,
+  decorators: [],
 }
 
 export default meta

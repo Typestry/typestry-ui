@@ -14,10 +14,7 @@ export const ListShow = ({ shows, ...rest }: ListShowProps) => {
   return (
     <div
       {...rest}
-      className={classNames(
-        "bg-[rgb(51,51,51,0.8)] grid grid-flow-row gap-y-8",
-        rest.className,
-      )}
+      className={classNames("grid grid-flow-row gap-y-24", rest.className)}
     >
       {filteredShows.length ? (
         filteredShows.map((show) => (

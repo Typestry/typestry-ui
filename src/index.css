@@ -13,10 +13,23 @@
   src: url("./assets/fonts/NotoSerif-VariableFont.ttf") format("truetype");
 }
 
+@layer base {
+  h1 {
+    @apply font-serif font-light uppercase tracking-[0.3rem] text-[34px] md:text-8xl;
+  }
+  h4 {
+    @apply text-fuchsia-300 text-3xl font-serif font-bold tracking-wide;
+  }
+  h6 {
+    @apply font-serif font-light uppercase tracking-[0.3rem] text-base md:text-3xl;
+  }
+}
+
 html {
   height: 100%;
   box-sizing: border-box;
   scroll-behavior: smooth;
+  scroll-snap-type: y mandatory;
 }
 
 html *,
@@ -32,6 +45,6 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   height: 100%;
-  background: #333333;
+  background: #222222;
   color: #ffffff;
 }

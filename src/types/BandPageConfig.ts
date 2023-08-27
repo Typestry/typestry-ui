@@ -6,12 +6,4 @@ export interface BandPageConfig {
   description: string
   socialImage: string
   mediaLinks: MediaLinks
-  theme?: {
-    backgroundClassName?: string
-    bannerTextClassName?: string
-    bannerClassName?: string
-    linkClassName?: (active: boolean) => string
-    secondaryColor?: string
-    sectionHeaderClassName?: string
-  }
 }

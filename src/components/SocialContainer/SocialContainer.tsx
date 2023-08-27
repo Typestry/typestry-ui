@@ -5,7 +5,5 @@ interface SocialContainerProps {
 }
 
 export const SocialContainer = ({ children }: SocialContainerProps) => {
-  return (
-    <section className="grid grid-flow-col gap-x-8 h-full">{children}</section>
-  )
+  return <div className="flex gap-x-4 md:gap-x-8 h-full">{children}</div>
 }

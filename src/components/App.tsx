@@ -21,7 +21,6 @@ export const App = () => {
         {
           name: "LISTEN",
           id: "listen",
-          sectionName: "Listen",
           component: () => (
             <BandcampPlayer className="w-full" albumId={662359070} />
           ),

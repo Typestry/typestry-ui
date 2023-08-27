@@ -1,5 +1,8 @@
-import classNames from "classnames"
 import { createBandPageConfig } from "./services/createBandPageConfig"
+import apple from "./assets/apple.svg"
+import spotify from "./assets/spotify.svg"
+import bandcamp from "./assets/bandcamp.svg"
+import instagram from "./assets/instagram.svg"
 
 export default createBandPageConfig({
   bandName: "Carried by Bees",
@@ -17,41 +20,27 @@ export default createBandPageConfig({
   mediaLinks: {
     spotify: {
       url: "https://open.spotify.com/album/5tGuHNvKJGT97QXkjDuHL8?si=AePd7DnBSX6L8hH4x8FRGw",
-      icon: "./src/assets/spotify.svg",
+      icon: spotify,
       alt: "listen to on spotify",
       title: "Spotify",
     },
     apple: {
       url: "http://itunes.apple.com/album/id/1702315264",
-      icon: "./src/assets/apple.svg",
+      icon: apple,
       alt: "listen to on apple music",
       title: "Apple Music",
     },
     instagram: {
       url: "https://www.instagram.com/carriedbybees",
-      icon: "./src/assets/instagram.svg",
+      icon: instagram,
       alt: "vistit carried by bees profile on instagram",
       title: "Instagram",
     },
     bandcamp: {
       url: "https://carriedbybees.bandcamp.com/album/bliss",
-      icon: "./src/assets/bandcamp.svg",
+      icon: bandcamp,
       alt: "purchase on bandcamp",
       title: "Bandcamp",
     },
-  },
-  theme: {
-    backgroundClassName:
-      "bg-no-repeat md:bg-center bg-left bg-fixed bg-cover bg-[rgb(0,0,0,0.6)]",
-    bannerClassName: "min-h-[100vh] bg-grass",
-    bannerTextClassName: "uppercase",
-    sectionHeaderClassName: "text-fuchsia-300",
-    linkClassName: (active: boolean) =>
-      classNames(
-        {
-          "border-fuchsia-300 text-fuchsia-300 border-b-2": active,
-        },
-        "hover:border-fuchsia-300 hover:text-fuchsia-300 hover:border-b-2 p-2 cursor-pointer transition-colors duration-150",
-      ),
   },
 })

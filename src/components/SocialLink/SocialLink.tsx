@@ -1,10 +1,17 @@
+import { ComponentProps } from "react"
 import { MediaLink } from "../../types/MediaLink"
+import classNames from "classnames"
 
-export const SocialLink = ({ icon, url, alt, ...rest }: MediaLink) => {
+type SocialLinkProps = ComponentProps<"div"> & MediaLink
+
+export const SocialLink = ({ icon, url, alt, ...rest }: SocialLinkProps) => {
   return (
     <div
-      className="h-10 transition-colors duration-300 hover:bg-fuchsia-300 bg-[#33333] rounded-lg p-2 cursor-pointer"
       {...rest}
+      className={classNames(
+        "transition-colors duration-300 hover:opacity-50 bg-[#33333] cursor-pointer",
+        rest.className,
+      )}
     >
       <a
         type="button"
@@ -13,7 +20,10 @@ export const SocialLink = ({ icon, url, alt, ...rest }: MediaLink) => {
         href={url}
         aria-label={alt}
       >
-        <img src={icon} width={24} height={24} />
+        <img
+          src={icon}
+          className="flex w-12 md:p-2 justify-center items-center"
+        />
       </a>
     </div>
   )

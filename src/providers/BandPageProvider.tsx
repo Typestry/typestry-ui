@@ -1,7 +1,7 @@
-import { createContext, useContext, FC, ReactNode } from "react"
+import { createContext, useContext, FC, useMemo } from "react"
 import { BandPageConfig } from "../types/BandPageConfig"
 import { Helmet } from "react-helmet"
-import { NavItemParams } from "../types/NavItemParams"
+import { SectionParams } from "../types/SectionParams"
 import { Route, RouterProvider, Routes } from "react-router"
 import { MainLayout } from "../layouts/MainLayout"
 import { Main } from "../pages/Main"
@@ -9,14 +9,14 @@ import { createBrowserRouter } from "react-router-dom"
 
 interface BandPageContextProps {
   bandPageConfig: BandPageConfig
-  sections: Array<NavItemParams>
+  sections: Array<SectionParams>
 }
 
 const BandPageContext = createContext<BandPageContextProps | undefined>(
   undefined,
 )
 
-const Root = () => {
+const RootDefault = () => {
   return (
     <Routes>
       <Route element={<MainLayout />}>
@@ -25,8 +25,6 @@ const Root = () => {
     </Routes>
   )
 }
-
-const router = createBrowserRouter([{ path: "*", Component: Root }])
 
 export const useBandPageContext = (): BandPageContextProps => {
   const context = useContext(BandPageContext)
@@ -40,14 +38,20 @@ export const useBandPageContext = (): BandPageContextProps => {
 
 interface BandPageProviderProps {
   bandPageConfig: BandPageConfig
-  sections: Array<NavItemParams>
-  children?: ReactNode
+  sections: Array<SectionParams>
+  root?: () => JSX.Element
 }
 
 export const BandPageProvider: FC<BandPageProviderProps> = ({
   bandPageConfig,
   sections,
+  root: Root,
 }) => {
+  const router = useMemo(
+    () => createBrowserRouter([{ path: "*", Component: Root ?? RootDefault }]),
+    [Root, RootDefault],
+  )
+
   return (
     <BandPageContext.Provider value={{ bandPageConfig, sections }}>
       <Helmet>

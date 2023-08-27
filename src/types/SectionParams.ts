@@ -1,7 +1,6 @@
-export type NavItemParams = {
+export type SectionParams = {
   id: string
   name: string
   sectionName?: string
   component: () => JSX.Element
-  className?: string
 }
