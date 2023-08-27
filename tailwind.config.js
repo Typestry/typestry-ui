@@ -8,7 +8,8 @@ export default {
   theme: {
     fontFamily: {
       serif: ["NotoSerif-Variable"],
-      heading: ["NotoSerif"],
+      body: ["Finlandica-Variable"],
+      sans: ["Finlandica-Variable"],
     },
     extend: {
       backgroundImage: {

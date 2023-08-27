@@ -19,10 +19,11 @@ export const ListShow = ({ shows, ...rest }: ListShowProps) => {
       {filteredShows.length ? (
         filteredShows.map((show) => (
           <div key={show.date}>
-            <div className="flex justify-between border-b-2 border-fuchsia-300 font-bold pb-3">
+            <div className="flex justify-between border-fuchsia-300 font-bold pb-3">
               <p>{DateUtils.formatDate({ date: show.date })}</p>
               <p>{show.city}</p>
             </div>
+            <div className="divider-light" />
             <div className="grid grid-cols-1 gap-y-8 pt-8 items-center">
               <p className="font-bold">${show.price}</p>
               <p>{show.description}</p>

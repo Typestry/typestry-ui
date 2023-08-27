@@ -1,9 +1,17 @@
-import { ReactNode } from "react"
+import classNames from "classnames"
+import { ComponentProps, ReactNode } from "react"
 
-interface SocialContainerProps {
+interface SocialContainerProps extends ComponentProps<"div"> {
   children: ReactNode
 }
 
-export const SocialContainer = ({ children }: SocialContainerProps) => {
-  return <div className="flex gap-x-4 md:gap-x-8 h-full">{children}</div>
+export const SocialContainer = ({
+  children,
+  ...rest
+}: SocialContainerProps) => {
+  return (
+    <div {...rest} className={classNames("flex h-full", rest.className)}>
+      {children}
+    </div>
+  )
 }

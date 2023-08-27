@@ -6,13 +6,5 @@ export interface ButtonProps extends ComponentProps<"button"> {
 }
 
 export const Button = (props: ButtonProps) => {
-  return (
-    <button
-      {...props}
-      className={classNames(
-        props.className,
-        "w-full hover:bg-[rgb(255,0,255,0.2)] bg-[rgb(51,51,51,0.8)] border-2 border-white transition-colors duration-300 p-3 md:p-4 uppercase disabled:opacity-50",
-      )}
-    />
-  )
+  return <button {...props} className={classNames("button", props.className)} />
 }

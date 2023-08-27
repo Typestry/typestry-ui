@@ -4,33 +4,39 @@ import { useBandPageContext } from "../../providers/BandPageProvider"
 import classNames from "classnames"
 import { useCallback, useRef, useState } from "react"
 import { useEventListener } from "../../hooks/useEventListener"
+import { Button } from "../Button"
+import { ChevronDown } from "react-feather"
 
-export const Navbar = () => {
+interface NavBarProps {
+  onArrowDownClick: () => void
+}
+
+export const Navbar = ({ onArrowDownClick }: NavBarProps) => {
   const {
     bandPageConfig: { bandName, mediaLinks },
   } = useBandPageContext()
-  const [isHidden, setIsHidden] = useState(false)
+  const [opacity, setOpacity] = useState(100)
+  console.log(opacity)
   const navRef = useRef<HTMLElement>(null)
 
   const onScroll = useCallback(() => {
-    const { bottom } = navRef.current?.getBoundingClientRect()!
-    setIsHidden(bottom < 0)
-  }, [setIsHidden])
+    const { bottom, height } = navRef.current?.getBoundingClientRect()!
+    const opacity = bottom / height
+    if (opacity > 0) {
+      setOpacity(bottom / height)
+    }
+  }, [setOpacity])
 
   useEventListener(window, "scroll", onScroll)
 
+  const isHidden = opacity < 0.2
+
   return (
     <>
-      <nav
-        ref={navRef}
-        className={classNames(
-          { "opacity-0": isHidden },
-          "bg-grass flex flex-col justify-center items-center md:py-8 bg-[#222222] transition-all duration-1000 ease-in-out h-[100vh] snap-end opacity-1 snap-always will-change-scroll",
-        )}
-      >
-        <div className="flex flex-col items-center gap-y-4 md:gap-y-8 py-4">
+      <nav ref={navRef} style={{ opacity }} className="nav-desktop">
+        <div className="flex flex-col items-center gap-y-4 md:gap-y-8 py-4 overflow-x-hidden">
           <h1>{bandName}</h1>
-          <SocialContainer>
+          <SocialContainer className="gap-x-12 py-8">
             {Object.values(mediaLinks).map((datum) => (
               <SocialLink
                 key={datum.title}
@@ -40,24 +46,27 @@ export const Navbar = () => {
             ))}
           </SocialContainer>
         </div>
+        <div className="absolute bottom-0 flex justify-center mb-8">
+          <Button
+            className={classNames(
+              { "opacity-0": window.scrollY > 0 },
+              "border-none hover:bg-transparent bottom-0 mb-8 animate-bounce flex transition-opacity duration-300 will-change-scroll",
+            )}
+            onClick={onArrowDownClick}
+          >
+            <ChevronDown
+              size={100}
+              strokeWidth={1}
+              viewBox="0 -12 24 48"
+              preserveAspectRatio="none"
+            />
+          </Button>
+        </div>
       </nav>
-      <nav
-        className={classNames(
-          {
-            "opacity-1 bg-[#222222] xl:bg-transparent": isHidden,
-          },
-          { "opacity-0": !isHidden },
-          "sticky top-0 z-40 p-8 flex justify-between items-center transition-opacity duration-150 ease-in-out shadow-md xl:shadow-none",
-        )}
-      >
-        <h6
-          className="tracking-widest cursor-pointer"
-          onClick={() => window.scrollTo({ top: 0 })}
-        >
-          {bandName}
-        </h6>
+      <nav data-hidden={isHidden} className="nav-mobile">
+        <h6 className="tracking-widest">{bandName}</h6>
         <div>
-          <SocialContainer>
+          <SocialContainer className="gap-x-2">
             {Object.values(mediaLinks).map((datum) => (
               <SocialLink
                 key={datum.title}
