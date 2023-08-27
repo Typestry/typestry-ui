@@ -50,7 +50,7 @@ export const Navbar = ({ onArrowDownClick }: NavBarProps) => {
           <Button
             className={classNames(
               { "opacity-0": window.scrollY > 0 },
-              "border-none hover:bg-transparent bottom-0 mb-8 animate-bounce flex transition-opacity duration-300 will-change-scroll",
+              "border-none hover:bg-transparent bottom-0 animate-bounce flex transition-opacity duration-300 will-change-scroll",
             )}
             onClick={onArrowDownClick}
           >
