@@ -11,7 +11,7 @@ export interface MediaLink {
    * The image associated with the media link.
    * Replace with the actual image URL or path.
    */
-  icon: string
+  icon: React.FunctionComponent<React.SVGProps<SVGSVGElement>>
 
   /**
    * The alternative text for the image.

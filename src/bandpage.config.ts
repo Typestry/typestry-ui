@@ -1,8 +1,9 @@
 import { createBandPageConfig } from "./services/createBandPageConfig"
-import apple from "./assets/apple.svg"
-import spotify from "./assets/spotify.svg"
-import bandcamp from "./assets/bandcamp.svg"
-import instagram from "./assets/instagram.svg"
+import { ReactComponent as apple } from "./assets/apple.svg"
+import { ReactComponent as spotify } from "./assets/spotify.svg"
+import { ReactComponent as bandcamp } from "./assets/bandcamp.svg"
+import { ReactComponent as instagram } from "./assets/instagram.svg"
+import bliss from "./assets/bliss.webp"
 
 export default createBandPageConfig({
   bandName: "Carried by Bees",
@@ -16,7 +17,7 @@ export default createBandPageConfig({
     "John Benda",
     "Justin Klaas",
   ],
-  socialImage: "./src/assets/Bliss_fixed.png",
+  socialImage: bliss,
   mediaLinks: {
     spotify: {
       url: "https://open.spotify.com/album/5tGuHNvKJGT97QXkjDuHL8?si=AePd7DnBSX6L8hH4x8FRGw",

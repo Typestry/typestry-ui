@@ -13,7 +13,7 @@ export default {
     },
     extend: {
       backgroundImage: {
-        grass: "url('/src/assets/grass.jpg')",
+        grass: "url('/src/assets/grass.webp')",
       },
       colors: {
         "french-pass": {
@@ -32,7 +32,4 @@ export default {
       },
     },
   },
-  plugins: [
-    require("flowbite/plugin"), // require Flowbite's plugin for Tailwind CSS
-  ],
 }

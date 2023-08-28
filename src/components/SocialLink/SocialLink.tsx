@@ -4,7 +4,12 @@ import classNames from "classnames"
 
 type SocialLinkProps = ComponentProps<"div"> & MediaLink
 
-export const SocialLink = ({ icon, url, alt, ...rest }: SocialLinkProps) => {
+export const SocialLink = ({
+  icon: Icon,
+  url,
+  alt,
+  ...rest
+}: SocialLinkProps) => {
   return (
     <div
       {...rest}
@@ -20,10 +25,7 @@ export const SocialLink = ({ icon, url, alt, ...rest }: SocialLinkProps) => {
         href={url}
         aria-label={alt}
       >
-        <img
-          src={icon}
-          className="flex w-12 md:p-2 justify-center items-center"
-        />
+        <Icon className="fill-white text-2xl md:text-3xl" />
       </a>
     </div>
   )
