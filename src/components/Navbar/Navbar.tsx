@@ -26,17 +26,13 @@ export const Navbar = ({ onArrowDownClick }: NavBarProps) => {
 
   useEventListener(window, "scroll", onScroll)
 
-  const isHidden = opacity < 0.2
-
-  console.log(isHidden)
-
   return (
     <nav ref={navRef} style={{ opacity }} className="nav-desktop">
       <div className="flex flex-col h-full items-center">
         <div className="flex flex-col h-full gap-y-4 lg:gap-y-8 py-4 overflow-hidden">
           <h1 className="m-auto">{bandName}</h1>
         </div>
-        <div className="p-8">
+        <div className="sticky bottom-0 pb-8">
           <Button
             className={classNames(
               { "opacity-0": window.scrollY > 0 },

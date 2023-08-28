@@ -1,7 +1,6 @@
 import { useRef } from "react"
 import { Navbar } from "../components/Navbar"
 import { Outlet } from "react-router"
-import { SocialContainer } from "../components/SocialContainer"
 import { SocialLink } from "../components/SocialLink"
 import { useBandPageContext } from "../providers/BandPageProvider"
 
@@ -22,7 +21,7 @@ export const MainLayout = () => {
         <Outlet />
       </main>
       <footer className="fixed bottom-0 lg:top-0 flex justify-center left-0 right-0 lg:right-auto bg-[var(--background-color)] lg:bg-transparent lg:justify-start shadow-md shadow-gray-300 lg:shadow-none">
-        <div className="flex lg:flex-col gap-12 py-4">
+        <div className="flex lg:flex-col gap-12 p-6">
           {Object.values(mediaLinks).map((datum) => (
             <SocialLink key={datum.title} {...datum} />
           ))}
