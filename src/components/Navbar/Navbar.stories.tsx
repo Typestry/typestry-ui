@@ -12,5 +12,5 @@ export default meta
 type Story = StoryObj<typeof Navbar>
 
 export const Example: Story = {
-  render: () => <Navbar />,
+  render: (args) => <Navbar {...args} />,
 }

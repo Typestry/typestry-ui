@@ -27,7 +27,11 @@ export const Navbar = ({ onArrowDownClick }: NavBarProps) => {
   useEventListener(window, "scroll", onScroll)
 
   return (
-    <nav ref={navRef} style={{ opacity }} className="nav-desktop">
+    <nav
+      ref={navRef}
+      style={{ opacity }}
+      className="nav-desktop h-[calc(100vh-72px)] md:h-[calc(100vh-78px)] lg:h-[100vh]"
+    >
       <div className="flex flex-col h-full items-center">
         <div className="flex flex-col h-full gap-y-4 lg:gap-y-8 py-4 overflow-hidden">
           <h1 className="m-auto">{bandName}</h1>
