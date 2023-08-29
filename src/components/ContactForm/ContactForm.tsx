@@ -1,6 +1,7 @@
 import { TextField } from "../TextField"
 import { TextArea } from "../TextArea"
 import { Form } from "../Form/Form"
+import { Button } from "../Button"
 
 export const ContactForm = () => {
   return (
@@ -39,12 +40,9 @@ export const ContactForm = () => {
               There was an error with your request.
             </p>
           )}
-          <input
-            type="submit"
-            className="button mt-4"
-            disabled={isSubmitting}
-            value={isSubmitting ? "Submitting..." : "Submit"}
-          />
+          <Button type="submit" className="mt-4" disabled={isSubmitting}>
+            {isSubmitting ? "Submitting..." : "Submit"}
+          </Button>
         </div>
       )}
     </Form>
