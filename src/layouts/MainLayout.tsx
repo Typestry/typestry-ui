@@ -16,7 +16,7 @@ export const MainLayout = () => {
       <main
         ref={mainRef}
         id="home"
-        className="flex flex-col h-full w-full items-center px-4 lg:px-8 py-12"
+        className="flex flex-col h-full w-full items-center px-4 lg:px-8 py-12 mb-[72px] pb-8"
       >
         <Outlet />
       </main>

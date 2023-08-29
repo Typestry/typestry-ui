@@ -1,60 +1,52 @@
 import { TextField } from "../TextField"
-import { useFormState } from "../../hooks/useFormState"
-import { Button } from "../Button"
-import { Contact } from "../../../global/types/Contact"
 import { TextArea } from "../TextArea"
+import { Form } from "../Form/Form"
 
-type FormValues = Contact
-
-interface ContactFormProps {
-  onSubmit: (values: FormValues) => void
-}
-
-const initialValues: FormValues = {
-  firstName: "",
-  lastName: "",
-  email: "",
-  message: "",
-}
-
-export const ContactForm = ({ onSubmit }: ContactFormProps) => {
-  const { handleSubmit, registerField, isSubmitting } = useFormState({
-    onSubmit,
-    initialValues,
-  })
-
+export const ContactForm = () => {
   return (
-    <form
-      onSubmit={handleSubmit}
-      className="min-h-[400px] flex flex-col gap-y-4"
+    <Form
+      action={`${import.meta.env.VITE_APP_FUNCTIONS_URL}/sendEmail`}
+      method="POST"
     >
-      <TextField
-        label="First Name"
-        aria-label="Enter your first name"
-        required
-        {...registerField("firstName")}
-      />
-      <TextField
-        label="Last Name"
-        aria-label="Enter your last name"
-        {...registerField("lastName")}
-      />
-      <TextField
-        label="Email"
-        required
-        type="email"
-        aria-label="Enter your email"
-        {...registerField("email")}
-      />
-      <TextArea
-        label="Message"
-        required
-        aria-label="Enter your message"
-        {...registerField("message")}
-      />
-      <Button className="mt-4" type="submit" disabled={isSubmitting}>
-        {isSubmitting ? "Submitting..." : "Submit"}
-      </Button>
-    </form>
+      {(isSubmitting, isError) => (
+        <div className="min-h-[400px] flex flex-col gap-y-4">
+          <TextField
+            label="First Name"
+            aria-label="Enter your first name"
+            required
+            name="firstName"
+          />
+          <TextField
+            label="Last Name"
+            aria-label="Enter your last name"
+            name="lastName"
+          />
+          <TextField
+            label="Email"
+            required
+            type="email"
+            aria-label="Enter your email"
+            name="email"
+          />
+          <TextArea
+            label="Message"
+            required
+            aria-label="Enter your message"
+            name="message"
+          />
+          {isError && (
+            <p className="text-[var(--error-color)]">
+              There was an error with your request.
+            </p>
+          )}
+          <input
+            type="submit"
+            className="button mt-4"
+            disabled={isSubmitting}
+            value={isSubmitting ? "Submitting..." : "Submit"}
+          />
+        </div>
+      )}
+    </Form>
   )
 }

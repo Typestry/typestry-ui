@@ -56,6 +56,7 @@
     "react-dom": "^18.2.0",
     "react-feather": "^2.0.10",
     "react-helmet": "^6.1.0",
+    "react-hook-form": "^7.45.4",
     "react-router": "^6.15.0",
     "react-router-dom": "^6.15.0",
     "typescript": "^5.1.6",
