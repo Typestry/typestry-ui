@@ -1,25 +1,30 @@
-import { useMemo } from "react"
+import { ComponentProps, useMemo } from "react"
 import { Show } from "../../types/Show"
 import { DateUtils } from "../../utils/dateUtils/dateUtils"
 import { Button } from "../Button"
+import classNames from "classnames"
 
-interface ListShowProps {
+interface ListShowProps extends ComponentProps<"div"> {
   shows: Array<Show>
 }
 
-export const ListShow = ({ shows }: ListShowProps) => {
+export const ListShow = ({ shows, ...rest }: ListShowProps) => {
   const filteredShows = useMemo(() => shows.filter(removePastShows), [shows])
 
   return (
-    <div className="bg-[rgb(51,51,51,0.8)] px-8 md:px-16 py-12 md:py-24 grid grid-flow-row gap-y-8">
+    <div
+      {...rest}
+      className={classNames("grid grid-flow-row gap-y-24", rest.className)}
+    >
       {filteredShows.length ? (
         filteredShows.map((show) => (
           <div key={show.date}>
-            <div className="flex justify-between border-b-2 font-bold border-fuchsia-300 pb-1">
+            <div className="flex justify-between border-fuchsia-300 font-bold pb-3">
               <p>{DateUtils.formatDate({ date: show.date })}</p>
               <p>{show.city}</p>
             </div>
-            <div className="grid grid-cols-1 gap-y-2 pt-2 items-center">
+            <div className="divider-light" />
+            <div className="grid grid-cols-1 gap-y-8 pt-8 items-center">
               <p className="font-bold">${show.price}</p>
               <p>{show.description}</p>
               <p className="font-bold">{show.venue}</p>

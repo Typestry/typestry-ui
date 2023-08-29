@@ -3,7 +3,6 @@ import FirebaseService from "../services/firebaseService"
 
 export const useFirebaseFunction = () => {
   const [loading, setLoading] = useState(false)
-  const [error, setError] = useState<any>()
 
   const runHttpsFunction = async (
     ...args: Parameters<typeof FirebaseService.runHttpsFunction>
@@ -12,11 +11,11 @@ export const useFirebaseFunction = () => {
     try {
       await FirebaseService.runHttpsFunction(...args)
     } catch (err) {
-      setError(err)
+      throw err
     } finally {
       setLoading(false)
     }
   }
 
-  return { runHttpsFunction, loading, error }
+  return { runHttpsFunction, loading }
 }

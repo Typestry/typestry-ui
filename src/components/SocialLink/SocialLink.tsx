@@ -1,17 +1,22 @@
-import { SocialData } from "../../constants/socialData"
+import { ComponentProps } from "react"
+import { MediaLink } from "../../types/MediaLink"
+import classNames from "classnames"
 
-type SocialLinkProps = SocialData[keyof SocialData]
+type SocialLinkProps = ComponentProps<"div"> & MediaLink
 
 export const SocialLink = ({
-  image: Image,
+  icon: Icon,
   url,
   alt,
   ...rest
 }: SocialLinkProps) => {
   return (
     <div
-      className="h-10 transition-colors duration-300 hover:bg-fuchsia-300 bg-[#33333] rounded-lg p-2 cursor-pointer"
       {...rest}
+      className={classNames(
+        "transition-colors duration-300 hover:opacity-50 bg-[#33333] cursor-pointer",
+        rest.className,
+      )}
     >
       <a
         type="button"
@@ -20,7 +25,7 @@ export const SocialLink = ({
         href={url}
         aria-label={alt}
       >
-        <Image fontSize={24} className="fill-white" />
+        <Icon className="fill-white text-2xl md:text-3xl" />
       </a>
     </div>
   )

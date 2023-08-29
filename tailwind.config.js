@@ -8,11 +8,12 @@ export default {
   theme: {
     fontFamily: {
       serif: ["NotoSerif-Variable"],
-      heading: ["NotoSerif"],
+      body: ["Finlandica-Variable"],
+      sans: ["Finlandica-Variable"],
     },
     extend: {
       backgroundImage: {
-        grass: "url('/src/assets/grass.jpg')",
+        grass: "url('/src/assets/grass.webp')",
       },
       colors: {
         "french-pass": {
@@ -31,7 +32,4 @@ export default {
       },
     },
   },
-  plugins: [
-    require("flowbite/plugin"), // require Flowbite's plugin for Tailwind CSS
-  ],
 }

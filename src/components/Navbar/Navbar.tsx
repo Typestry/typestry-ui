@@ -1,50 +1,54 @@
-import { useRef } from "react"
-import { NavItemParams } from "../../types/NavItemParams"
-import { NavItem } from "../NavItem"
-import { SocialContainer } from "../SocialContainer"
-import { SocialLink } from "../SocialLink"
-import { socialData } from "../../constants/socialData"
-import { Location, useLocation } from "react-router"
+import { useBandPageContext } from "../../providers/BandPageProvider"
+import classNames from "classnames"
+import { useCallback, useRef, useState } from "react"
+import { useEventListener } from "../../hooks/useEventListener"
+import { Button } from "../Button"
+import { ChevronDown } from "react-feather"
 
-const DESKTOP_HEIGHT = 252
-const MOBILE_HEIGHT = 170
-
-interface NavbarProps {
-  navItems: Array<NavItemParams>
+interface NavBarProps {
+  onArrowDownClick: () => void
 }
 
-export const Navbar = ({ navItems }: NavbarProps) => {
+export const Navbar = ({ onArrowDownClick }: NavBarProps) => {
+  const {
+    bandPageConfig: { bandName },
+  } = useBandPageContext()
+  const [opacity, setOpacity] = useState(100)
   const navRef = useRef<HTMLElement>(null)
-  const location = useLocation()
+
+  const onScroll = useCallback(() => {
+    const { bottom, height } = navRef.current?.getBoundingClientRect()!
+    const opacity = bottom / height
+    if (opacity > 0) {
+      setOpacity(bottom / height)
+    }
+  }, [setOpacity])
+
+  useEventListener(window, "scroll", onScroll)
 
   return (
-    <nav
-      ref={navRef}
-      className={`bg-[#222222] flex flex-col justify-center items-center gap-y-4 md:gap-y-8 py-4 md:py-8 sticky top-0 z-40 h-[${MOBILE_HEIGHT}px] md:h-[${DESKTOP_HEIGHT}px]`}
-    >
-      <h1 className="text-3xl md:text-6xl font-serif font-light tracking-[0.3rem]">
-        CARRIED BY BEES
-      </h1>
-      <ul className="flex gap-x-6">
-        {navItems.map((item) => (
-          <li key={item.id}>
-            <NavItem
-              {...item}
-              id={item.id}
-              active={isActive(location, item.id)}
+    <nav ref={navRef} style={{ opacity }} className="nav-desktop">
+      <div className="flex flex-col h-full items-center">
+        <div className="flex flex-col h-full gap-y-4 lg:gap-y-8 py-4 overflow-hidden">
+          <h1 className="m-auto">{bandName}</h1>
+        </div>
+        <div className="sticky bottom-0 pb-8">
+          <Button
+            className={classNames(
+              { "opacity-0": window.scrollY > 0 },
+              "border-none hover:bg-transparent flex transition-opacity duration-300 will-change-scroll",
+            )}
+            onClick={onArrowDownClick}
+          >
+            <ChevronDown
+              size={100}
+              strokeWidth={1}
+              viewBox="0 -12 24 48"
+              preserveAspectRatio="none"
             />
-          </li>
-        ))}
-      </ul>
-      <SocialContainer>
-        {Object.values(socialData).map((datum) => (
-          <SocialLink key={datum.title} {...datum} />
-        ))}
-      </SocialContainer>
+          </Button>
+        </div>
+      </div>
     </nav>
   )
-}
-
-const isActive = (location: Location, id: string) => {
-  return location.hash.split("#")[1] === id
 }

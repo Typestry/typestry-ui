@@ -1,4 +1,4 @@
-import axios from "axios"
+import axios, { AxiosRequestConfig } from "axios"
 import { initializeApp } from "firebase/app"
 import {
   DocumentData,
@@ -44,9 +44,10 @@ const FirebaseService = {
   runHttpsFunction: <Payload = Record<string, any>>(
     name: string,
     payload: Payload,
+    config?: AxiosRequestConfig<Payload>,
   ) => {
     const url = `${FirebaseService.getFirebaseFunctionsUrl()}/${name}`
-    return axios.post(url, payload)
+    return axios.post(url, payload, config)
   },
 }
 
