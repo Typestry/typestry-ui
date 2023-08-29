@@ -1,7 +1,11 @@
 import axios from "axios"
 import { ComponentProps, MouseEvent, ReactNode, useState } from "react"
 
-interface FormProps extends Omit<ComponentProps<"form">, "children"> {
+type BaseFormProps = ComponentProps<"form">
+
+interface FormProps extends Omit<BaseFormProps, "children"> {
+  method: Required<BaseFormProps["method"]>
+  action: Required<BaseFormProps["action"]>
   children: (isSubmitting: boolean, isError: boolean) => ReactNode
 }
 
@@ -14,7 +18,7 @@ export const Form = (props: FormProps) => {
     const form = e.currentTarget
     axios(form.action, {
       method: form.method,
-      data: new FormData(form),
+      data: getFormData(form),
     })
       .then(() => form.reset())
       .catch(() => setIsError(true))
@@ -27,4 +31,12 @@ export const Form = (props: FormProps) => {
       {props.children(isSubmitting, isError)}
     </form>
   )
+}
+
+const getFormData = (form: HTMLFormElement) => {
+  let data = Object.assign({})
+  new FormData(form).forEach((value, key) => {
+    data[key] = value
+  })
+  return data
 }
