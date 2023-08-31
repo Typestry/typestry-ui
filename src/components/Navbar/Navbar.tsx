@@ -4,6 +4,7 @@ import { useCallback, useRef, useState } from "react"
 import { useEventListener } from "../../hooks/useEventListener"
 import { Button } from "../Button"
 import { ChevronDown } from "react-feather"
+import { throttle } from "lodash"
 
 interface NavBarProps {
   onArrowDownClick: () => void
@@ -20,7 +21,7 @@ export const Navbar = ({ onArrowDownClick }: NavBarProps) => {
     const { bottom, height } = navRef.current?.getBoundingClientRect()!
     const opacity = bottom / height
     if (opacity > 0) {
-      setOpacity(bottom / height)
+      throttle(setOpacity, 300)(opacity)
     }
   }, [setOpacity])
 
@@ -30,7 +31,7 @@ export const Navbar = ({ onArrowDownClick }: NavBarProps) => {
     <nav
       ref={navRef}
       style={{ opacity }}
-      className="nav-desktop h-[calc(100vh-72px)] md:h-[calc(100vh-78px)] lg:h-[100vh]"
+      className="nav-desktop h-[calc(100vh-72px)] md:h-[calc(100vh-78px)] lg:h-[100vh] transition-opacity ease-in-out"
     >
       <div className="flex flex-col h-full items-center">
         <div className="flex flex-col h-full gap-y-4 lg:gap-y-8 py-4 overflow-hidden">
