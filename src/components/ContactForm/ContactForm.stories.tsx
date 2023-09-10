@@ -6,12 +6,11 @@ import { ContactForm } from "./ContactForm"
 
 const meta: Meta<typeof ContactForm> = {
   component: ContactForm,
-  decorators: [],
 }
 
 export default meta
 type Story = StoryObj<typeof ContactForm>
 
 export const Example: Story = {
-  render: () => <ContactForm />,
+  render: () => <ContactForm template_id="" service_id="" user_id="" />,
 }
