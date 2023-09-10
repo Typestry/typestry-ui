@@ -3,6 +3,7 @@ import { PlayerSection, SectionParams } from "../../types/SectionParams"
 import { BandcampPlayer } from "../BandcampPlayer"
 import { ContactForm } from "../ContactForm"
 import { ListShow } from "../ListShow"
+import ReactMarkdown from "react-markdown"
 
 interface SectionProps {
   section: SectionParams
@@ -27,7 +28,13 @@ export const Section = ({ section }: SectionProps) => {
 const getSectionComponent = (section: SectionParams) => {
   switch (section.type) {
     case "article":
-      return () => <p>{section.data}</p>
+      return () => {
+        return (
+          <div className="grid gap-y-4">
+            <ReactMarkdown>{section.data}</ReactMarkdown>
+          </div>
+        )
+      }
     case "contact":
       return () => (
         <ContactForm
