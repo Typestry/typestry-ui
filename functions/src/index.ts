@@ -1,7 +1,7 @@
 import { initializeApp } from "firebase-admin/app"
 import { getFirestore } from "firebase-admin/firestore"
 import { defineSecret } from "firebase-functions/params"
-import { HttpsError, onRequest } from "firebase-functions/v2/https"
+import { HttpsError } from "firebase-functions/v2/https"
 import { onDocumentCreated } from "firebase-functions/v2/firestore"
 import { beforeUserCreated } from "firebase-functions/v2/identity"
 import * as nodemailer from "nodemailer"
@@ -12,49 +12,6 @@ const EMAIL = defineSecret("EMAIL")
 const PASSWORD = defineSecret("PASSWORD")
 
 const firestore = getFirestore()
-
-export const sendEmail = onRequest(
-  {
-    secrets: [EMAIL, PASSWORD],
-    cors: ["https://www.carriedbybees.com"],
-  },
-  async (req, res) => {
-    try {
-      const { email, firstName, lastName, message } = req.body
-
-      if (!Object.values(req.body).some(Boolean)) {
-        throw Error("INVALID_PAYLOAD")
-      }
-
-      const transporter = nodemailer.createTransport({
-        service: "gmail",
-        auth: {
-          user: EMAIL.value(),
-          pass: PASSWORD.value(),
-        },
-      })
-
-      const mailOptions = {
-        from: email,
-        to: EMAIL.value(),
-        subject: `Carried by Bees Form Inquiry from ${firstName} ${lastName}`,
-        text: message,
-      }
-
-      transporter.sendMail(mailOptions, (error) => {
-        if (error) {
-          throw Error("MAIL_SEND_FAILURE")
-        } else {
-          res.status(200)
-          res.send("MAIL_SEND_SUCCESS")
-        }
-      })
-    } catch (err) {
-      res.status(500)
-      res.send(err)
-    }
-  },
-)
 
 export const onInvited = onDocumentCreated(
   { document: "invitations/{invitation}", secrets: [EMAIL, PASSWORD] },
@@ -72,8 +29,8 @@ export const onInvited = onDocumentCreated(
       from: EMAIL.value(),
       to: document?.email,
       subject:
-        "Carried by Bees has invited you to become a member of their admin portal!",
-      text: "Welcome to Carried by Bees Admin. In order to complete your sign up, go to the following url and sign in!\n\nhttps://admin.carriedbybees.com",
+        "Means Motive has invited you to become a member of their admin portal!",
+      text: "Welcome to Means Motive Admin. In order to complete your sign up, go to the following url and sign in!\n\nhttps://admin.meansmotive.com",
     }
 
     transporter.sendMail(mailOptions, (error) => {

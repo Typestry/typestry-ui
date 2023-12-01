@@ -6,7 +6,7 @@ import { useBandPageContext } from "../providers/BandPageProvider"
 
 export const MainLayout = () => {
   const mainRef = useRef<HTMLElement>(null)
-  const footerRef = useRef<HTMLElement>(null)
+
   const {
     bandPageConfig: { mediaLinks },
   } = useBandPageContext()
@@ -21,13 +21,10 @@ export const MainLayout = () => {
       >
         <Outlet />
       </main>
-      <footer
-        ref={footerRef}
-        className="fixed bottom-0 lg:top-0 flex justify-center left-0 right-0 lg:right-auto bg-[var(--background-color)] lg:bg-transparent lg:justify-start shadow-md shadow-gray-300 lg:shadow-none"
-      >
+      <footer className="fixed bottom-0 lg:top-0 flex justify-center left-0 right-0 lg:right-auto bg-[var(--background-color)] lg:bg-transparent lg:justify-start shadow-md shadow-gray-300 lg:shadow-none z-30">
         <div className="flex lg:flex-col gap-12 p-6">
           {Object.values(mediaLinks).map((datum) => (
-            <SocialLink key={datum.title} {...datum} />
+            <SocialLink key={datum.title} {...datum} className="z-50" />
           ))}
         </div>
       </footer>

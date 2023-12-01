@@ -4,12 +4,12 @@ export default {
   theme: {
     fontFamily: {
       serif: ["NotoSerif-Variable"],
-      body: ["Finlandica-Variable"],
+      body: ["Koulen"],
       sans: ["Finlandica-Variable"],
     },
     extend: {
       backgroundImage: {
-        grass: "url('/src/assets/grass.webp')",
+        vhs: "url('/src/assets/vhs.gif')",
       },
       colors: {
         "french-pass": {

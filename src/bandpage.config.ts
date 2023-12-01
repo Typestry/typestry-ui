@@ -1,47 +1,42 @@
 import { createBandPageConfig } from "./services/createBandPageConfig"
-import { ReactComponent as apple } from "./assets/apple.svg"
-import { ReactComponent as spotify } from "./assets/spotify.svg"
-import { ReactComponent as bandcamp } from "./assets/bandcamp.svg"
-import { ReactComponent as instagram } from "./assets/instagram.svg"
-import bliss from "./assets/bliss.webp"
+import { ReactComponent as Instagram } from "./assets/image/instagram.svg"
+import { ReactComponent as Facebook } from "./assets/image/facebook.svg"
+
+const BAND_NAME = "Means Motive"
 
 export default createBandPageConfig({
-  bandName: "Carried by Bees",
+  bandName: BAND_NAME,
   description:
-    "Longtime collaborators John Benda and Justin Klaas formed Carried by Bees over three years ago. Bliss is their first proper release and released on July 14th of 2023.",
+    "Independent, Energetic, Alternative Rock & Roll from Lawrence, Kansas.",
   keywords: [
-    "Carried by Bees",
+    BAND_NAME,
     "indie music",
     "alternative rock",
+    "Kansas City",
+    "Lawrence Kansas",
+    "Kansas City music",
+    "Lawrence Kansas music",
     "Kansas City band",
+    "Lawrence Kansas band",
     "John Benda",
-    "Justin Klaas",
+    "Jared Anderson",
+    "Aaron Riffel",
+    "John Robbs",
+    "Ali Edwards",
   ],
-  socialImage: bliss,
+  socialImage: "",
   mediaLinks: {
-    spotify: {
-      url: "https://open.spotify.com/album/5tGuHNvKJGT97QXkjDuHL8?si=AePd7DnBSX6L8hH4x8FRGw",
-      icon: spotify,
-      alt: "listen to on spotify",
-      title: "Spotify",
-    },
-    apple: {
-      url: "http://itunes.apple.com/album/id/1702315264",
-      icon: apple,
-      alt: "listen to on apple music",
-      title: "Apple Music",
-    },
     instagram: {
-      url: "https://www.instagram.com/carriedbybees",
-      icon: instagram,
-      alt: "vistit carried by bees profile on instagram",
+      url: "https://www.instagram.com/meansmotive/",
+      icon: Instagram,
+      alt: "visit means motive profile on instagram",
       title: "Instagram",
     },
-    bandcamp: {
-      url: "https://carriedbybees.bandcamp.com/album/bliss",
-      icon: bandcamp,
-      alt: "purchase on bandcamp",
-      title: "Bandcamp",
+    facebook: {
+      url: "https://www.facebook.com/meansmotive",
+      icon: Facebook,
+      alt: "visit means motive profile on facebook",
+      title: "Facebook",
     },
   },
 })

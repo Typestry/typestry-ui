@@ -3,12 +3,12 @@
 @tailwind utilities;
 
 :root {
-  --background-color: #222222;
-  --primary-color: #333333;
+  --background-color: #121212;
+  --primary-color: rgb(50, 50, 50);
   /* RGB Numberical Values Only */
-  --secondary-color: 240, 171, 252;
+  --secondary-color: 255, 255, 255;
   --error-color: rgb(119 29 29);
-  --text-color: white;
+  --text-color: #ffffff;
 }
 
 @font-face {
@@ -24,9 +24,16 @@
   src: url("./assets/fonts/Finlandica-VariableFont.ttf") format("truetype");
 }
 
+@font-face {
+  font-family: Koulen;
+  font-weight: 100 900;
+  font-style: normal;
+  src: url("./assets/fonts/Koulen-Regular.ttf") format("truetype");
+}
+
 @layer base {
   h1 {
-    @apply font-serif font-light uppercase tracking-[0.3rem] text-[34px] lg:text-8xl;
+    @apply font-serif font-bold outline-white uppercase tracking-[0.3rem] text-[34px] lg:text-8xl;
   }
 
   h4 {
@@ -38,7 +45,7 @@
   }
 
   label {
-    @apply block group-focus-within:font-bold mb-2 text-base text-white drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)];
+    @apply block group-focus-within:font-bold mb-2 text-base text-[var(--text-color)];
   }
 
   .field-validation {
@@ -64,7 +71,7 @@
   }
 
   .text-field {
-    @apply rounded-none border-b-2 outline-none text-white border-t-0 border-l-0 border-r-0 border-[var(--background-color)] text-lg focus:ring-transparent transition-colors duration-500 focus:border-[rgba(var(--secondary-color))] hover:border-[rgba(var(--secondary-color))] block w-full p-4 bg-[var(--primary-color)] disabled:opacity-50;
+    @apply rounded-none border-b-2 outline-none text-[#ffffff] border-t-0 border-l-0 border-r-0 border-[var(--background-color)] text-lg focus:ring-transparent transition-colors duration-500 focus:border-[rgba(var(--secondary-color))] hover:border-[rgba(var(--secondary-color))] block w-full p-4 bg-[var(--primary-color)] disabled:opacity-50;
   }
 
   .text-field[data-should-validate="true"] {
@@ -72,7 +79,7 @@
   }
 
   .text-area {
-    @apply rounded-none resize-none border-b-2 outline-none text-white border-t-0 border-l-0 border-r-0 border-[#222222] text-lg focus:ring-transparent transition-colors duration-500 focus:border-[rgba(var(--secondary-color))] hover:border-[rgba(var(--secondary-color))] block w-full p-4 bg-[#333333] disabled:opacity-50;
+    @apply rounded-none resize-none border-b-2 outline-none text-[#ffffff] border-t-0 border-l-0 border-r-0 border-[#222222] text-lg focus:ring-transparent transition-colors duration-500 focus:border-[rgba(var(--secondary-color))] hover:border-[rgba(var(--secondary-color))] block w-full p-4 bg-[var(--primary-color)] disabled:opacity-50;
   }
 
   .text-area[data-should-validate="true"] {
@@ -80,7 +87,7 @@
   }
 
   .nav-desktop {
-    @apply bg-grass flex flex-col justify-center items-center py-8 bg-[var(--background-color)] transition-all ease-in-out h-[100vh] opacity-100 will-change-auto;
+    @apply flex flex-col justify-center items-center py-8 bg-[var(--background-color)] transition-all ease-in-out h-[100vh] opacity-100 will-change-auto;
   }
 
   .nav-mobile {
