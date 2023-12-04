@@ -29,15 +29,10 @@ export const Navbar = ({ onArrowDownClick }: NavBarProps) => {
     <nav
       ref={navRef}
       style={{ opacity }}
-      className="nav-desktop transition-opacity ease-in-out w-full"
+      className="nav-desktop h-[calc(100dvh-72px)] md:h-[calc(100dvh-78px)] lg:h-[100dvh] transition-opacity ease-in-out w-full p-0"
     >
-      <MeansMotive className="w-full h-full p-8 md:p-32 z-10" />
-      <video
-        autoPlay
-        muted
-        loop
-        className="absolute min-w-full min-h-full object-cover top-0"
-      >
+      <MeansMotive className="min-w-full min-h-full absolute p-8 md:p-32 z-10" />
+      <video autoPlay muted loop className="w-full h-full object-cover">
         <source src={vhs} />
       </video>
       <div className="absolute bottom-0 pb-8 z-30">

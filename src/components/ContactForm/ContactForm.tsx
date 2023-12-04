@@ -29,10 +29,7 @@ export const ContactForm = ({
   })
 
   return (
-    <form
-      className="min-h-[400px] flex flex-col gap-y-4"
-      onSubmit={handleSubmit}
-    >
+    <form className="h-[400px] flex flex-col gap-y-4" onSubmit={handleSubmit}>
       <TextField
         label="First Name"
         aria-label="Enter your first name"
