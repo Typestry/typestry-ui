@@ -1,80 +1,48 @@
 import { initializeApp } from "firebase-admin/app"
 import { getFirestore } from "firebase-admin/firestore"
-import { defineSecret } from "firebase-functions/params"
-import { HttpsError } from "firebase-functions/v2/https"
-import { onDocumentCreated } from "firebase-functions/v2/firestore"
-import { beforeUserCreated } from "firebase-functions/v2/identity"
-import * as nodemailer from "nodemailer"
+import { onRequest } from "firebase-functions/v2/https"
+import * as express from "express"
+import * as path from "path"
+import * as fs from "fs/promises"
 
+const app = express()
 initializeApp()
-
-const EMAIL = defineSecret("EMAIL")
-const PASSWORD = defineSecret("PASSWORD")
 
 const firestore = getFirestore()
 
-export const onInvited = onDocumentCreated(
-  { document: "invitations/{invitation}", secrets: [EMAIL, PASSWORD] },
-  (event) => {
-    const document = event.data?.data()
-    const transporter = nodemailer.createTransport({
-      service: "gmail",
-      auth: {
-        user: EMAIL.value(),
-        pass: PASSWORD.value(),
-      },
-    })
+app.get("*", async (_, res) => {
+  console.log("Rendering SEO")
+  try {
+    console.log(__dirname)
+    const configs = await firestore.collection("configs").limit(1).get()
+    const filePath = path.resolve(__dirname, "../dist", "index.html")
+    console.log(filePath)
 
-    const mailOptions = {
-      from: EMAIL.value(),
-      to: document?.email,
-      subject:
-        "Means Motive has invited you to become a member of their admin portal!",
-      text: "Welcome to Means Motive Admin. In order to complete your sign up, go to the following url and sign in!\n\nhttps://admin.meansmotive.com",
+    let data = await fs.readFile(filePath, "utf-8")
+    console.log(data)
+
+    if (configs.empty) {
+      res.status(404).send("No configs found!")
+      return
     }
 
-    transporter.sendMail(mailOptions, (error) => {
-      if (error) {
-        throw Error("MAIL_SEND_FAILURE")
-      } else {
-        console.info("MAIL_SEND_SUCCESS")
-      }
-    })
-  },
-)
+    const config = configs.docs[0].data()
 
-export const writeUser = beforeUserCreated(async (event) => {
-  const user = event.data
-  const invitations = await firestore
-    .collection("invitations")
-    .where("email", "==", user.email)
-    .limit(1)
-    .get()
+    data = data
+      .replace(/__TITLE__/g, config.bandName)
+      .replace(/__DESCRIPTION__/g, config.description)
+      .replace(/__KEYWORDS__/g, config.keywords.join(","))
+      .replace(/__OG_TITLE__/g, config.bandName)
+      .replace(/__OG_DESCRIPTION__/g, config.description)
+      .replace(/__OG_IMAGE__/g, config.socialImage)
 
-  if (invitations.empty) {
-    throw new HttpsError(
-      "permission-denied",
-      "You must be invited by a team member in your organization!",
-    )
-  }
-
-  const maybeInvitation = invitations.docs[0]
-  const isInvited = maybeInvitation.exists
-
-  if (isInvited) {
-    await firestore.doc(`users/${user.uid}`).set({
-      id: user.uid,
-      email: user.email,
-      dateAdded: event.timestamp,
-      displayName: user.displayName,
-      invited: isInvited,
-      permissions: maybeInvitation.data().permissions,
-    })
-    return
-  } else {
-    throw new HttpsError(
-      "permission-denied",
-      "You must be invited by a team member in your organization!",
-    )
+    res.send(data)
+  } catch (error) {
+    console.error(error)
+    res.status(500).send("Internal Server Error")
   }
 })
+
+app.use(express.static(path.resolve(__dirname, "../dist")))
+
+exports.renderSEO = onRequest(app)

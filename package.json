@@ -5,7 +5,8 @@
   "main": "./public/index.js",
   "scripts": {
     "dev": "vite",
-    "build": "tsc && vite build",
+    "build": "tsc && vite build && cp -r dist functions && rm dist/index.html",
+    "deploy": "npm run build && firebase deploy --only=hosting",
     "preview": "vite preview",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build"
@@ -56,11 +57,13 @@
     "react-dom": "^18.2.0",
     "react-feather": "^2.0.10",
     "react-helmet": "^6.1.0",
+    "react-helmet-async": "^2.0.4",
     "react-hook-form": "^7.45.4",
     "react-markdown": "^8.0.7",
     "react-router": "^6.15.0",
     "react-router-dom": "^6.15.0",
     "typescript": "^5.1.6",
+    "vite-plugin-ssr": "^0.4.142",
     "vite-plugin-svgr": "^3.2.0"
   },
   "eslintConfig": {

@@ -4,14 +4,16 @@ import { useEventListener } from "../../hooks/useEventListener"
 import { Button } from "../Button"
 import { ChevronDown } from "react-feather"
 import { throttle } from "lodash"
-import { ReactComponent as MeansMotive } from "../../assets/image/means_motive.svg"
-import vhs from "../../assets/video/vhs.mp4"
+import { useBandPageContext } from "../../providers/BandPageProvider"
 
 interface NavBarProps {
   onArrowDownClick: () => void
 }
 
 export const Navbar = ({ onArrowDownClick }: NavBarProps) => {
+  const {
+    bandPageConfig: { bannerImageUrl },
+  } = useBandPageContext()
   const [opacity, setOpacity] = useState(100)
   const navRef = useRef<HTMLElement>(null)
 
@@ -31,10 +33,11 @@ export const Navbar = ({ onArrowDownClick }: NavBarProps) => {
       style={{ opacity }}
       className="nav-desktop h-[calc(100dvh-72px)] md:h-[calc(100dvh-78px)] lg:h-[100dvh] transition-opacity ease-in-out w-full p-0"
     >
-      <MeansMotive className="min-w-full min-h-full absolute p-8 md:p-32 z-10" />
-      <video autoPlay muted loop className="w-full h-full object-cover">
-        <source src={vhs} />
-      </video>
+      <img
+        rel="preload"
+        src={bannerImageUrl}
+        className="max-w-full max-h-[100dvh]"
+      />
       <div className="absolute bottom-0 pb-8 z-30">
         <Button
           className={classNames(

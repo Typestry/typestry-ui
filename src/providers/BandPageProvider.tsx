@@ -1,6 +1,6 @@
 import { createContext, useContext, FC, useMemo } from "react"
 import { BandPageConfig } from "../types/BandPageConfig"
-import { Helmet } from "react-helmet"
+import { Helmet } from "react-helmet-async"
 import { SectionParams } from "../types/SectionParams"
 import { Route, RouterProvider, Routes } from "react-router"
 import { MainLayout } from "../layouts/MainLayout"
@@ -43,9 +43,9 @@ interface BandPageProviderProps {
 }
 
 export const BandPageProvider: FC<BandPageProviderProps> = ({
-  bandPageConfig,
   sections,
   root: Root,
+  bandPageConfig,
 }) => {
   const router = useMemo(
     () => createBrowserRouter([{ path: "*", Component: Root ?? RootDefault }]),
@@ -54,13 +54,13 @@ export const BandPageProvider: FC<BandPageProviderProps> = ({
 
   return (
     <BandPageContext.Provider value={{ bandPageConfig, sections }}>
-      <Helmet>
-        <meta name="keywords" content={bandPageConfig.keywords.join(" ,")} />
+      <Helmet prioritizeSeoTags>
+        <title>{bandPageConfig.bandName}</title>
+        <meta name="keywords" content={bandPageConfig.keywords.join(",")} />
         <meta name="description" content={bandPageConfig.description} />
         <meta name="og:title" content={bandPageConfig.bandName} />
         <meta name="og:description" content={bandPageConfig.description} />
         <meta name="og:image" content={bandPageConfig.socialImage} />
-        <title>{bandPageConfig.bandName}</title>
       </Helmet>
       <RouterProvider router={router} />
     </BandPageContext.Provider>

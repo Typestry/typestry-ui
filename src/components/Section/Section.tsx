@@ -4,6 +4,7 @@ import { BandcampPlayer } from "../BandcampPlayer"
 import { ContactForm } from "../ContactForm"
 import { ListShow } from "../ListShow"
 import ReactMarkdown from "react-markdown"
+import { Gallery } from "../Gallery"
 
 interface SectionProps {
   section: SectionParams
@@ -47,6 +48,10 @@ const getSectionComponent = (section: SectionParams) => {
       return () => getPlayer(section.data)
     case "show":
       return () => <ListShow shows={section.data} />
+    case "gallery":
+      return () => {
+        return <Gallery images={section.data} />
+      }
   }
 }
 

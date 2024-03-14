@@ -8,6 +8,7 @@ import {
   collection as col,
   getDocs,
 } from "firebase/firestore"
+import { StorageError, getDownloadURL, getStorage, ref } from "firebase/storage"
 
 const FirebaseService = {
   getFirebaseFunctionsUrl: () =>
@@ -40,6 +41,29 @@ const FirebaseService = {
   getDocuments: <Collection extends string>(collection: Collection) => {
     const ref = col(FirebaseService.db(), collection)
     return getDocs(ref)
+  },
+  getDownloadUrl: async (path: string) => {
+    try {
+      console.log({ path })
+      const storage = getStorage()
+      console.log({ storage })
+      const storageRef = ref(storage, path)
+      const url = await getDownloadURL(storageRef)
+      console.log({ url })
+      return url
+    } catch (err) {
+      const error = err as StorageError
+      switch (error.code) {
+        case "storage/object-not-found":
+          throw "File doesn't exist"
+        case "storage/unauthorized":
+          throw "User doesn't have permission to access the object"
+        case "storage/canceled":
+          throw "User canceled the upload"
+        default:
+          "An unknown error occurred."
+      }
+    }
   },
   runHttpsFunction: <Payload = Record<string, any>>(
     name: string,

@@ -36,8 +36,14 @@ export interface ArticleSection extends SectionBase {
   data: string
 }
 
+export interface GallerySection extends SectionBase {
+  type: "gallery"
+  data: Array<string>
+}
+
 export type SectionParams =
   | ShowSection
   | ContactSection
   | PlayerSection
   | ArticleSection
+  | GallerySection

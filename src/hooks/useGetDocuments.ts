@@ -2,20 +2,19 @@ import { useEffect, useState } from "react"
 import FirebaseService from "../services/firebaseService"
 import { DocumentData } from "firebase/firestore"
 
-export const useGetDocuments = <Document extends DocumentData>(
+export const useGetDocuments = <Document extends WithId<DocumentData>>(
   collection: string,
 ) => {
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(true)
   const [data, setData] = useState<Array<Document>>([])
   const [error, setError] = useState<any>()
 
   useEffect(() => {
-    setLoading(true)
     FirebaseService.getDocuments(collection)
       .then((data) => {
         const allDocs: Array<Document> = []
         data.forEach((doc) => {
-          allDocs.push(doc.data() as Document)
+          allDocs.push({ ...doc.data(), id: doc.id } as Document)
         })
         setData(allDocs)
       })
