@@ -14,6 +14,7 @@ export type MediaType =
 export type MediaLinks = { [key in MediaType]: MediaLink }
 
 export interface BandPageConfig {
+  id: string
   bandName: string
   keywords: Array<string>
   description: string
