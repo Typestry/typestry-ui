@@ -11,15 +11,11 @@ initializeApp()
 const firestore = getFirestore()
 
 app.get("*", async (_, res) => {
-  console.log("Rendering SEO")
   try {
-    console.log(__dirname)
     const configs = await firestore.collection("configs").limit(1).get()
     const filePath = path.resolve(__dirname, "../dist", "index.html")
-    console.log(filePath)
 
     let data = await fs.readFile(filePath, "utf-8")
-    console.log(data)
 
     if (configs.empty) {
       res.status(404).send("No configs found!")
@@ -38,7 +34,6 @@ app.get("*", async (_, res) => {
 
     res.send(data)
   } catch (error) {
-    console.error(error)
     res.status(500).send("Internal Server Error")
   }
 })

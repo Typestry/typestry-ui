@@ -2,7 +2,6 @@ import { useEffect, useState } from "react"
 import FirebaseService from "../services/firebaseService"
 
 export const useGetDownloadUrls = (paths: Array<string>) => {
-  console.log({ paths })
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<any>()
   const [data, setData] = useState<Array<string | undefined>>()

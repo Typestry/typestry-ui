@@ -14,12 +14,10 @@ export const useAddDocument = () => {
     setLoading(true)
     try {
       const data = await FirebaseService.addDocument(...args)
-      console.log(data)
       setData(data)
     } catch (err) {
       setError(err)
     } finally {
-      console.log("finally")
       setLoading(false)
     }
   }

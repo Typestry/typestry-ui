@@ -44,12 +44,9 @@ const FirebaseService = {
   },
   getDownloadUrl: async (path: string) => {
     try {
-      console.log({ path })
       const storage = getStorage()
-      console.log({ storage })
       const storageRef = ref(storage, path)
       const url = await getDownloadURL(storageRef)
-      console.log({ url })
       return url
     } catch (err) {
       const error = err as StorageError
