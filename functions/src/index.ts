@@ -1,6 +1,6 @@
 import { initializeApp } from "firebase-admin/app"
 import { getFirestore } from "firebase-admin/firestore"
-import { getStorage } from "firebase-admin/storage"
+import { getDownloadURL, getStorage } from "firebase-admin/storage"
 import { onRequest } from "firebase-functions/v2/https"
 import * as express from "express"
 import * as path from "path"
@@ -24,7 +24,8 @@ app.get("*", async (_, res) => {
     const filePath = path.resolve(__dirname, "../dist", "index.html")
     let data = await fs.readFile(filePath, "utf-8")
     const config = configs.docs[0].data()
-    const socialImageUrl = storage.bucket().file(config.socialImage).publicUrl()
+    const socialImageRef = storage.bucket().file(config.socialImage)
+    const socialImageUrl = await getDownloadURL(socialImageRef)
 
     data = data
       .replace(/__TITLE__/g, config.bandName)

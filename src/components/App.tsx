@@ -28,11 +28,10 @@ export const App = () => {
     case config.loading:
     case urls.loading:
       return null
-    case !config.data:
-      throw new Error("No configs found!")
-    case !urls.data:
-      throw new Error("No images found!")
   }
+
+  if (!config.data) throw new Error("No configs found!")
+  if (!urls.data) throw new Error("No images found!")
 
   return (
     <BandPageProvider
