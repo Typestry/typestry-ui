@@ -1,17 +1,30 @@
 import { useEffect, useState } from "react"
 import FirebaseService from "../services/firebaseService"
 
-export const useGetDownloadUrls = (paths: Array<string>) => {
+export const useGetDownloadUrls = ({
+  paths,
+  isEnabled = true,
+}: FirebaseGetDownloadUrlsConfig) => {
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<any>()
-  const [data, setData] = useState<Array<string | undefined>>()
+  const [data, setData] = useState<Array<string>>([])
 
   useEffect(() => {
+    if (!isEnabled) {
+      return
+    }
+
     Promise.all(paths.map(FirebaseService.getDownloadUrl))
-      .then(setData)
+      .then((urls) => {
+        console.log(urls)
+        const cleanedUrls = urls.filter(Boolean) as Array<string>
+        console.log(cleanedUrls)
+        if (cleanedUrls.length === 0) throw new Error("No images found")
+        setData(cleanedUrls)
+      })
       .catch(setError)
       .finally(() => setLoading(false))
-  }, [])
+  }, [isEnabled])
 
   return { loading, error, data }
 }

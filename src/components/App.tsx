@@ -5,6 +5,7 @@ import { useGetDocuments } from "../hooks/useGetDocuments"
 import { SectionParams } from "../types/SectionParams"
 import { orderBy } from "lodash"
 import { BandPageConfig } from "../types/BandPageConfig"
+import { useGetDownloadUrls } from "../hooks/useGetDownloadUrls"
 
 FirebaseService.init()
 
@@ -17,9 +18,21 @@ export const App = () => {
     loading: bandPageConfigLoading,
   } = useGetDocuments<BandPageConfig>("configs")
 
+  const { data, loading: urlLoading } = useGetDownloadUrls({
+    paths: [bandPageConfig?.bannerImageUrl],
+    isEnabled: Boolean(bandPageConfig),
+  })
+
   const sections = orderBy(unorderedSections, "order", "asc")
 
-  if (sectionsLoading || bandPageConfigLoading) return null
+  if (sectionsLoading || bandPageConfigLoading || urlLoading) return null
 
-  return <BandPageProvider {...{ sections, bandPageConfig }} />
+  return (
+    <BandPageProvider
+      {...{
+        sections,
+        bandPageConfig: { ...bandPageConfig, bannerImageUrl: data[0] },
+      }}
+    />
+  )
 }

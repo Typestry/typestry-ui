@@ -50,7 +50,7 @@ const getSectionComponent = (section: SectionParams) => {
       return () => <ListShow shows={section.data} />
     case "gallery":
       return () => {
-        return <Gallery images={section.data} />
+        return <Gallery imagePaths={section.data} />
       }
   }
 }
