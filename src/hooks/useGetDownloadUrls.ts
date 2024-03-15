@@ -16,9 +16,7 @@ export const useGetDownloadUrls = ({
 
     Promise.all(paths.map(FirebaseService.getDownloadUrl))
       .then((urls) => {
-        console.log(urls)
         const cleanedUrls = urls.filter(Boolean) as Array<string>
-        console.log(cleanedUrls)
         if (cleanedUrls.length === 0) throw new Error("No images found")
         setData(cleanedUrls)
       })
