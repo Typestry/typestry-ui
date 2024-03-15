@@ -10,29 +10,34 @@ import { useGetDownloadUrls } from "../hooks/useGetDownloadUrls"
 FirebaseService.init()
 
 export const App = () => {
-  const { data: unorderedSections, loading: sectionsLoading } =
-    useGetDocuments<SectionParams>("sections")
+  const sections = useGetDocuments<SectionParams>({ collection: "sections" })
 
-  const {
-    data: [bandPageConfig],
-    loading: bandPageConfigLoading,
-  } = useGetDocuments<BandPageConfig>("configs")
-
-  const { data, loading: urlLoading } = useGetDownloadUrls({
-    paths: [bandPageConfig?.bannerImageUrl],
-    isEnabled: Boolean(bandPageConfig),
+  const config = useGetDocuments<BandPageConfig>({
+    collection: "configs",
   })
 
-  const sections = orderBy(unorderedSections, "order", "asc")
+  const urls = useGetDownloadUrls({
+    paths: [config.data?.[0].bannerImageUrl ?? ""],
+    isEnabled: Boolean(config.data?.length),
+  })
 
-  if (sectionsLoading || bandPageConfigLoading || urlLoading) return null
+  const orderedSections = orderBy(sections.data, "order", "asc")
+
+  switch (true) {
+    case sections.loading:
+    case config.loading:
+    case urls.loading:
+      return null
+    case !config.data:
+      throw new Error("No configs found!")
+    case !urls.data:
+      throw new Error("No images found!")
+  }
 
   return (
     <BandPageProvider
-      {...{
-        sections,
-        bandPageConfig: { ...bandPageConfig, bannerImageUrl: data[0] },
-      }}
+      sections={orderedSections}
+      bandPageConfig={{ ...config.data[0], bannerImageUrl: urls.data[0] }}
     />
   )
 }

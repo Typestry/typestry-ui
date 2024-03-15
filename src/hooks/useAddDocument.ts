@@ -1,20 +1,21 @@
 import { useState } from "react"
 import FirebaseService from "../services/firebaseService"
-import { DocumentData, DocumentReference } from "firebase/firestore"
+import { FirebaseMutationHookReturn } from "../types/FirebaseHookConfig"
 
-export const useAddDocument = () => {
+export const useAddDocument = (): FirebaseMutationHookReturn<
+  string | undefined
+> => {
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<any>()
-  const [data, setData] =
-    useState<DocumentReference<DocumentData, DocumentData>>()
+  const [data, setData] = useState<string>()
 
-  const addDocument = async (
-    ...args: Parameters<typeof FirebaseService.addDocument>
-  ) => {
+  const addDocument: FirebaseMutationHookReturn<
+    string | undefined
+  >["addDocument"] = async (...args) => {
     setLoading(true)
     try {
       const data = await FirebaseService.addDocument(...args)
-      setData(data)
+      setData(data.id)
     } catch (err) {
       setError(err)
     } finally {

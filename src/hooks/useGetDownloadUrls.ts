@@ -1,13 +1,19 @@
 import { useEffect, useState } from "react"
 import FirebaseService from "../services/firebaseService"
+import {
+  FirebaseHookConfig,
+  FirebaseQueryHookReturn,
+} from "../types/FirebaseHookConfig"
 
 export const useGetDownloadUrls = ({
   paths,
   isEnabled = true,
-}: FirebaseGetDownloadUrlsConfig) => {
+}: FirebaseHookConfig<{ paths: Array<string> }>): FirebaseQueryHookReturn<
+  Array<string>
+> => {
   const [loading, setLoading] = useState(true)
-  const [error, setError] = useState<any>()
-  const [data, setData] = useState<Array<string>>([])
+  const [error, setError] = useState<unknown>()
+  const [data, setData] = useState<Array<string>>()
 
   useEffect(() => {
     if (!isEnabled) {
