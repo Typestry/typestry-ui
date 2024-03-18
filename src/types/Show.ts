@@ -11,4 +11,6 @@ export interface Show {
   price: number // 15
   venue: string // "The Rhino"
   callToAction: CTA
+  eventImage?: string // "https://www.loremipsum.com/ipsum.jpg"
+  address?: string // 1234 Main St, Kansas City, MO 64105
 }
