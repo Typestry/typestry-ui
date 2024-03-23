@@ -19,7 +19,7 @@ export const Gallery: FC<GalleryProps> = ({ imagePaths }) => {
       <ImageDialog
         imgSrc={images[imageIndex]}
         isOpen={!Number.isNaN(imageIndex)}
-        handleClose={() => setImageIndex(NaN)}
+        onClose={() => setImageIndex(NaN)}
       />
       <div className="columns-1 sm:columns-2 md:columns-3 gap-4">
         <div className="grid gap-4">

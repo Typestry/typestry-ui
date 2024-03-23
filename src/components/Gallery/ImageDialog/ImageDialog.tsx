@@ -7,15 +7,20 @@ import { X } from "react-feather"
 interface ImageDialogProps {
   imgSrc: string
   isOpen: boolean
-  handleClose: () => void
+  onClose: () => void
 }
 
 export const ImageDialog: FC<ImageDialogProps> = ({
   imgSrc,
   isOpen,
-  handleClose,
+  onClose,
 }) => {
   const modalRef = useRef<HTMLImageElement>(null)
+
+  const handleClose = (e: Event) => {
+    e.stopPropagation()
+    onClose()
+  }
 
   useOutsideClick(modalRef, handleClose)
 
