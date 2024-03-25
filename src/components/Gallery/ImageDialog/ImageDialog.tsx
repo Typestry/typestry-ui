@@ -35,7 +35,7 @@ export const ImageDialog: FC<ImageDialogProps> = ({
   if (!isOpen) return null
 
   return createPortal(
-    <div className="fixed flex justify-center top-0 left-0 right-0 bottom-0 z-40 backdrop-blur-sm p-2 md:p-8">
+    <div className="fixed flex justify-center top-0 left-0 right-0 bottom-0 z-40 backdrop-blur-sm md:p-8">
       <ChevronLeft
         aria-label="Previous"
         onClick={onPrev}
@@ -59,7 +59,7 @@ export const ImageDialog: FC<ImageDialogProps> = ({
           ref={modalRef}
           src={imgSrc}
           alt=""
-          className="object-contain m-auto md:h-full md:object-cover object-center rounded-lg"
+          className="object-contain m-auto md:h-full md:object-cover object-center"
         />
       </div>
       <ChevronRight

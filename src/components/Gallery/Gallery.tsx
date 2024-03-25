@@ -19,9 +19,7 @@ export const Gallery: FC<GalleryProps> = ({ imagePaths }) => {
 
   const handleImageKeyPress = (e: KeyboardEvent<HTMLImageElement>) => {
     if (e.key === "Enter" || e.key === " ") {
-      const index = Number(
-        (e.target as HTMLImageElement).getAttribute("data-value"),
-      )
+      const index = Number(e.currentTarget.getAttribute("data-value"))
       setImageIndex(index)
     }
   }
@@ -39,7 +37,7 @@ export const Gallery: FC<GalleryProps> = ({ imagePaths }) => {
   }
 
   return (
-    <>
+    <div className="columns-1 sm:columns-2 md:columns-3 gap-4">
       <ImageDialog
         onNext={handleNext}
         onPrev={handlePrev}
@@ -47,22 +45,20 @@ export const Gallery: FC<GalleryProps> = ({ imagePaths }) => {
         isOpen={!Number.isNaN(imageIndex)}
         onClose={handleClose}
       />
-      <div className="columns-1 sm:columns-2 md:columns-3 gap-4">
-        <div className="grid gap-4">
-          {images.map((img, index) => (
-            <img
-              tabIndex={0}
-              onKeyDown={handleImageKeyPress}
-              onClick={handleImageClick}
-              data-value={index}
-              key={img}
-              className="h-auto max-w-full rounded-lg hover:cursor-pointer hover:opacity-75 transition-all duration-300 ease-in-out"
-              src={img}
-              alt=""
-            />
-          ))}
-        </div>
+      <div className="grid gap-4">
+        {images.map((img, index) => (
+          <img
+            tabIndex={0}
+            onKeyDown={handleImageKeyPress}
+            onClick={handleImageClick}
+            data-value={index}
+            key={img}
+            className="h-auto max-w-full cursor-pointer transition ease-in-out md:hover:scale-105 duration-200"
+            src={img}
+            alt=""
+          />
+        ))}
       </div>
-    </>
+    </div>
   )
 }
