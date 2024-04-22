@@ -1,4 +1,4 @@
-import { FC, KeyboardEvent, MouseEvent, useState } from "react"
+import { FC, useState } from "react"
 import { useGetDownloadUrls } from "../../hooks/useGetDownloadUrls"
 import { ImageDialog } from "./ImageDialog/ImageDialog"
 
@@ -11,18 +11,6 @@ export const Gallery: FC<GalleryProps> = ({ imagePaths }) => {
   const [imageIndex, setImageIndex] = useState<number>(NaN)
 
   if (!images) return null
-
-  const handleImageClick = (e: MouseEvent<HTMLImageElement>) => {
-    const index = Number(e.currentTarget.getAttribute("data-value"))
-    setImageIndex(index)
-  }
-
-  const handleImageKeyPress = (e: KeyboardEvent<HTMLImageElement>) => {
-    if (e.key === "Enter" || e.key === " ") {
-      const index = Number(e.currentTarget.getAttribute("data-value"))
-      setImageIndex(index)
-    }
-  }
 
   const handleNext = () => {
     setImageIndex((prev) => (prev + 1) % images.length)
@@ -49,9 +37,10 @@ export const Gallery: FC<GalleryProps> = ({ imagePaths }) => {
         {images.map((img, index) => (
           <img
             tabIndex={0}
-            onKeyDown={handleImageKeyPress}
-            onClick={handleImageClick}
-            data-value={index}
+            onKeyDown={(e) =>
+              e.key === "Enter" || (e.key === " " && setImageIndex(index))
+            }
+            onClick={() => setImageIndex(index)}
             key={img}
             className="h-auto max-w-full cursor-pointer transition ease-in-out md:hover:scale-105 duration-200"
             src={img}

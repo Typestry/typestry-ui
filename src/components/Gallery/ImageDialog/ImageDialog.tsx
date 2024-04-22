@@ -20,16 +20,22 @@ export const ImageDialog: FC<ImageDialogProps> = ({
 }) => {
   const modalRef = useRef<HTMLImageElement>(null)
 
-  useKeyPress(["Escape"], onClose)
-  useKeyPress(["ArrowRight"], onNext)
-  useKeyPress(["ArrowLeft"], onPrev)
+  useKeyPress(["ArrowRight", "ArrowLeft", "Escape"], (e) => {
+    switch (e.key) {
+      case "ArrowRight":
+        onNext()
+        break
+      case "ArrowLeft":
+        onPrev()
+        break
+      case "Escape":
+        onClose()
+        break
+    }
+  })
 
   useEffect(() => {
-    if (isOpen) {
-      document.body.style.overflow = "hidden"
-    } else {
-      document.body.style.overflow = "auto"
-    }
+    document.body.style.overflow = isOpen ? "hidden" : "auto"
   }, [isOpen])
 
   if (!isOpen) return null

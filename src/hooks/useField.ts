@@ -1,20 +1,7 @@
-import { ChangeEventHandler, useCallback, useState } from "react"
+import { useController } from "react-hook-form"
 
 export const useField = (name: string) => {
-  const [isValid, setIsValid] = useState(true)
+  const { field } = useController({ name })
 
-  const handleBlur: ChangeEventHandler<HTMLInputElement> = useCallback(
-    (e) => {
-      setIsValid(e.currentTarget.checkValidity())
-    },
-    [setIsValid],
-  )
-
-  const inputProps = {
-    id: name,
-    "data-should-validate": !isValid,
-    onBlur: handleBlur,
-  }
-
-  return inputProps
+  return field
 }

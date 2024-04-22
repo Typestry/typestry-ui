@@ -1,5 +1,4 @@
-import { ComponentProps } from "react"
-import { useField } from "../../hooks/useField"
+import { ComponentProps, forwardRef } from "react"
 
 type InputProps = ComponentProps<"input">
 
@@ -9,15 +8,15 @@ interface TextFieldProps extends InputProps {
   label: string
 }
 
-export const TextField = (props: TextFieldProps) => {
-  const inputProps = useField(props.name)
-
-  return (
-    <div className="group">
-      <label htmlFor={props.name} className="label">
-        {props.label}
-      </label>
-      <input {...props} {...inputProps} className="text-field" />
-    </div>
-  )
-}
+export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(
+  (props, ref) => {
+    return (
+      <div className="group">
+        <label htmlFor={props.name} className="label">
+          {props.label}
+        </label>
+        <input ref={ref} {...props} className="text-field" />
+      </div>
+    )
+  },
+)

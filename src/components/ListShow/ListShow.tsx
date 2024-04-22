@@ -50,30 +50,33 @@ export const ShowItem = ({ show }: { show: Show }) => {
       <div className="h-full flex flex-col gap-y-8">
         <div>
           <div className="flex justify-between border-fuchsia-300 font-bold pb-3">
-            <p>{DateUtils.formatDate({ date: show.date })}</p>
+            <p>
+              {show.date ? DateUtils.formatDate({ date: show.date }) : "TBA"}
+            </p>
             <p>{show.city}</p>
           </div>
           <div className="divider-light" />
         </div>
 
-        <p className="font-bold">${show.price}</p>
-        <p>{show.description}</p>
+        {show.price && <p className="font-bold">{show.price}</p>}
+        {show.description && <p>{show.description}</p>}
         <p className="font-bold">{show.venue}</p>
         <div className="flex flex-1 gap-4">
-          <a
-            className="mt-auto w-full"
-            target="_blank"
-            href={show.callToAction.url}
-            aria-label={show.callToAction.altText}
-          >
-            <Button>{show.callToAction.label}</Button>
-          </a>
+          {show.callToAction && (
+            <a
+              className="mt-auto w-full"
+              target="_blank"
+              href={show.callToAction.url}
+              aria-label={show.callToAction.altText}
+            >
+              <Button>{show.callToAction.label}</Button>
+            </a>
+          )}
           {show.address && (
             <a
               className="mt-auto w-full"
               target="_blank"
               href={`https://www.google.com/maps/place/${show.address}`}
-              aria-label={show.callToAction.altText}
             >
               <Button>Directions</Button>
             </a>
@@ -85,5 +88,6 @@ export const ShowItem = ({ show }: { show: Show }) => {
 }
 
 const removePastShows = (show: Show) => {
-  return !DateUtils.isPast(show.date)
+  const isPast = show.date && DateUtils.isPast(show.date)
+  return !isPast
 }

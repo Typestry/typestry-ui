@@ -12,9 +12,6 @@ export default defineConfig({
       project: "means-motive",
     }),
   ],
-  esbuild: {
-    drop: ["console", "debugger"],
-  },
   build: {
     sourcemap: true,
   },

@@ -1,4 +1,4 @@
-import { ComponentProps } from "react"
+import { ComponentProps, forwardRef } from "react"
 
 type InputProps = ComponentProps<"textarea">
 
@@ -7,16 +7,19 @@ interface TextAreaProps extends InputProps {
   label: string
 }
 
-export const TextArea = (props: TextAreaProps) => {
-  return (
-    <div className="group">
-      <label htmlFor={props.name}>{props.label}</label>
-      <textarea
-        {...props}
-        id={props.name}
-        data-should-validate={Boolean(props.value)}
-        className="text-area"
-      />
-    </div>
-  )
-}
+export const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(
+  (props, ref) => {
+    return (
+      <div className="group">
+        <label htmlFor={props.name}>{props.label}</label>
+        <textarea
+          ref={ref}
+          {...props}
+          id={props.name}
+          data-should-validate={Boolean(props.value)}
+          className="text-area"
+        />
+      </div>
+    )
+  },
+)
