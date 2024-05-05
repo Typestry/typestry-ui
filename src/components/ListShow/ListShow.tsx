@@ -39,15 +39,13 @@ export const ShowItem = ({ show }: { show: Show }) => {
       })}
     >
       {eventImageUrl?.[0] && (
-        <div className="h-full">
-          <img
-            src={eventImageUrl[0]}
-            alt={`Event image for ${show.city}`}
-            className="h-full"
-          />
-        </div>
+        <img
+          src={eventImageUrl[0]}
+          alt={`Event image for ${show.city}`}
+          className="object-contain"
+        />
       )}
-      <div className="h-full flex flex-col gap-y-8">
+      <div className="flex flex-col gap-y-8 mb-auto">
         <div>
           <div className="flex justify-between border-fuchsia-300 font-bold pb-3">
             <p>
@@ -57,7 +55,6 @@ export const ShowItem = ({ show }: { show: Show }) => {
           </div>
           <div className="divider-light" />
         </div>
-
         {show.price && <p className="font-bold">{show.price}</p>}
         {show.description && <p>{show.description}</p>}
         <p className="font-bold">{show.venue}</p>
