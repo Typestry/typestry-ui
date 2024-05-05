@@ -10,6 +10,7 @@ export default defineConfig({
     sentryVitePlugin({
       org: "self-0xp",
       project: "means-motive",
+      telemetry: false,
     }),
   ],
   build: {
