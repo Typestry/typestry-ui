@@ -9,7 +9,7 @@ export default defineConfig({
     svgr({ svgrOptions: { icon: true } }),
     sentryVitePlugin({
       org: "self-0xp",
-      project: "means-motive",
+      project: "web-template",
       telemetry: false,
     }),
   ],

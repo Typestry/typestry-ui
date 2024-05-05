@@ -1,13 +1,13 @@
 const admin = require("firebase-admin") // required
 
 // initialization
-const projectId = "means-motive"
+const projectId = "web-template"
 process.env.FIRESTORE_EMULATOR_HOST = "localhost:3334"
 admin.initializeApp({ projectId })
 
 const db = admin.firestore()
 
-const BAND_NAME = "Means Motive"
+const BAND_NAME = "WEB TEMPLATE BAND NAME"
 
 // seed function
 function getSeedData() {
@@ -15,33 +15,18 @@ function getSeedData() {
     db.collection("configs").add({
       bandName: BAND_NAME,
       description:
-        "Independent, Energetic, Alternative Rock & Roll from Lawrence, Kansas.",
-      keywords: [
-        BAND_NAME,
-        "indie music",
-        "alternative rock",
-        "Kansas City",
-        "Lawrence Kansas",
-        "Kansas City music",
-        "Lawrence Kansas music",
-        "Kansas City band",
-        "Lawrence Kansas band",
-        "John Benda",
-        "Jared Anderson",
-        "Aaron Riffel",
-        "John Robbs",
-        "Ali Edwards",
-      ],
+        "A web template for bands, musicians, and artists. Built with React, Vite, and Firebase.",
+      keywords: [BAND_NAME],
       socialImage: "",
       mediaLinks: {
         instagram: {
-          url: "https://www.instagram.com/meansmotive/",
-          alt: "visit means motive profile on instagram",
+          url: "",
+          alt: "",
           title: "Instagram",
         },
         facebook: {
-          url: "https://www.facebook.com/meansmotive",
-          alt: "visit means motive profile on facebook",
+          url: "",
+          alt: "",
           title: "Facebook",
         },
       },

@@ -1,8 +1,8 @@
 import * as Sentry from "@sentry/react"
 
 export const SentryConfig: Sentry.BrowserOptions = {
-  environment: process.env.NODE_ENV,
-  dsn: "https://562e3239b8df3858f33db876c0eb7e23@o4506929340481536.ingest.us.sentry.io/4506929341726720",
+  environment: "YOUR_ENVIRONMENT_VARIABLE",
+  dsn: "YOUR_DSN",
   integrations: [
     Sentry.browserTracingIntegration(),
     Sentry.replayIntegration({
@@ -15,7 +15,6 @@ export const SentryConfig: Sentry.BrowserOptions = {
   // Set 'tracePropagationTargets' to control for which URLs distributed tracing should be enabled
   tracePropagationTargets: [
     "localhost",
-    /^https:\/\/(www\.meansmotive\.com|admin\.meansmotive\.com)$/,
   ],
   // Session Replay
   replaysSessionSampleRate: 0.1, // This sets the sample rate at 10%. You may want to change it to 100% while in development and then sample at a lower rate in production.
