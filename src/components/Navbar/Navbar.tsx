@@ -4,16 +4,23 @@ import { useEventListener } from "../../hooks/useEventListener"
 import { Button } from "../Button"
 import { ChevronDown } from "react-feather"
 import { throttle } from "lodash"
-import { useBandPageContext } from "../../providers/BandPageProvider"
+import { useConfig } from "../../hooks/useConfig"
+import { raise } from "../../utils/raise/raise"
 
 interface NavBarProps {
   onArrowDownClick: () => void
 }
 
 export const Navbar = ({ onArrowDownClick }: NavBarProps) => {
-  const {
-    bandPageConfig: { bannerImageUrl },
-  } = useBandPageContext()
+  const { data, status } = useConfig()
+
+  switch (status) {
+    case "pending":
+      return null
+    case "error":
+      return raise("Error loading config")
+  }
+
   const [opacity, setOpacity] = useState(100)
   const navRef = useRef<HTMLElement>(null)
 
@@ -35,7 +42,7 @@ export const Navbar = ({ onArrowDownClick }: NavBarProps) => {
     >
       <img
         rel="preload"
-        src={bannerImageUrl}
+        src={data.bannerImageUrl}
         className="max-w-full max-h-[100dvh]"
       />
       <div className="absolute bottom-0 pb-8 z-30">

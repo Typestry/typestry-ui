@@ -51,6 +51,7 @@
     "@chakra-ui/react-use-size": "^2.1.0",
     "@sentry/react": "^7.107.0",
     "@sentry/vite-plugin": "^2.15.0",
+    "@tanstack/react-query": "^5.34.2",
     "axios": "^1.4.0",
     "classnames": "^2.3.2",
     "date-fns": "^2.30.0",
@@ -66,7 +67,8 @@
     "react-router-dom": "^6.15.0",
     "typescript": "^5.1.6",
     "vite-plugin-ssr": "^0.4.142",
-    "vite-plugin-svgr": "^3.2.0"
+    "vite-plugin-svgr": "^3.2.0",
+    "zod": "^3.23.6"
   },
   "eslintConfig": {
     "extends": [

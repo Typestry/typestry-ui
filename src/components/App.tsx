@@ -1,42 +1,31 @@
-import FirebaseService from "../services/firebaseService"
-import { BandPageProvider } from "../providers/BandPageProvider"
-
-import { useGetDocuments } from "../hooks/useGetDocuments"
-import { SectionParams } from "../types/SectionParams"
-import { orderBy } from "lodash"
-import { BandPageConfig } from "../types/BandPageConfig"
-import { useGetDownloadUrls } from "../hooks/useGetDownloadUrls"
-
-FirebaseService.init()
+import { useConfig } from "../hooks/useConfig"
+import { raise } from "../utils/raise/raise"
+import { Helmet } from "react-helmet-async"
+import { RouterProvider } from "../providers/RouterProvider"
 
 export const App = () => {
-  const sections = useGetDocuments<SectionParams>({ collection: "sections" })
+  const { data, status } = useConfig()
 
-  const config = useGetDocuments<BandPageConfig>({
-    collection: "configs",
-  })
-
-  const urls = useGetDownloadUrls({
-    paths: [config.data?.[0].bannerImageUrl ?? ""],
-    isEnabled: Boolean(config.data?.length),
-  })
-
-  const orderedSections = orderBy(sections.data, "order", "asc")
-
-  switch (true) {
-    case sections.loading:
-    case config.loading:
-    case urls.loading:
+  switch (status) {
+    case "pending":
       return null
+    case "error":
+      return raise("Error loading config")
   }
 
-  if (!config.data) throw new Error("No configs found!")
-  if (!urls.data) throw new Error("No images found!")
+  const { bandName, keywords, description, socialImage } = data
 
   return (
-    <BandPageProvider
-      sections={orderedSections}
-      bandPageConfig={{ ...config.data[0], bannerImageUrl: urls.data[0] }}
-    />
+    <>
+      <Helmet prioritizeSeoTags>
+        <title>{bandName}</title>
+        <meta name="keywords" content={keywords.join(",")} />
+        <meta name="description" content={description} />
+        <meta name="og:title" content={bandName} />
+        <meta name="og:description" content={description} />
+        <meta name="og:image" content={socialImage} />
+      </Helmet>
+      <RouterProvider />
+    </>
   )
 }

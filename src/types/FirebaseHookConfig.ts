@@ -1,4 +1,4 @@
-import FirebaseService from "../services/firebaseService"
+import FirebaseService from "../services/FirebaseService"
 
 export type FirebaseHookConfig<Data> = {
   isEnabled?: boolean

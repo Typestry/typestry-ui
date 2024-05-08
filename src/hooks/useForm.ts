@@ -34,7 +34,6 @@ export const useForm = <Values extends FieldValues>({
       try {
         await hookFormHandleSubmit(onSubmit)(e)
       } catch (error) {
-        console.error(error)
         setIsError(true)
       } finally {
         setIsSubmitting(false)

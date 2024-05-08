@@ -1,5 +1,5 @@
 import { useState } from "react"
-import FirebaseService from "../services/firebaseService"
+import FirebaseService from "../services/FirebaseService"
 
 export const useFirebaseFunction = () => {
   const [loading, setLoading] = useState(false)

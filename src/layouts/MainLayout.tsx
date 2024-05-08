@@ -2,17 +2,23 @@ import { useRef } from "react"
 import { Navbar } from "../components/Navbar"
 import { Outlet } from "react-router"
 import { SocialLink } from "../components/SocialLink"
-import { useBandPageContext } from "../providers/BandPageProvider"
 import { MediaLink, MediaType } from "../types/BandPageConfig"
+import { useConfig } from "../hooks/useConfig"
+import { raise } from "../utils/raise/raise"
 
 export const MainLayout = () => {
   const mainRef = useRef<HTMLElement>(null)
 
-  const {
-    bandPageConfig: { mediaLinks },
-  } = useBandPageContext()
+  const { data, status } = useConfig()
 
-  const socialLinks = Object.entries(mediaLinks) as Array<
+  switch (status) {
+    case "pending":
+      return null
+    case "error":
+      return raise("Error loading config")
+  }
+
+  const socialLinks = Object.entries(data.mediaLinks) as Array<
     [MediaType, MediaLink]
   >
 

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import FirebaseService from "../services/firebaseService"
+import FirebaseService from "../services/FirebaseService"
 import {
   FirebaseHookConfig,
   FirebaseQueryHookReturn,

@@ -3,18 +3,12 @@ import { TextArea } from "../TextArea"
 import { Button } from "../Button"
 import axios from "axios"
 import { useForm } from "../../hooks/useForm"
+import { ContactFormValues } from "./types"
 
 interface ContactFormProps {
   template_id: string
   user_id: string
   service_id: string
-}
-
-interface ContactFormValues {
-  firstName: string
-  lastName: string
-  email: string
-  message: string
 }
 
 export const ContactForm = ({
