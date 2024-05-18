@@ -1,11 +1,13 @@
 import { useQuery } from "@tanstack/react-query"
 import { SectionQueryKeys } from "../../constants/QueryKeys"
-import FirebaseService from "../../services/FirebaseService"
+import { FirebaseClient } from "../../services/FirebaseClient"
 import { SectionParams } from "../../types/SectionParams"
 
 const queryFn = async () => {
+  const firebase = FirebaseClient.getInstance()
   try {
-    const data = await FirebaseService.getDocuments("sections")
+    const ref = firebase.getCollection("sections")
+    const data = await firebase.getDocuments(ref)
     return data.docs.map((doc) => ({
       ...doc.data(),
       id: doc.id,

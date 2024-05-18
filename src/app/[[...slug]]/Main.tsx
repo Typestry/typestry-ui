@@ -1,16 +1,18 @@
-import { Section } from "../components/Section"
-import { useSections } from "../components/Section/hooks"
-import { raise } from "../utils/raise/raise"
+"use client"
+
+import { Section } from "../../components/Section"
+import { useSections } from "../../components/Section/hooks"
+import { raise } from "../../utils/raise/raise"
 import _sortBy from "lodash/sortBy"
 
-export const Main = () => {
+export default function Main() {
   const { data, status } = useSections()
 
   switch (status) {
     case "pending":
       return null
     case "error":
-      return raise("Error loading config")
+      return raise("Error fetching sections")
   }
 
   return (

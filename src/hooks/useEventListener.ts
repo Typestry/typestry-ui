@@ -9,5 +9,5 @@ export const useEventListener = (
   useLayoutEffect(() => {
     ref?.addEventListener(type, callback, options)
     return () => ref?.removeEventListener(type, callback, options)
-  }, [])
+  }, [ref, type, callback, options])
 }

@@ -1,10 +1,14 @@
+"use client"
+
 import { useQuery } from "@tanstack/react-query"
-import FirebaseService from "../services/FirebaseService"
+import { FirebaseClient } from "../services/FirebaseClient"
 import { BandPageConfig } from "../types/BandPageConfig"
 import { ConfigQueryKeys } from "../constants/QueryKeys"
 
 const queryFn = async () => {
-  const data = await FirebaseService.getDocuments("configs")
+  const firebase = FirebaseClient.getInstance()
+  const ref = firebase.getCollection("configs")
+  const data = await firebase.getDocuments(ref)
   return data.docs[0].data() as BandPageConfig
 }
 

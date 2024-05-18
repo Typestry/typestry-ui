@@ -6,7 +6,7 @@ import "./index.css"
 import * as Sentry from "@sentry/react"
 import { ErrorPage } from "./components/ErrorPage"
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query"
-import FirebaseService from "./services/FirebaseService"
+import FirebaseService from "./services/FirebaseClient"
 import { SentryConfig } from "../sentry.config"
 
 Sentry.init(SentryConfig)
