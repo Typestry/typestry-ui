@@ -2,7 +2,7 @@ import { TextField } from "../TextField"
 import { TextArea } from "../TextArea"
 import { Button } from "../Button"
 import axios from "axios"
-import { useForm } from "../../hooks/useForm"
+import { useForm } from "@/hooks/useForm"
 import { ContactFormValues } from "./types"
 
 interface ContactFormProps {

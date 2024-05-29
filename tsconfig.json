@@ -20,6 +20,16 @@
     "noFallthroughCasesInSwitch": true,
 
     /* next.js */
+    "baseUrl": ".",
+    "paths": {
+      "@/components/*": ["src/components/*"],
+      "@/constants/*": ["src/constants/*"],
+      "@/hooks/*": ["src/hooks/*"],
+      "@/services/*": ["src/services/*"],
+      "@/providers/*": ["src/providers/*"],
+      "@/types/*": ["src/types/*"],
+      "@/utils/*": ["src/utils/*"],
+    },
     "plugins": [{"name": "next"}],
     "esModuleInterop": true,
     "allowJs": true,

@@ -6,8 +6,7 @@ import { SectionParams } from "../../types/SectionParams"
 const queryFn = async () => {
   const firebase = FirebaseClient.getInstance()
   try {
-    const ref = firebase.getCollection("sections")
-    const data = await firebase.getDocuments(ref)
+    const data = await firebase.getDocuments("sections")
     return data.docs.map((doc) => ({
       ...doc.data(),
       id: doc.id,

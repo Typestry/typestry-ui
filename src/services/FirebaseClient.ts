@@ -1,14 +1,18 @@
 "use client"
 
-import { initializeApp, getApps, getApp } from "firebase/app"
+import { initializeApp, getApps, getApp, FirebaseApp } from "firebase/app"
 import {
   getFirestore,
   Firestore,
   collection,
-  CollectionReference,
   getDocs,
 } from "firebase/firestore"
-import { getStorage, FirebaseStorage } from "firebase/storage"
+import {
+  getStorage,
+  FirebaseStorage,
+  getDownloadURL,
+  ref,
+} from "firebase/storage"
 
 interface FirebaseClientParams {
   apiKey: string
@@ -22,7 +26,7 @@ interface FirebaseClientParams {
 export class FirebaseClient {
   private static instance: FirebaseClient
 
-  private app: ReturnType<typeof getApp>
+  private app: FirebaseApp
   private db: Firestore
   private storage: FirebaseStorage
 
@@ -71,15 +75,17 @@ export class FirebaseClient {
     return this.db
   }
 
-  getCollection(collectionName: string) {
-    return collection(this.db, collectionName)
-  }
-
-  getDocuments(collectionRef: CollectionReference) {
+  getDocuments(collectionName: string) {
+    const collectionRef = collection(this.db, collectionName)
     return getDocs(collectionRef)
   }
 
-  getStorage() {
-    return this.storage
+  getDownloadUrl(path?: string) {
+    if (!path) {
+      throw new Error("Path is required")
+    }
+
+    const storageRef = ref(this.storage, path)
+    return getDownloadURL(storageRef)
   }
 }

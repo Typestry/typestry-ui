@@ -1,3 +1,5 @@
+"use client"
+
 import { useController } from "react-hook-form"
 
 export const useField = (name: string) => {

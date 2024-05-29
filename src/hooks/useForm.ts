@@ -1,3 +1,5 @@
+"use client"
+
 import { BaseSyntheticEvent, useCallback, useState } from "react"
 import {
   FieldValues,

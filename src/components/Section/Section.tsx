@@ -1,5 +1,7 @@
+"use client"
+
 import { useMemo } from "react"
-import { PlayerSection, SectionParams } from "../../types/SectionParams"
+import { PlayerSection, SectionParams } from "@/types/SectionParams"
 import { BandcampPlayer } from "../BandcampPlayer"
 import { ContactForm } from "../ContactForm"
 import { ListShow } from "../ListShow"
@@ -13,46 +15,45 @@ interface SectionProps {
 export const Section = ({ section }: SectionProps) => {
   const { id, sectionName } = section
 
-  const SectionComponent = useMemo(
-    () => getSectionComponent(section),
-    [section],
-  )
-
   return (
     <section id={id} className="flex flex-col justify-center w-full gap-y-12">
       {sectionName ? <h4>{sectionName}</h4> : null}
-      <SectionComponent />
+      <SectionComponent {...section} />
     </section>
   )
 }
 
-const getSectionComponent = (section: SectionParams) => {
+const SectionComponent = (section: SectionParams) => {
+  let element = null
+
   switch (section.type) {
     case "article":
-      return () => {
-        return (
-          <div className="grid gap-y-4">
-            <ReactMarkdown>{section.data}</ReactMarkdown>
-          </div>
-        )
-      }
+      element = (
+        <div className="grid gap-y-4">
+          <ReactMarkdown>{section.data}</ReactMarkdown>
+        </div>
+      )
+      break
     case "contact":
-      return () => (
+      element = (
         <ContactForm
           template_id={section.data.template_id}
           service_id={section.data.service_id}
           user_id={section.data.user_id}
         />
       )
+      break
     case "player":
-      return () => getPlayer(section.data)
+      element = getPlayer(section.data)
+      break
     case "show":
-      return () => <ListShow shows={section.data} />
+      element = <ListShow shows={section.data} />
+      break
     case "gallery":
-      return () => {
-        return <Gallery imagePaths={section.data} />
-      }
+      element = <Gallery images={section.data} />
   }
+
+  return element
 }
 
 const getPlayer = (data: PlayerSection["data"]) => {

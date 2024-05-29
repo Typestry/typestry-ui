@@ -1,10 +1,10 @@
 "use client"
 
-import { raise } from "../../utils/raise/raise"
+import { raise } from "@/utils/raise/raise"
 import { SocialLink } from "./SocialLink"
 
-import { useConfig } from "../../hooks/useConfig"
-import { BandPageConfig } from "../../types/BandPageConfig"
+import { useConfig } from "@/hooks/useConfig"
+import { BandPageConfig } from "@/types/BandPageConfig"
 
 export const SocialLinks = () => {
   const { data, status } = useConfig()

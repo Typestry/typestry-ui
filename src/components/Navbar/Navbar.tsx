@@ -2,12 +2,12 @@
 
 import classNames from "classnames"
 import { useCallback, useRef, useState } from "react"
-import { useEventListener } from "../../hooks/useEventListener"
+import { useEventListener } from "@/hooks/useEventListener"
 import { Button } from "../Button"
 import { ChevronDown } from "react-feather"
 import _throttle from "lodash/throttle"
-import { useConfig } from "../../hooks/useConfig"
-import { isClient } from "../../utils/isClient/isClient"
+import { useConfig } from "@/hooks/useConfig"
+import { isClient } from "@/utils/isClient/isClient"
 
 const maybeWindow = isClient() ? window : null
 
