@@ -13,8 +13,10 @@ export type MediaType =
 
 export type MediaLinks = { [key in MediaType]: MediaLink }
 
-export interface BandPageConfig {
+interface Config {
   id: string
+  name: string
+  // "bandName" will be deprecated in favor of "name"
   bandName: string
   keywords: Array<string>
   description: string
@@ -22,3 +24,5 @@ export interface BandPageConfig {
   mediaLinks: MediaLinks
   bannerImageUrl: string
 }
+
+export default Config

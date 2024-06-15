@@ -1,7 +1,7 @@
-import { Show } from "../../../types/Show"
+import Event from "@/types/Event"
 import Spongebob from "./spongebob.webp"
 
-export const shows: Show[] = [
+export const events: Event[] = [
   {
     city: "Kansas City, MO",
     date: "2024-09-22T24:00:00.000Z",

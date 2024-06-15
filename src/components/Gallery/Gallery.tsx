@@ -1,17 +1,17 @@
 "use client"
 
 import { FC, useState } from "react"
-import { useGetDownloadUrls } from "@/hooks/useGetDownloadUrls"
+import useGetDownloadUrls from "@/hooks/useGetDownloadUrls"
 import { ImageDialog } from "./ImageDialog/ImageDialog"
 
-interface GalleryProps {
+export interface GalleryProps {
   images: Array<string>
 }
 
-export const Gallery: FC<GalleryProps> = ({ images: imagePaths }) => {
+const Gallery: FC<GalleryProps> = ({ images: imagePaths }) => {
   const { data: images } = useGetDownloadUrls({
     paths: imagePaths,
-    isEnabled: false,
+    isEnabled: imagePaths.length > 0,
   })
   const [imageIndex, setImageIndex] = useState<number>(NaN)
 
@@ -57,3 +57,5 @@ export const Gallery: FC<GalleryProps> = ({ images: imagePaths }) => {
     </div>
   )
 }
+
+export default Gallery

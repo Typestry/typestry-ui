@@ -1,17 +1,17 @@
-import { TextField } from "../TextField"
-import { TextArea } from "../TextArea"
-import { Button } from "../Button"
+import TextField from "@/components/TextField"
+import TextArea from "@/components/TextArea"
+import Button from "@/components/Button"
 import axios from "axios"
-import { useForm } from "@/hooks/useForm"
+import useForm from "@/hooks/useForm"
 import { ContactFormValues } from "./types"
 
-interface ContactFormProps {
+export interface ContactFormProps {
   template_id: string
   user_id: string
   service_id: string
 }
 
-export const ContactForm = ({
+const ContactForm = ({
   template_id,
   user_id,
   service_id,
@@ -70,3 +70,5 @@ export const ContactForm = ({
     </form>
   )
 }
+
+export default ContactForm

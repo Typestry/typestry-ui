@@ -1,12 +1,12 @@
 "use client"
 
-import { raise } from "@/utils/raise/raise"
-import { SocialLink } from "./SocialLink"
+import raise from "@/utils/raise"
+import SocialLink from "@/components/SocialLink"
 
-import { useConfig } from "@/hooks/useConfig"
-import { BandPageConfig } from "@/types/BandPageConfig"
+import useConfig from "@/hooks/useConfig"
+import Config from "@/types/Config"
 
-export const SocialLinks = () => {
+const SocialLinks = () => {
   const { data, status } = useConfig()
 
   switch (status) {
@@ -24,9 +24,11 @@ export const SocialLinks = () => {
           <SocialLink
             key={datum.title}
             className="z-50"
-            {...{ ...datum, type: type as keyof BandPageConfig["mediaLinks"] }}
+            {...{ ...datum, type: type as keyof Config["mediaLinks"] }}
           />
         ))}
     </div>
   )
 }
+
+export default SocialLinks

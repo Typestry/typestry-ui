@@ -1,18 +1,17 @@
 "use client"
 
-import { useMemo } from "react"
 import { PlayerSection, SectionParams } from "@/types/SectionParams"
-import { BandcampPlayer } from "../BandcampPlayer"
-import { ContactForm } from "../ContactForm"
-import { ListShow } from "../ListShow"
+import BandcampPlayer from "@/components/BandcampPlayer"
+import ContactForm from "@/components/ContactForm"
+import ListEvent from "@/components/ListShow"
 import ReactMarkdown from "react-markdown"
-import { Gallery } from "../Gallery"
+import Gallery from "@/components/Gallery"
 
-interface SectionProps {
+export interface SectionProps {
   section: SectionParams
 }
 
-export const Section = ({ section }: SectionProps) => {
+const Section = ({ section }: SectionProps) => {
   const { id, sectionName } = section
 
   return (
@@ -46,8 +45,10 @@ const SectionComponent = (section: SectionParams) => {
     case "player":
       element = getPlayer(section.data)
       break
+    // Eventually "show" will be deprecated in favor of "event"
     case "show":
-      element = <ListShow shows={section.data} />
+    case "event":
+      element = <ListEvent events={section.data} />
       break
     case "gallery":
       element = <Gallery images={section.data} />
@@ -66,3 +67,5 @@ const getPlayer = (data: PlayerSection["data"]) => {
       return <></>
   }
 }
+
+export default Section

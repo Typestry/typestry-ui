@@ -1,5 +1,3 @@
-"use client"
-
 import { BaseSyntheticEvent, useCallback, useState } from "react"
 import {
   FieldValues,
@@ -7,18 +5,18 @@ import {
   useForm as useReactHookForm,
 } from "react-hook-form"
 
-interface UseFormArgs<Values> {
+export interface UseFormArgs<Values> {
   onSubmit: (values: Values) => Promise<void>
 }
 
-interface UseFormReturn<Values extends FieldValues> {
+export interface UseFormReturn<Values extends FieldValues> {
   isSubmitting: boolean
   handleSubmit: (e: BaseSyntheticEvent) => void
   isError: boolean
   register: UseFormRegister<Values>
 }
 
-export const useForm = <Values extends FieldValues>({
+const useForm = <Values extends FieldValues>({
   onSubmit,
 }: UseFormArgs<Values>): UseFormReturn<Values> => {
   const [isError, setIsError] = useState(false)
@@ -30,20 +28,20 @@ export const useForm = <Values extends FieldValues>({
   } = useReactHookForm<Values>()
 
   const handleSubmit = useCallback(
-    async (e: BaseSyntheticEvent) => {
+    (e: BaseSyntheticEvent) => {
       e.preventDefault()
       setIsSubmitting(true)
-      try {
-        await hookFormHandleSubmit(onSubmit)(e)
-      } catch (error) {
-        setIsError(true)
-      } finally {
-        setIsSubmitting(false)
-        reset()
-      }
+      hookFormHandleSubmit(onSubmit)(e)
+        .catch(() => setIsError(true))
+        .finally(() => {
+          setIsSubmitting(false)
+          reset()
+        })
     },
-    [hookFormHandleSubmit, onSubmit],
+    [hookFormHandleSubmit, onSubmit, reset],
   )
 
   return { handleSubmit, isError, isSubmitting, register }
 }
+
+export default useForm

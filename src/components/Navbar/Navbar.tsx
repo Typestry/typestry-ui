@@ -2,22 +2,24 @@
 
 import classNames from "classnames"
 import { useCallback, useRef, useState } from "react"
-import { useEventListener } from "@/hooks/useEventListener"
-import { Button } from "../Button"
+import useEventListener from "@/hooks/useEventListener"
+import Button from "@/components/Button"
 import { ChevronDown } from "react-feather"
 import _throttle from "lodash/throttle"
-import { useConfig } from "@/hooks/useConfig"
-import { isClient } from "@/utils/isClient/isClient"
+import useConfig from "@/hooks/useConfig"
+import isClient from "@/utils/isClient"
 
 const maybeWindow = isClient() ? window : null
 
-export const Navbar = () => {
+const Navbar = () => {
   const { data } = useConfig()
   const [opacity, setOpacity] = useState(100)
   const navRef = useRef<HTMLElement>(null)
 
   const onScroll = useCallback(() => {
-    const { bottom, height } = navRef.current?.getBoundingClientRect()!
+    if (!navRef.current) return
+
+    const { bottom, height } = navRef.current.getBoundingClientRect()
     const opacity = bottom / height
 
     const throttleFn = _throttle(setOpacity, 300)
@@ -66,3 +68,5 @@ export const Navbar = () => {
     </nav>
   )
 }
+
+export default Navbar

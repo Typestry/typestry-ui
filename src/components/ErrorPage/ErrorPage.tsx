@@ -1,7 +1,7 @@
 import { FallbackRender } from "@sentry/react"
-import { Button } from "../Button"
+import Button from "@/components/Button"
 
-export const ErrorPage: FallbackRender = ({ resetError }) => {
+const ErrorPage: FallbackRender = ({ resetError }) => {
   return (
     <div className="h-[100vh] flex flex-col justify-center items-center">
       <div className="flex flex-col gap-8 max-w-sm">
@@ -12,3 +12,5 @@ export const ErrorPage: FallbackRender = ({ resetError }) => {
     </div>
   )
 }
+
+export default ErrorPage

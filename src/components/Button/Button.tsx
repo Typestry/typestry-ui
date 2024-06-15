@@ -5,6 +5,8 @@ export interface ButtonProps extends ComponentProps<"button"> {
   children: ReactNode
 }
 
-export const Button = (props: ButtonProps) => {
+const Button = (props: ButtonProps) => {
   return <button {...props} className={classNames("button", props.className)} />
 }
+
+export default Button

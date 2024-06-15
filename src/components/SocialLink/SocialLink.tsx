@@ -1,10 +1,10 @@
 import { ComponentProps, FC } from "react"
-import { MediaLink, MediaType } from "../../types/BandPageConfig"
-import Instagram from "../../assets/image/instagram.svg"
-import Facebook from "../../assets/image/facebook.svg"
-import Spotify from "../../assets/image/spotify.svg"
-import Apple from "../../assets/image/apple.svg"
-import Bandcamp from "../../assets/image/bandcamp.svg"
+import { MediaLink, MediaType } from "@/types/Config"
+import Instagram from "@/assets/image/instagram.svg"
+import Facebook from "@/assets/image/facebook.svg"
+import Spotify from "@/assets/image/spotify.svg"
+import Apple from "@/assets/image/apple.svg"
+import Bandcamp from "@/assets/image/bandcamp.svg"
 
 type SocialLinkProps = ComponentProps<"div"> & MediaLink & { type: MediaType }
 
@@ -16,7 +16,7 @@ const IconMap = {
   spotify: Spotify,
 } as const
 
-export const SocialLink = ({ url, alt, type }: SocialLinkProps) => {
+const SocialLink = ({ url, alt, type }: SocialLinkProps) => {
   const Icon = IconMap[type] as unknown as FC<ComponentProps<"svg">>
 
   return (
@@ -31,3 +31,5 @@ export const SocialLink = ({ url, alt, type }: SocialLinkProps) => {
     </a>
   )
 }
+
+export default SocialLink

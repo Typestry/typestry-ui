@@ -14,7 +14,7 @@ import {
   ref,
 } from "firebase/storage"
 
-interface FirebaseClientParams {
+export interface FirebaseClientParams {
   apiKey: string
   authDomain: string
   projectId: string
@@ -23,7 +23,7 @@ interface FirebaseClientParams {
   appId: string
 }
 
-export class FirebaseClient {
+class FirebaseClient {
   private static instance: FirebaseClient
 
   private app: FirebaseApp
@@ -81,6 +81,7 @@ export class FirebaseClient {
   }
 
   getDownloadUrl(path?: string) {
+    console.log("path", path)
     if (!path) {
       throw new Error("Path is required")
     }
@@ -89,3 +90,5 @@ export class FirebaseClient {
     return getDownloadURL(storageRef)
   }
 }
+
+export default FirebaseClient

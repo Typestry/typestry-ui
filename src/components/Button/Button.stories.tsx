@@ -2,7 +2,7 @@
 
 import type { Meta, StoryObj } from "@storybook/react"
 
-import { Button } from "./Button"
+import Button from "./Button"
 import { ReactComponent as Instagram } from "../../assets/image/instagram.svg"
 
 const meta: Meta<typeof Button> = {

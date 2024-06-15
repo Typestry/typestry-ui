@@ -1,16 +1,16 @@
 import { ComponentProps, useMemo } from "react"
-import { Show } from "../../types/Show"
-import { DateUtils } from "../../utils/dateUtils/dateUtils"
-import { Button } from "../Button"
+import Event from "@/types/Event"
+import { formatDate, isPast } from "@/utils/dateUtils"
+import Button from "@/components/Button"
 import classNames from "classnames"
-import { useGetDownloadUrls } from "../../hooks/useGetDownloadUrls"
+import useGetDownloadUrls from "@/hooks/useGetDownloadUrls"
 
-interface ListShowProps extends ComponentProps<"div"> {
-  shows: Array<Show>
+export interface ListEventProps extends ComponentProps<"div"> {
+  events: Array<Event>
 }
 
-export const ListShow = ({ shows, ...rest }: ListShowProps) => {
-  const upcomingShows = useMemo(() => shows.filter(removePastShows), [shows])
+const ListEvent = ({ events = [], ...rest }: ListEventProps) => {
+  const upcomingShows = useMemo(() => events.filter(removePastShows), [events])
   const hasUpcomingShows = upcomingShows.length > 0
 
   return (
@@ -27,9 +27,10 @@ export const ListShow = ({ shows, ...rest }: ListShowProps) => {
   )
 }
 
-export const ShowItem = ({ show }: { show: Show }) => {
+export const ShowItem = ({ show }: { show: Event }) => {
   const { data: eventImageUrl } = useGetDownloadUrls({
-    paths: [show.eventImage ?? ""],
+    paths: show.eventImage ?? "",
+    isEnabled: Boolean(show.eventImage),
   })
 
   return (
@@ -48,9 +49,7 @@ export const ShowItem = ({ show }: { show: Show }) => {
       <div className="flex flex-col gap-y-8 mb-auto">
         <div>
           <div className="flex justify-between border-fuchsia-300 font-bold pb-3">
-            <p>
-              {show.date ? DateUtils.formatDate({ date: show.date }) : "TBA"}
-            </p>
+            <p>{show.date ? formatDate({ date: show.date }) : "TBA"}</p>
             <p>{show.city}</p>
           </div>
           <div className="divider-light" />
@@ -84,7 +83,6 @@ export const ShowItem = ({ show }: { show: Show }) => {
   )
 }
 
-const removePastShows = (show: Show) => {
-  const isPast = show.date && DateUtils.isPast(show.date)
-  return !isPast
-}
+const removePastShows = (show: Event) => !(show.date && isPast(show.date))
+
+export default ListEvent

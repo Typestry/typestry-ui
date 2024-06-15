@@ -1,8 +1,6 @@
-"use client"
-
 import { useLayoutEffect } from "react"
 
-export const useEventListener = (
+const useEventListener = (
   ref: Element | Document | Window | null | undefined,
   type: string,
   callback: EventListenerOrEventListenerObject,
@@ -13,3 +11,5 @@ export const useEventListener = (
     return () => ref?.removeEventListener(type, callback, options)
   }, [ref, type, callback, options])
 }
+
+export default useEventListener

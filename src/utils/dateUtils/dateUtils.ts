@@ -1,20 +1,39 @@
 import * as DateFns from "date-fns"
 import { Timestamp } from "firebase/firestore"
 
-type DateArg = Date | string | number
+export type DateArg = Date | string | number
 
-interface FormatDate {
+export interface FormatDate {
   date: DateArg
   stringFormat?: string
+  fallback?: string
 }
 
-const DATE_ERROR_MESSAGE =
+export type TimestampLike = { _seconds: number; _nanoseconds: number }
+
+export const DATE_ERROR_MESSAGE =
   "An invalid date was passed as an argument for 'date'."
 
-const parseDate = (date: DateArg) => {
+export const isTimeStampLike = (date: unknown) => {
+  if (!date) return false
+
+  if (typeof date !== "object") return false
+
+  if ("_seconds" in date && "_nanoseconds" in date) return true
+
+  return false
+}
+
+export const isTimeStamp = (
+  date: unknown,
+): date is Timestamp | TimestampLike => {
+  return date instanceof Timestamp || isTimeStampLike(date)
+}
+
+export const parseDate = (date: DateArg) => {
   let parsedDate: Date
 
-  if (date instanceof Timestamp) {
+  if (isTimeStamp(date)) {
     parsedDate = parseTimestamp(date)
   } else if (typeof date !== "number" && typeof date !== "string") {
     parsedDate = date
@@ -25,11 +44,17 @@ const parseDate = (date: DateArg) => {
   return parsedDate
 }
 
-const parseTimestamp = (timestamp: Timestamp) => {
-  return timestamp.toDate()
+export const parseTimestamp = (timestamp: Timestamp | TimestampLike) => {
+  if ("toDate" in timestamp) {
+    return timestamp.toDate()
+  } else {
+    return new Date(
+      timestamp._seconds * 1000 + timestamp._nanoseconds / 1000000,
+    )
+  }
 }
 
-const formatDate = ({
+export const formatDate = ({
   date,
   stringFormat = "MMM dd - h:mm aaa",
 }: FormatDate) => {
@@ -42,7 +67,7 @@ const formatDate = ({
   }
 }
 
-const isPast = (date: DateArg): boolean => {
+export const isPast = (date: DateArg): boolean => {
   try {
     const parsedDate = parseDate(date)
     return DateFns.isPast(parsedDate)
@@ -50,9 +75,4 @@ const isPast = (date: DateArg): boolean => {
     console.error(DATE_ERROR_MESSAGE)
     return false
   }
-}
-
-export const DateUtils = {
-  formatDate,
-  isPast,
 }

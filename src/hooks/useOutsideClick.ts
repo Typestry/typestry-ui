@@ -1,5 +1,3 @@
-"use client"
-
 import { RefObject, useEffect } from "react"
 
 /**
@@ -8,9 +6,9 @@ import { RefObject, useEffect } from "react"
  * @param handler - Callback function to be executed when the event occurs
  */
 
-type Event = MouseEvent | TouchEvent
+export type Event = MouseEvent | TouchEvent
 
-export function useOutsideClick<T extends HTMLElement>(
+function useOutsideClick<T extends HTMLElement>(
   ref: RefObject<T>,
   handler: (event: Event) => void,
 ) {
@@ -33,3 +31,5 @@ export function useOutsideClick<T extends HTMLElement>(
     }
   }, [ref, handler])
 }
+
+export default useOutsideClick

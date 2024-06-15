@@ -1,15 +1,16 @@
 import "server-only"
 
 import admin from "firebase-admin"
+import { QuerySnapshot } from "firebase-admin/firestore"
 
-interface FirebaseAdminAppParams {
+export interface FirebaseAdminAppParams {
   projectId: string
   clientEmail: string
   storageBucket: string
   privateKey: string
 }
 
-export class FirebaseAdmin {
+class FirebaseAdmin {
   private static instance: FirebaseAdmin
 
   private app: admin.app.App
@@ -47,6 +48,10 @@ export class FirebaseAdmin {
     })
   }
 
+  private snapshotAsArray<T extends { id: string }>(snapshot: QuerySnapshot) {
+    return snapshot.docs.map((doc) => <T>{ id: doc.id, ...doc.data() })
+  }
+
   static getInstance() {
     // We want to ensure that we only have one instance of FirebaseAdmin
     if (!FirebaseAdmin.instance) {
@@ -59,4 +64,20 @@ export class FirebaseAdmin {
   getApp() {
     return this.app
   }
+
+  getDb() {
+    return this.getApp().firestore()
+  }
+
+  async getDataFromCollection<Collection extends WithId>(collection: string) {
+    try {
+      const result = await this.getDb().collection(collection).get()
+      return this.snapshotAsArray<Collection>(result)
+    } catch (error) {
+      console.error(error)
+      return [] as Array<Collection>
+    }
+  }
 }
+
+export default FirebaseAdmin

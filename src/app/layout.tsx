@@ -1,9 +1,9 @@
-import { Navbar } from "@/components/Navbar"
+import Navbar from "@/components/Navbar"
 import * as React from "react"
-import { SocialLinks } from "@/components/SocialLink/SocialLinks"
+import SocialLinks from "@/components/SocialLinks"
 import { QueryProvider } from "@/providers/QueryProvider"
-import { FirebaseAdmin } from "@/services/FirebaseAdmin"
-import { BandPageConfig } from "@/types/BandPageConfig"
+import FirebaseAdmin from "@/services/FirebaseAdmin"
+import Config from "@/types/Config"
 import { Metadata } from "next"
 
 import "../index.css"
@@ -39,7 +39,7 @@ const getConfig = async () => {
   const admin = FirebaseAdmin.getInstance()
   const db = admin.getApp().firestore()
   const result = await db.collection("configs").get()
-  const config = result.docs[0].data() as BandPageConfig
+  const config = result.docs[0].data() as Config
 
   return config
 }

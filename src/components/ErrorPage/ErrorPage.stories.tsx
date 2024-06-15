@@ -1,5 +1,5 @@
 import { Meta, StoryObj } from "@storybook/react"
-import { ErrorPage } from "."
+import ErrorPage from "./ErrorPage"
 
 const meta: Meta<typeof ErrorPage> = {
   title: "components/ErrorPage",

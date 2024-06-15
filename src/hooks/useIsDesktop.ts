@@ -1,9 +1,7 @@
-"use client"
-
 import { useCallback, useEffect, useState } from "react"
-import { useEventListener } from "./useEventListener"
+import useEventListener from "@/hooks/useEventListener"
 
-export const useIsDesktop = () => {
+const useIsDesktop = () => {
   const [isDesktop, setIsDesktop] = useState(false)
 
   const handleResize = useCallback(() => {
@@ -18,3 +16,5 @@ export const useIsDesktop = () => {
 
   return isDesktop
 }
+
+export default useIsDesktop
