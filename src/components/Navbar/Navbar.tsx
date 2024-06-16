@@ -43,13 +43,17 @@ const Navbar = () => {
   return (
     <nav
       ref={navRef}
-      style={{ opacity, backgroundImage: `url("${data?.bannerImageUrl}")` }}
-      className="nav-desktop h-[calc(100dvh-72px)] md:h-[calc(100dvh-78px)] lg:h-[100dvh] transition-opacity ease-in-out w-full p-0"
+      style={{
+        opacity,
+        backgroundImage: `url("${data?.bannerImageUrl}")`,
+        transition: "opacity 0.1 ease-in-out",
+      }}
+      className="nav-desktop h-[calc(100dvh-72px)] md:h-[calc(100dvh-78px)] lg:h-[100dvh] w-full p-0"
     >
       <div className="flex flex-col h-full gap-y-4 lg:gap-y-8 py-4 overflow-hidden">
         <h1 className="m-auto font-light">{data?.bandName}</h1>
       </div>
-      <div className="absolute bottom-0 pb-8 z-30">
+      <div className="sticky bottom-0 mb-8 z-30">
         <Button
           className={classNames(
             { "opacity-0": (maybeWindow?.scrollY ?? 0) > 0 },
@@ -58,7 +62,7 @@ const Navbar = () => {
           onClick={onArrowDownClick}
         >
           <ChevronDown
-            size={100}
+            className="h-12 md:h-24 w-auto position-relative"
             strokeWidth={1}
             viewBox="0 -12 24 48"
             preserveAspectRatio="none"

@@ -1,5 +1,5 @@
 import { FC, useEffect, useRef } from "react"
-import { useKeyPress } from "@/hooks/useKeyPress"
+import useKeyPress from "@/hooks/useKeyPress"
 import { createPortal } from "react-dom"
 import { ChevronLeft, ChevronRight, X } from "react-feather"
 
