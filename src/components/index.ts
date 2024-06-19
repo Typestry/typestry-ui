@@ -1,9 +1,6 @@
 export { default as ContactForm } from "./ContactForm"
 export * from "./ContactForm"
 
-export { default as ErrorPage } from "./ErrorPage"
-export * from "./ErrorPage"
-
 export { default as Gallery } from "./Gallery"
 export * from "./Gallery"
 

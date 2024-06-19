@@ -1,6 +1,7 @@
 import "server-only"
 
 import admin from "firebase-admin"
+import { WithId } from "@/types/WithId"
 import { QuerySnapshot } from "firebase-admin/firestore"
 
 export interface FirebaseAdminAppParams {

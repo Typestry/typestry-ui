@@ -1,5 +1,4 @@
 import Event from "@/types/Event"
-import Spongebob from "./spongebob.webp"
 
 export const events: Event[] = [
   {
@@ -13,7 +12,7 @@ export const events: Event[] = [
       label: "Tickets",
       altText: "Purchase tickets",
     },
-    eventImage: Spongebob,
+    eventImage: require("./spongebob.webp"),
     address: "https://maps.app.goo.gl/D37EwkvtJkQXLx529",
   },
   {

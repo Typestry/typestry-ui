@@ -5,9 +5,9 @@
   "main": "./public/index.js",
   "scripts": {
     "dev": "next dev",
-    "build": "tsc && vite build && cp -r dist functions && rm dist/index.html",
+    "build": "next build",
+    "start": "next start",
     "deploy": "npm run build && firebase deploy --only=hosting",
-    "preview": "vite preview",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build"
   },
@@ -50,8 +50,6 @@
   },
   "dependencies": {
     "@chakra-ui/react-use-size": "^2.1.0",
-    "@sentry/react": "^7.107.0",
-    "@sentry/vite-plugin": "^2.15.0",
     "@svgr/webpack": "^8.1.0",
     "@tanstack/react-query": "^5.34.2",
     "axios": "^1.4.0",
@@ -62,6 +60,7 @@
     "next": "^14.2.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-error-boundary": "^4.0.13",
     "react-feather": "^2.0.10",
     "react-helmet": "^6.1.0",
     "react-helmet-async": "^2.0.4",

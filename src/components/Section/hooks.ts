@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query"
-import { SectionQueryKeys } from "../../constants/QueryKeys"
-import { FirebaseClient } from "../../services/FirebaseClient"
-import { SectionParams } from "../../types/SectionParams"
+import { SectionQueryKeys } from "@/constants/QueryKeys"
+import FirebaseClient from "@/services/FirebaseClient"
+import { SectionParams } from "@/types/SectionParams"
 
 const queryFn = async () => {
   const firebase = FirebaseClient.getInstance()
