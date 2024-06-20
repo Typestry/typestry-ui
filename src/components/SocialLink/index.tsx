@@ -1,1 +1,2 @@
-export { SocialLink } from "./SocialLink"
+export { default } from "./SocialLink"
+export * from "./SocialLink"

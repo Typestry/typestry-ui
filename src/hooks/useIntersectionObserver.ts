@@ -1,11 +1,18 @@
 import { useEffect } from "react"
 
-export const useInterSectionObserver = (
-  callback: IntersectionObserverCallback,
-  observables: Array<Element>,
-  config?: IntersectionObserverInit,
-  deps: Array<any> = [],
-) => {
+export interface UseIntersectionObserverProps {
+  callback: IntersectionObserverCallback
+  observables: Array<Element>
+  config?: IntersectionObserverInit
+  deps?: Array<unknown>
+}
+
+const useIntersectionObserver = ({
+  callback,
+  config,
+  observables,
+  ...deps
+}: UseIntersectionObserverProps) => {
   useEffect(() => {
     const observer = new IntersectionObserver(callback, config)
 
@@ -16,5 +23,7 @@ export const useInterSectionObserver = (
     return () => {
       observer.disconnect()
     }
-  }, deps)
+  }, [deps, callback, config, observables])
 }
+
+export default useIntersectionObserver

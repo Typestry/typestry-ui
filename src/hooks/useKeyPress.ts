@@ -5,8 +5,7 @@ import { useEffect } from "react"
  * @param keyCodes - Array of key codes to listen for
  * @param handler - Callback function to be executed when the event occurs
  */
-
-export function useKeyPress(
+function useKeyPress(
   keyCodes: string[],
   handler: (event: KeyboardEvent) => void,
 ) {
@@ -24,3 +23,5 @@ export function useKeyPress(
     }
   }, [handler, keyCodes])
 }
+
+export default useKeyPress

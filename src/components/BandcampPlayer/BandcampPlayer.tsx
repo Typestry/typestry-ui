@@ -4,7 +4,7 @@ interface BandcampPlayerProps extends ComponentProps<"div"> {
   url: string
 }
 
-export const BandcampPlayer = ({ url, ...rest }: BandcampPlayerProps) => {
+const BandcampPlayer = ({ url, ...rest }: BandcampPlayerProps) => {
   return (
     <div {...rest}>
       <div className="left-0 w-full h-0 relative pb-[100%]">
@@ -17,3 +17,5 @@ export const BandcampPlayer = ({ url, ...rest }: BandcampPlayerProps) => {
     </div>
   )
 }
+
+export default BandcampPlayer

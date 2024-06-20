@@ -1,4 +1,4 @@
-import { Show } from "./Show"
+import Event from "./Event"
 
 export type PlayerType = "spotify" | "bandcamp" | "apple"
 
@@ -9,9 +9,9 @@ export interface SectionBase {
   sectionName?: string
 }
 
-export interface ShowSection extends SectionBase {
-  type: "show"
-  data: Array<Show>
+export interface EventSection extends SectionBase {
+  type: "event" | "show"
+  data: Array<Event>
 }
 
 export interface ContactSection extends SectionBase {
@@ -42,7 +42,7 @@ export interface GallerySection extends SectionBase {
 }
 
 export type SectionParams =
-  | ShowSection
+  | EventSection
   | ContactSection
   | PlayerSection
   | ArticleSection

@@ -1,16 +1,20 @@
 import { useEffect, useState } from "react"
-import FirebaseService from "../services/FirebaseService"
-import {
-  FirebaseHookConfig,
-  FirebaseQueryHookReturn,
-} from "../types/FirebaseHookConfig"
+import FirebaseClient from "@/services/FirebaseClient"
 
-export const useGetDownloadUrls = ({
+export interface UseGetDownloadUrlsProps {
+  paths: Array<string> | string
+  isEnabled?: boolean
+}
+
+export const getDownloadUrl = (path: string) => {
+  const firebase = FirebaseClient.getInstance()
+  return firebase.getDownloadUrl(path)
+}
+
+const useGetDownloadUrls = ({
   paths,
   isEnabled = true,
-}: FirebaseHookConfig<{ paths: Array<string> }>): FirebaseQueryHookReturn<
-  Array<string>
-> => {
+}: UseGetDownloadUrlsProps) => {
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<unknown>()
   const [data, setData] = useState<Array<string>>()
@@ -20,15 +24,19 @@ export const useGetDownloadUrls = ({
       return
     }
 
-    Promise.all(paths.map(FirebaseService.getDownloadUrl))
+    const pathList = Array.isArray(paths) ? paths : [paths]
+
+    Promise.all(pathList.map(getDownloadUrl))
       .then((urls) => {
-        const cleanedUrls = urls.filter(Boolean) as Array<string>
+        const cleanedUrls = urls.filter(Boolean)
         if (cleanedUrls.length === 0) throw new Error("No images found")
         setData(cleanedUrls)
       })
       .catch(setError)
       .finally(() => setLoading(false))
-  }, [isEnabled])
+  }, [isEnabled, paths])
 
   return { loading, error, data }
 }
+
+export default useGetDownloadUrls

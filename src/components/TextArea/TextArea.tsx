@@ -1,13 +1,11 @@
 import { ComponentProps, forwardRef } from "react"
 
-type InputProps = ComponentProps<"textarea">
-
-interface TextAreaProps extends InputProps {
+export interface TextAreaProps extends ComponentProps<"textarea"> {
   "aria-label": string
   label: string
 }
 
-export const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(
+const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(
   (props, ref) => {
     return (
       <div className="group">
@@ -23,3 +21,5 @@ export const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(
     )
   },
 )
+
+export default TextArea

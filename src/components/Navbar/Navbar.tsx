@@ -1,60 +1,68 @@
+"use client"
+
 import classNames from "classnames"
 import { useCallback, useRef, useState } from "react"
-import { useEventListener } from "../../hooks/useEventListener"
-import { Button } from "../Button"
+import useEventListener from "@/hooks/useEventListener"
+import Button from "@/components/Button"
 import { ChevronDown } from "react-feather"
-import { throttle } from "lodash"
-import { useConfig } from "../../hooks/useConfig"
-import { raise } from "../../utils/raise/raise"
+import _throttle from "lodash/throttle"
+import useConfig from "@/hooks/useConfig"
+import isClient from "@/utils/isClient"
 
-interface NavBarProps {
-  onArrowDownClick: () => void
-}
+const maybeWindow = isClient() ? window : null
 
-export const Navbar = ({ onArrowDownClick }: NavBarProps) => {
-  const { data, status } = useConfig()
-
-  switch (status) {
-    case "pending":
-      return null
-    case "error":
-      return raise("Error loading config")
-  }
-
+const Navbar = () => {
+  const { data } = useConfig()
   const [opacity, setOpacity] = useState(100)
   const navRef = useRef<HTMLElement>(null)
 
   const onScroll = useCallback(() => {
-    const { bottom, height } = navRef.current?.getBoundingClientRect()!
+    if (!navRef.current) return
+
+    const { bottom, height } = navRef.current.getBoundingClientRect()
     const opacity = bottom / height
+
+    const throttleFn = _throttle(setOpacity, 300)
+
     if (opacity > 0) {
-      throttle(setOpacity, 300)(opacity)
+      throttleFn(opacity)
+    }
+
+    return () => {
+      throttleFn.cancel()
     }
   }, [setOpacity])
 
-  useEventListener(window, "scroll", onScroll)
+  useEventListener(maybeWindow, "scroll", onScroll)
+
+  const onArrowDownClick = () => {
+    const home = document.getElementById("home")!
+    home.scrollIntoView({ behavior: "smooth" })
+  }
 
   return (
     <nav
       ref={navRef}
-      style={{ opacity }}
-      className="nav-desktop h-[calc(100dvh-72px)] md:h-[calc(100dvh-78px)] lg:h-[100dvh] transition-opacity ease-in-out w-full p-0"
+      style={{
+        opacity,
+        backgroundImage: `url("${data?.bannerImageUrl}")`,
+        transition: "opacity 0.1 ease-in-out",
+      }}
+      className="nav-desktop h-[calc(100dvh-72px)] md:h-[calc(100dvh-78px)] lg:h-[100dvh] w-full p-0"
     >
-      <img
-        rel="preload"
-        src={data.bannerImageUrl}
-        className="max-w-full max-h-[100dvh]"
-      />
-      <div className="absolute bottom-0 pb-8 z-30">
+      <div className="flex flex-col h-full gap-y-4 lg:gap-y-8 py-4 overflow-hidden">
+        <h1 className="m-auto font-light">{data?.bandName}</h1>
+      </div>
+      <div className="sticky bottom-0 mb-8 z-30">
         <Button
           className={classNames(
-            { "opacity-0": window.scrollY > 0 },
+            { "opacity-0": (maybeWindow?.scrollY ?? 0) > 0 },
             "border-none hover:bg-transparent flex transition-opacity duration-300 will-change-scroll",
           )}
           onClick={onArrowDownClick}
         >
           <ChevronDown
-            size={100}
+            className="h-12 md:h-24 w-auto position-relative"
             strokeWidth={1}
             viewBox="0 -12 24 48"
             preserveAspectRatio="none"
@@ -64,3 +72,5 @@ export const Navbar = ({ onArrowDownClick }: NavBarProps) => {
     </nav>
   )
 }
+
+export default Navbar
