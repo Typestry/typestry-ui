@@ -47,3 +47,5 @@ export type SectionParams =
   | PlayerSection
   | ArticleSection
   | GallerySection
+
+export default SectionParams

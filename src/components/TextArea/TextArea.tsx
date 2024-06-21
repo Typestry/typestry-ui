@@ -1,8 +1,15 @@
-import { ComponentProps, forwardRef } from "react"
+import {
+  ComponentPropsWithRef,
+  ComponentPropsWithoutRef,
+  forwardRef,
+} from "react"
 
-export interface TextAreaProps extends ComponentProps<"textarea"> {
+export interface TextAreaProps extends ComponentPropsWithRef<"textarea"> {
   "aria-label": string
   label: string
+  slotProps?: {
+    root?: ComponentPropsWithoutRef<"div">
+  }
 }
 
 const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(

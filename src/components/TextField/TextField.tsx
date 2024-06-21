@@ -1,9 +1,16 @@
-import { ComponentProps, forwardRef } from "react"
+import {
+  ComponentPropsWithRef,
+  ComponentPropsWithoutRef,
+  forwardRef,
+} from "react"
 
-export interface TextFieldProps extends ComponentProps<"input"> {
+export interface TextFieldProps extends ComponentPropsWithRef<"input"> {
   name: string
   "aria-label": string
   label: string
+  slotProps?: {
+    root?: ComponentPropsWithoutRef<"div">
+  }
 }
 
 const TextField = forwardRef<HTMLInputElement, TextFieldProps>((props, ref) => {

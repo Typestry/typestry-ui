@@ -3,7 +3,7 @@ import useKeyPress from "@/hooks/useKeyPress"
 import { createPortal } from "react-dom"
 import { ChevronLeft, ChevronRight, X } from "react-feather"
 
-interface ImageDialogProps {
+export interface ImageDialogProps {
   imgSrc: string
   isOpen: boolean
   onClose: () => void

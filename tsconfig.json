@@ -23,6 +23,10 @@
     /* next.js */
     "baseUrl": ".",
     "paths": {
+      "@typestry/ui*": ["src"],
+      "@typestry/hooks": ["src/hooks"],
+      "@typestry/utils": ["src/utils"],
+      "@typestry/types": ["src/types"],
       "@/assets/*": [
         "src/assets/*"
       ],
@@ -48,11 +52,6 @@
         "src/utils/*"
       ]
     },
-    "plugins": [
-      {
-        "name": "next"
-      }
-    ],
     "esModuleInterop": true,
     "allowJs": true,
     "jsx": "preserve",
@@ -61,15 +60,10 @@
   },
   "include": [
     "src",
-    "./dist/types/**/*.ts",
-    "./next-env.d.ts",
-    ".next/types/**/*.ts"
+    "lib"
   ],
   "exclude": [
     "functions",
     "./node_modules"
   ],
-  "types": [
-    "vite-plugin-svgr/client"
-  ]
 }

@@ -8,9 +8,6 @@ export default {
       sans: ["Finlandica-Variable"],
     },
     extend: {
-      backgroundImage: {
-        vhs: "url('/src/assets/vhs.gif')",
-      },
       colors: {
         "french-pass": {
           50: "#eff8ff",

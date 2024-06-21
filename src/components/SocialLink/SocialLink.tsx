@@ -1,14 +1,21 @@
 import { ComponentProps, FC } from "react"
 import { MediaLink, MediaType } from "@/types/Config"
-import Instagram from "@/assets/image/instagram.svg"
-import Facebook from "@/assets/image/facebook.svg"
-import Spotify from "@/assets/image/spotify.svg"
-import Apple from "@/assets/image/apple.svg"
-import Bandcamp from "@/assets/image/bandcamp.svg"
+import { ReactComponent as Instagram } from "@/assets/image/instagram.svg"
+import { ReactComponent as Facebook } from "@/assets/image/facebook.svg"
+import { ReactComponent as Spotify } from "@/assets/image/spotify.svg"
+import { ReactComponent as Apple } from "@/assets/image/apple.svg"
+import { ReactComponent as Bandcamp } from "@/assets/image/bandcamp.svg"
+import classNames from "classnames"
 
-type SocialLinkProps = ComponentProps<"div"> & MediaLink & { type: MediaType }
+interface SocialLinkProps extends Omit<MediaLink, "title"> {
+  type: MediaType
+  slotProps?: {
+    root?: ComponentProps<"a">
+    icon?: ComponentProps<"svg">
+  }
+}
 
-const IconMap = {
+export const SocialLinkIcons = {
   apple: Apple,
   bandcamp: Bandcamp,
   facebook: Facebook,
@@ -16,8 +23,8 @@ const IconMap = {
   spotify: Spotify,
 } as const
 
-const SocialLink = ({ url, alt, type }: SocialLinkProps) => {
-  const Icon = IconMap[type] as unknown as FC<ComponentProps<"svg">>
+const SocialLink = ({ url, alt, type, slotProps }: SocialLinkProps) => {
+  const Icon = SocialLinkIcons[type] as unknown as FC<ComponentProps<"svg">>
 
   return (
     <a
@@ -27,7 +34,13 @@ const SocialLink = ({ url, alt, type }: SocialLinkProps) => {
       href={url}
       aria-label={alt}
     >
-      <Icon className="w-6 h-6 md:w-8 md:h-8 social-link" />
+      <Icon
+        {...slotProps?.icon}
+        className={classNames(
+          "w-6 h-6 md:w-8 md:h-8 social-link",
+          slotProps?.icon?.className,
+        )}
+      />
     </a>
   )
 }

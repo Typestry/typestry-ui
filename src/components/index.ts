@@ -4,8 +4,8 @@ export * from "./ContactForm"
 export { default as Gallery } from "./Gallery"
 export * from "./Gallery"
 
-export { default as ListEvent } from "./ListShow"
-export * from "./ListShow"
+export { default as ListEvent } from "./ListEvent"
+export * from "./ListEvent"
 
 export { default as NavBar } from "./Navbar"
 export * from "./Navbar"

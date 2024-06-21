@@ -3,19 +3,31 @@
 import { PlayerSection, SectionParams } from "@/types/SectionParams"
 import BandcampPlayer from "@/components/BandcampPlayer"
 import ContactForm from "@/components/ContactForm"
-import ListEvent from "@/components/ListShow"
+import ListEvent from "@/components/ListEvent"
 import ReactMarkdown from "react-markdown"
 import Gallery from "@/components/Gallery"
+import { ComponentPropsWithoutRef } from "react"
+import classNames from "classnames"
 
 export interface SectionProps {
   section: SectionParams
+  slotProps?: {
+    root?: ComponentPropsWithoutRef<"section">
+  }
 }
 
-const Section = ({ section }: SectionProps) => {
+const Section = ({ section, slotProps }: SectionProps) => {
   const { id, sectionName } = section
 
   return (
-    <section id={id} className="flex flex-col justify-center w-full gap-y-12">
+    <section
+      {...slotProps?.root}
+      id={id}
+      className={classNames(
+        "flex flex-col justify-center w-full gap-y-12",
+        slotProps?.root?.className,
+      )}
+    >
       {sectionName ? <h4>{sectionName}</h4> : null}
       <SectionComponent {...section} />
     </section>

@@ -4,17 +4,23 @@ import Button from "@/components/Button"
 import axios from "axios"
 import useForm from "@/hooks/useForm"
 import { ContactFormValues } from "./types"
+import { ComponentPropsWithoutRef } from "react"
+import classNames from "classnames"
 
 export interface ContactFormProps {
   template_id: string
   user_id: string
   service_id: string
+  slotProps?: {
+    root?: ComponentPropsWithoutRef<"form">
+  }
 }
 
 const ContactForm = ({
   template_id,
   user_id,
   service_id,
+  slotProps,
 }: ContactFormProps) => {
   const { handleSubmit, isError, isSubmitting, register } =
     useForm<ContactFormValues>({
@@ -34,7 +40,14 @@ const ContactForm = ({
     })
 
   return (
-    <form className="h-full flex flex-col gap-y-4" onSubmit={handleSubmit}>
+    <form
+      {...slotProps?.root}
+      className={classNames(
+        "h-full flex flex-col gap-y-4",
+        slotProps?.root?.className,
+      )}
+      onSubmit={handleSubmit}
+    >
       <TextField
         label="First Name"
         aria-label="Enter your first name"

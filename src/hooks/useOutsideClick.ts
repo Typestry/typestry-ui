@@ -6,7 +6,7 @@ import { RefObject, useEffect } from "react"
  * @param handler - Callback function to be executed when the event occurs
  */
 
-export type Event = MouseEvent | TouchEvent
+export type ClickEvent = MouseEvent | TouchEvent
 
 function useOutsideClick<T extends HTMLElement>(
   ref: RefObject<T>,

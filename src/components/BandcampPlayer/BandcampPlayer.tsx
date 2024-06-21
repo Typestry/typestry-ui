@@ -1,12 +1,15 @@
 import { ComponentProps } from "react"
 
-interface BandcampPlayerProps extends ComponentProps<"div"> {
+interface BandcampPlayerProps {
   url: string
+  slotProps?: {
+    root?: ComponentProps<"div">
+  }
 }
 
-const BandcampPlayer = ({ url, ...rest }: BandcampPlayerProps) => {
+const BandcampPlayer = ({ url, slotProps }: BandcampPlayerProps) => {
   return (
-    <div {...rest}>
+    <div {...slotProps?.root}>
       <div className="left-0 w-full h-0 relative pb-[100%]">
         <iframe
           src={url}

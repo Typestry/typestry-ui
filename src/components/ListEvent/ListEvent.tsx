@@ -3,20 +3,25 @@ import Event from "@/types/Event"
 import { formatDate, isPast } from "@/utils/dateUtils"
 import Button from "@/components/Button"
 import classNames from "classnames"
-import useGetDownloadUrls from "@/hooks/useGetDownloadUrls"
 
-export interface ListEventProps extends ComponentProps<"div"> {
+export interface ListEventProps {
   events: Array<Event>
+  slotProps?: {
+    root?: ComponentProps<"div">
+  }
 }
 
-const ListEvent = ({ events = [], ...rest }: ListEventProps) => {
+const ListEvent = ({ events = [], slotProps }: ListEventProps) => {
   const upcomingShows = useMemo(() => events.filter(removePastShows), [events])
   const hasUpcomingShows = upcomingShows.length > 0
 
   return (
     <div
-      {...rest}
-      className={classNames("grid grid-flow-row gap-y-24", rest.className)}
+      {...slotProps?.root}
+      className={classNames(
+        "grid grid-flow-row gap-y-24",
+        slotProps?.root?.className,
+      )}
     >
       {hasUpcomingShows ? (
         upcomingShows.map((show) => <ShowItem key={show.date} show={show} />)
@@ -28,20 +33,15 @@ const ListEvent = ({ events = [], ...rest }: ListEventProps) => {
 }
 
 export const ShowItem = ({ show }: { show: Event }) => {
-  const { data: eventImageUrl } = useGetDownloadUrls({
-    paths: show.eventImage ?? "",
-    isEnabled: Boolean(show.eventImage),
-  })
-
   return (
     <div
       className={classNames("grid gap-4 items-center", {
         "md:grid-cols-2": Boolean(show.eventImage),
       })}
     >
-      {eventImageUrl?.[0] && (
+      {show.eventImage && (
         <img
-          src={eventImageUrl[0]}
+          src={show.eventImage}
           alt={`Event image for ${show.city}`}
           className="object-contain"
         />

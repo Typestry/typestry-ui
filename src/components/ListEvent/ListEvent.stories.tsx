@@ -2,7 +2,7 @@
 
 import type { Meta, StoryObj } from "@storybook/react"
 
-import ListEvent, { ShowItem } from "./ListEvent"
+import ListEvent from "./ListEvent"
 import { events } from "./mocks/events"
 import { endOfYesterday } from "date-fns"
 
@@ -14,19 +14,17 @@ export default meta
 type Story = StoryObj<typeof ListEvent>
 
 export const WithData: Story = {
-  render: () => <ListEvent events={events} />,
+  args: {
+    events,
+  },
 }
 
 export const WithoutData: Story = {
-  render: () => <ListEvent events={[]} />,
+  args: {
+    events: [],
+  },
 }
 
 export const WithPastShows: Story = {
-  render: () => (
-    <ListEvent events={[{ ...events[0], date: String(endOfYesterday()) }]} />
-  ),
-}
-
-export const ShowItemExample: Story = {
-  render: () => <ShowItem show={events[0]} />,
+  args: { events: [{ ...events[0], date: String(endOfYesterday()) }] },
 }

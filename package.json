@@ -4,10 +4,8 @@
   "description": "",
   "main": "./public/index.js",
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "deploy": "npm run build && firebase deploy --only=hosting",
+    "dev": "vite",
+    "build": "tsc --p ./tsconfig.json && vite build",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build"
   },
@@ -46,7 +44,9 @@
     "storybook": "^7.3.2",
     "storybook-addon-react-router-v6": "^2.0.5",
     "tailwindcss": "^3.3.3",
-    "vite": "^4.4.9"
+    "vite": "^4.4.9",
+    "vite-plugin-dts": "^3.9.1",
+    "vite-tsconfig-paths": "^4.3.2"
   },
   "dependencies": {
     "@chakra-ui/react-use-size": "^2.1.0",
@@ -56,21 +56,16 @@
     "classnames": "^2.3.2",
     "date-fns": "^2.30.0",
     "firebase": "^10.2.0",
-    "firebase-admin": "^12.1.0",
-    "next": "^14.2.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-error-boundary": "^4.0.13",
     "react-feather": "^2.0.10",
-    "react-helmet": "^6.1.0",
-    "react-helmet-async": "^2.0.4",
     "react-hook-form": "^7.45.4",
     "react-markdown": "^8.0.7",
     "react-router": "^6.15.0",
     "react-router-dom": "^6.15.0",
     "server-only": "^0.0.1",
     "typescript": "^5.1.6",
-    "vite-plugin-ssr": "^0.4.142",
     "vite-plugin-svgr": "^3.2.0",
     "zod": "^3.23.6"
   },
