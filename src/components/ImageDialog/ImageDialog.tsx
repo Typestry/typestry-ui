@@ -7,7 +7,7 @@ export interface ImageDialogProps {
   imgSrc: string
   isOpen: boolean
   onClose: () => void
-  onChange: ({ reason }: { reason: "next" | "prev" }) => void
+  onChange?: ({ reason }: { reason: "next" | "prev" }) => void
 }
 
 export const ImageDialog: FC<ImageDialogProps> = ({
@@ -19,11 +19,11 @@ export const ImageDialog: FC<ImageDialogProps> = ({
   const modalRef = useRef<HTMLImageElement>(null)
 
   const handleNext = () => {
-    onChange({ reason: "next" })
+    onChange?.({ reason: "next" })
   }
 
   const handlePrev = () => {
-    onChange({ reason: "prev" })
+    onChange?.({ reason: "prev" })
   }
 
   useKeyPress(["ArrowRight", "ArrowLeft", "Escape"], (e) => {
@@ -48,12 +48,14 @@ export const ImageDialog: FC<ImageDialogProps> = ({
 
   return createPortal(
     <div className="fixed flex justify-center top-0 left-0 right-0 bottom-0 z-40 backdrop-blur-sm md:p-8">
-      <ChevronLeft
-        aria-label="Previous"
-        onClick={handlePrev}
-        strokeWidth={1}
-        className="hidden md:block self-center cursor-pointer md:h-24 md:w-24"
-      />
+      {onChange && (
+        <ChevronLeft
+          aria-label="Previous"
+          onClick={handlePrev}
+          strokeWidth={1}
+          className="hidden md:block self-center cursor-pointer md:h-24 md:w-24"
+        />
+      )}
       <div className="flex justify-center">
         <div
           aria-label="Close"
@@ -74,13 +76,17 @@ export const ImageDialog: FC<ImageDialogProps> = ({
           className="object-contain m-auto md:h-full md:object-cover object-center"
         />
       </div>
-      <ChevronRight
-        aria-label="Next"
-        onClick={handleNext}
-        strokeWidth={1}
-        className="hidden md:block self-center cursor-pointer md:h-24 md:w-24"
-      />
+      {onChange && (
+        <ChevronRight
+          aria-label="Next"
+          onClick={handleNext}
+          strokeWidth={1}
+          className="hidden md:block self-center cursor-pointer md:h-24 md:w-24"
+        />
+      )}
     </div>,
     document.body,
   )
 }
+
+export default ImageDialog

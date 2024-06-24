@@ -1,7 +1,7 @@
 "use client"
 
 import { ComponentPropsWithoutRef, FC, useState } from "react"
-import { ImageDialog } from "./ImageDialog/ImageDialog"
+import { ImageDialog } from "../ImageDialog/ImageDialog"
 import classNames from "classnames"
 
 export interface GalleryProps {

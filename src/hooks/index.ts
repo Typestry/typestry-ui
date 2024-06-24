@@ -20,3 +20,6 @@ export * from "./useKeyPress"
 
 export { default as useOutsideClick } from "./useOutsideClick"
 export * from "./useOutsideClick"
+
+export { default as useDisclosure } from "./useDisclosure"
+export * from "./useDisclosure"
