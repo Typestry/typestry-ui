@@ -1,5 +1,5 @@
 import classNames from "classnames"
-import React, { ComponentPropsWithRef, Ref, forwardRef } from "react"
+import { ComponentPropsWithRef, createElement, forwardRef } from "react"
 
 interface ButtonAsAnchorProps extends ComponentPropsWithRef<"a"> {
   href: string
@@ -19,25 +19,15 @@ const isAnchor = (props: ButtonProps): props is ButtonAsAnchorProps =>
 
 const Button = forwardRef<HTMLButtonElement | HTMLAnchorElement, ButtonProps>(
   function Button(props, ref) {
+    const className = classNames("button", props.className)
+
     if (isAnchor(props)) {
-      return (
-        <a
-          {...props}
-          ref={ref as Ref<HTMLAnchorElement>}
-          className={classNames("button", props.className)}
-        >
-          {props.children}
-        </a>
-      )
+      return createElement("a", { ...props, ref, className }, props.children)
     } else {
-      return (
-        <button
-          {...props}
-          ref={ref as Ref<HTMLButtonElement>}
-          className={classNames("button", props.className)}
-        >
-          {props.children}
-        </button>
+      return createElement(
+        "button",
+        { ...props, ref, className },
+        props.children,
       )
     }
   },

@@ -11,7 +11,7 @@ type TypographyVariant =
   | "caption"
   | "overline"
 
-const isSemanticElement = (tag: string): tag is SemanticTag => {
+const isSemanticTag = (tag: string): tag is SemanticTag => {
   return ["h1", "h2", "h3", "h4", "h5", "h6"].includes(tag)
 }
 
@@ -22,7 +22,7 @@ export interface TypographyProps extends ComponentPropsWithoutRef<"p"> {
 export const Typography = ({ children, ...props }: TypographyProps) => {
   const { variant } = props
 
-  if (isSemanticElement(variant)) {
+  if (isSemanticTag(variant)) {
     return createElement(variant, props, children)
   } else {
     return createElement(

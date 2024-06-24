@@ -1,7 +1,5 @@
-import { useMemo } from "react"
+import { ComponentPropsWithoutRef, useMemo } from "react"
 import Event from "@/types/Event"
-import List, { ListProps } from "@/components/List"
-import ListItem from "@/components/ListItem"
 import { isPast } from "@/utils/dateUtils"
 import Button from "@/components/Button"
 import Card from "@/components/Card"
@@ -14,7 +12,7 @@ import CardMedia from "../CardMedia"
 export interface ListEventProps {
   events: Array<Event>
   slotProps?: {
-    root?: ListProps
+    root?: ComponentPropsWithoutRef<"div">
   }
 }
 
@@ -23,7 +21,7 @@ const ListEvent = ({ events = [], slotProps }: ListEventProps) => {
   const hasUpcomingShows = upcomingShows.length > 0
 
   return (
-    <List {...slotProps?.root}>
+    <div {...slotProps?.root}>
       {hasUpcomingShows ? (
         upcomingShows.map((event) => (
           <EventItem key={event.date} event={event} />
@@ -31,40 +29,38 @@ const ListEvent = ({ events = [], slotProps }: ListEventProps) => {
       ) : (
         <p className="flex justify-center items-center">No Upcoming Shows</p>
       )}
-    </List>
+    </div>
   )
 }
 
 export const EventItem = ({ event }: { event: Event }) => {
   return (
-    <ListItem>
-      <Card>
-        <CardContent>
-          <CardHeader
-            title="Carried by Bees w/ Means Motive"
-            className="md:flex justify-between"
-            subtitle="Kansas City, MO"
-          />
-          {event.eventImage && <CardMedia src={event.eventImage} />}
-          <CardBody>{event.description}</CardBody>
-          <CardActions>
-            {event.callToAction && (
-              <Button href={event.callToAction.url} target="_blank">
-                {event.callToAction.label}
-              </Button>
-            )}
-            {event.address && (
-              <Button
-                href={`https://www.google.com/maps/place/${event.address}`}
-                target="_blank"
-              >
-                Directions
-              </Button>
-            )}
-          </CardActions>
-        </CardContent>
-      </Card>
-    </ListItem>
+    <Card>
+      <CardContent>
+        <CardHeader
+          title="Carried by Bees w/ Means Motive"
+          className="md:flex justify-between"
+          subtitle="Kansas City, MO"
+        />
+        {event.eventImage && <CardMedia src={event.eventImage} />}
+        <CardBody>{event.description}</CardBody>
+        <CardActions>
+          {event.callToAction && (
+            <Button href={event.callToAction.url} target="_blank">
+              {event.callToAction.label}
+            </Button>
+          )}
+          {event.address && (
+            <Button
+              href={`https://www.google.com/maps/place/${event.address}`}
+              target="_blank"
+            >
+              Directions
+            </Button>
+          )}
+        </CardActions>
+      </CardContent>
+    </Card>
   )
 }
 

@@ -23,7 +23,7 @@ export const CardHeader = forwardRef<HTMLDivElement, CardHeaderProps>(
         {...props}
         className={classNames("card-header", props.className)}
       >
-        <Typography variant="h4">{props.title}</Typography>
+        <Typography variant="h6">{props.title}</Typography>
         {props.subtitle && (
           <Typography variant="subtitle1">{props.subtitle}</Typography>
         )}
