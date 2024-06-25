@@ -23,7 +23,7 @@
     /* next.js */
     "baseUrl": ".",
     "paths": {
-      "@typestry/ui*": ["src/*"],
+      "@typestry/ui/*": ["src/*"],
     },
     "esModuleInterop": true,
     "allowJs": true,
