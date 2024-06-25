@@ -10,6 +10,9 @@ export * from "./List"
 export { default as ListItem } from "./ListItem"
 export * from "./ListItem"
 
+export { default as ListItemText } from "./ListItemText"
+export * from "./ListItemText"
+
 export { default as TextArea } from "./TextArea"
 export * from "./TextArea"
 
