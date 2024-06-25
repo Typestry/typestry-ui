@@ -1,6 +1,8 @@
 import { Meta, StoryObj } from "@storybook/react"
 import List from "./List"
 import ListItem from "@/components/ListItem"
+import ListItemText from "@/components/ListItemText"
+import { ArrowUpRight, Calendar } from "react-feather"
 
 const meta: Meta<typeof List> = {
   title: "Components/List",
@@ -11,13 +13,23 @@ export default meta
 type Story = StoryObj<typeof List>
 
 export const Example: Story = {
-  args: {
-    children: (
-      <>
-        <ListItem>1</ListItem>
-        <ListItem>2</ListItem>
-        <ListItem>3</ListItem>
-      </>
-    ),
-  },
+  render: () => (
+    <List className="color-white">
+      <ListItem>
+        <Calendar />
+        <ListItemText>Kansas City, MO</ListItemText>
+        <ArrowUpRight />
+      </ListItem>
+      <ListItem>
+        <Calendar />
+        <ListItemText>St. Louis, MO</ListItemText>
+        <ArrowUpRight />
+      </ListItem>
+      <ListItem>
+        <Calendar />
+        <ListItemText>Chicago, IL</ListItemText>
+        <ArrowUpRight />
+      </ListItem>
+    </List>
+  ),
 }

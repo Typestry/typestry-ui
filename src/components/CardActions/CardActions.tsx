@@ -9,7 +9,7 @@ export const CardActions = forwardRef<HTMLDivElement, CardActionsProps>(
       <div
         ref={ref}
         {...props}
-        className={classNames("card-action-area", props.className)}
+        className={classNames("Tui-CardActionArea", props.className)}
       >
         {props.children}
       </div>

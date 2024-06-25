@@ -32,6 +32,10 @@
 }
 
 @layer base {
+  .Tui-Typography {
+    @apply w-fit;
+  }
+
   h1 {
     @apply font-serif text-4xl md:text-8xl font-light uppercase tracking-widest;
   }
@@ -56,101 +60,109 @@
     @apply font-serif text-lg md:text-xl font-medium tracking-[0.15em] uppercase;
   }
 
-  .subtitle1 {
+  .Tui-Subtitle1 {
     @apply font-sans tracking-tighter text-base;
   }
 
-  .subtitle2 {
+  .Tui-Subtitle2 {
     @apply font-sans text-sm font-medium tracking-tight;
   }
 
-  .subtitle2 {
+  .Tui-Subtitle2 {
     @apply font-sans text-sm font-medium;
   }
 
-  .body1 {
+  .Tui-Body1 {
     @apply font-sans text-base;
   }
 
-  .body2 {
+  .Tui-Body2 {
     @apply font-sans text-sm;
   }
 
-  .caption {
+  .Tui-Caption {
     @apply font-sans text-xs tracking-wider;
   }
 
-  .overline {
+  .Tui-Overline {
     @apply font-sans text-xs tracking-wider uppercase decoration-transparent;
   }
 
-  .field-validation {
+  .Tui-FieldValidation {
     @apply invalid:focus:border-[var(--error-color)] invalid:border-b-[var(--error-color)];
   }
 }
 
 @layer components {
-  .button {
+  .Tui-Button {
     @apply w-full flex justify-center hover:bg-[rgba(var(--secondary-color),0.2)] active:bg-[rgba(var(--primary-color),0.2)] border-2 border-white transition-all duration-300 p-3 lg:p-4 uppercase disabled:opacity-50;
   }
 
-  .card {
+  .Tui-Card {
     @apply p-4;
   }
 
-  .card-content {
+  .Tui-CardContent {
     @apply grid gap-4;
   }
 
-  .card-header {
+  .Tui-CardHeader {
     @apply grid gap-y-2;
   }
 
-  .card-body {
-    @apply body1;
+  .Tui-CardBody {
+    @apply Tui-Body1;
   }
 
-  .card-media {
+  .Tui-CardMedia {
     @apply w-full h-64 object-cover object-center cursor-pointer;
   }
 
-  .card-action-area {
+  .Tui-CardActionArea {
     @apply grid md:flex items-center gap-4;
   }
 
-  .divider {
+  .Tui-Divider {
     @apply h-1 w-full bg-[rgba(var(--secondary-color))];
   }
 
-  .divider-light {
+  .Tui-DividerLight {
     @apply divider h-0.5;
   }
 
-  .divider-thick {
+  .Tui-DividerThick {
     @apply divider h-2;
   }
 
-  .text-field {
+  .Tui-TextField {
     @apply rounded-none border-b-2 outline-none text-[#ffffff] border-t-0 border-l-0 border-r-0 border-[var(--background-color)] text-lg focus:ring-transparent transition-colors duration-500 focus:border-[rgba(var(--secondary-color))] hover:border-[rgba(var(--secondary-color))] block w-full p-4 bg-[rgba(var(--primary-color),0.2)] disabled:opacity-50;
   }
 
-  .text-field[data-should-validate="true"] {
+  .Tui-TextField[data-should-validate="true"] {
     @apply field-validation;
   }
 
-  .label {
+  .Tui-Label {
     @apply block group-focus-within:font-bold mb-2 text-base text-[var(--text-color)];
   }
 
-  .list {
-    @apply list-none grid gap-4;
+  .Tui-List {
+    @apply list-none grid gap-4 px-4;
   }
 
-  .text-area {
+  .Tui-ListItem {
+    @apply flex text-left items-center list-none gap-4 py-4;
+  }
+
+  .Tui-ListItemText {
+    @apply flex-1;
+  }
+
+  .Tui-TextArea {
     @apply rounded-none resize-none border-b-2 outline-none text-[#ffffff] border-t-0 border-l-0 border-r-0 border-[#222222] text-lg focus:ring-transparent transition-colors duration-500 focus:border-[rgba(var(--secondary-color))] hover:border-[rgba(var(--secondary-color))] block w-full p-4 bg-[rgba(var(--primary-color),0.2)] disabled:opacity-50;
   }
 
-  .text-area[data-should-validate="true"] {
+  .Tui-TextArea[data-should-validate="true"] {
     @apply field-validation;
   }
 }

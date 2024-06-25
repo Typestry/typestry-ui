@@ -9,7 +9,7 @@ export const CardBody = forwardRef<HTMLDivElement, CardBodyProps>(
       <div
         ref={ref}
         {...props}
-        className={classNames("card-body", props.className)}
+        className={classNames("Tui-CardBody", props.className)}
       >
         {props.children}
       </div>

@@ -19,7 +19,7 @@ const isAnchor = (props: ButtonProps): props is ButtonAsAnchorProps =>
 
 const Button = forwardRef<HTMLButtonElement | HTMLAnchorElement, ButtonProps>(
   function Button(props, ref) {
-    const className = classNames("button", props.className)
+    const className = classNames("Tui-Button", props.className)
 
     if (isAnchor(props)) {
       return createElement("a", { ...props, ref, className }, props.children)
