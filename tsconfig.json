@@ -23,34 +23,7 @@
     /* next.js */
     "baseUrl": ".",
     "paths": {
-      "@typestry/ui*": ["src"],
-      "@typestry/hooks": ["src/hooks"],
-      "@typestry/utils": ["src/utils"],
-      "@typestry/types": ["src/types"],
-      "@/assets/*": [
-        "src/assets/*"
-      ],
-      "@/components/*": [
-        "src/components/*"
-      ],
-      "@/constants/*": [
-        "src/constants/*"
-      ],
-      "@/hooks/*": [
-        "src/hooks/*"
-      ],
-      "@/services/*": [
-        "src/services/*"
-      ],
-      "@/providers/*": [
-        "src/providers/*"
-      ],
-      "@/types/*": [
-        "src/types/*"
-      ],
-      "@/utils/*": [
-        "src/utils/*"
-      ]
+      "@typestry/ui*": ["src/*"],
     },
     "esModuleInterop": true,
     "allowJs": true,

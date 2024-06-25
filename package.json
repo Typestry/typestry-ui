@@ -1,8 +1,8 @@
 {
-  "name": "web-template",
+  "name": "@typestry/ui",
   "version": "1.0.0",
   "description": "",
-  "main": "./public/index.js",
+  "main": "./dist/typestry-ui.mjs",
   "scripts": {
     "dev": "vite",
     "build": "tsc --p ./tsconfig.json && vite build",

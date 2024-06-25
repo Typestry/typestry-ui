@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from "react"
-import useEventListener from "@/hooks/useEventListener"
+import useEventListener from "@typestry/ui/hooks/useEventListener"
 
 const useIsDesktop = () => {
   const [isDesktop, setIsDesktop] = useState(false)

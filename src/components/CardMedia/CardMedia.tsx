@@ -1,4 +1,4 @@
-import useDisclosure from "@/hooks/useDisclosure"
+import useDisclosure from "@typestry/ui/hooks/useDisclosure"
 import classNames from "classnames"
 import { ComponentPropsWithRef, forwardRef } from "react"
 import ImageDialog from "../ImageDialog"
