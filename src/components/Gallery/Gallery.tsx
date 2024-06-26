@@ -1,5 +1,3 @@
-"use client"
-
 import { ComponentPropsWithoutRef, FC, useState } from "react"
 import ImageDialog from "@/components/ImageDialog"
 import classNames from "classnames"
