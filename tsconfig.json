@@ -26,6 +26,7 @@
       "@/*": ["src/*"],
       "@typestry-ui/react": ["src/components"],
       "@typestry-ui/hooks": ["src/hooks"],
+      "@typestry-ui/utils": ["src/utils"],
     },
     "esModuleInterop": true,
     "allowJs": true,
