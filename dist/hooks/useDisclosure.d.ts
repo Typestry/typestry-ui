@@ -1,4 +1,4 @@
-export declare const useDisclosure: () => {
+declare const useDisclosure: () => {
     isOpen: boolean;
     onOpen: () => void;
     onClose: () => void;
