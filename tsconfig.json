@@ -23,8 +23,9 @@
     /* next.js */
     "baseUrl": ".",
     "paths": {
-      "@typestry/ui": ["src"],
-      "@typestry/ui/*": ["src/*"],
+      "@/*": ["src/*"],
+      "@typestry-ui/react": ["src/components"],
+      "@typestry-ui/hooks": ["src/hooks"],
     },
     "esModuleInterop": true,
     "allowJs": true,
@@ -37,7 +38,6 @@
     "lib"
   ],
   "exclude": [
-    "functions",
     "./node_modules"
   ],
 }

@@ -11,7 +11,7 @@ export default defineConfig({
     react(),
     dts({
       include: ["src"],
-      exclude: ["src/**/*.stories.tsx", "src/constants", "src/providers"],
+      exclude: ["src/**/*.stories.tsx"],
     }),
     svgr({ svgrOptions: { icon: true } }),
   ],

@@ -1,5 +1,5 @@
 {
-  "name": "@typestry/ui",
+  "name": "@typestry-ui/react",
   "version": "1.0.0",
   "description": "",
   "main": "./dist/typestry-ui.mjs",

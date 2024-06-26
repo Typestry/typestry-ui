@@ -1,7 +1,7 @@
-import useDisclosure from "@typestry/ui/hooks/useDisclosure"
+import useDisclosure from "@/hooks/useDisclosure"
 import classNames from "classnames"
 import { ComponentPropsWithRef, forwardRef } from "react"
-import ImageDialog from "../ImageDialog"
+import ImageDialog from "@/components/ImageDialog"
 
 export interface CardMediaProps extends ComponentPropsWithRef<"img"> {}
 
