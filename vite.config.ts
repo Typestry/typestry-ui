@@ -1,5 +1,6 @@
 import { defineConfig } from "vite"
 import react from "@vitejs/plugin-react"
+import { libInjectCss } from "vite-plugin-lib-inject-css"
 import tsconfigpaths from "vite-tsconfig-paths"
 import svgr from "vite-plugin-svgr"
 import dts from "vite-plugin-dts"
@@ -9,6 +10,7 @@ export default defineConfig({
   plugins: [
     tsconfigpaths(),
     react(),
+    libInjectCss(),
     dts({
       include: ["src"],
       exclude: ["src/**/*.stories.tsx"],
