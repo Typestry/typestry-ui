@@ -32,10 +32,6 @@
 }
 
 @layer base {
-  .Tui-Typography {
-    @apply w-fit;
-  }
-
   h1 {
     @apply font-serif text-4xl md:text-8xl font-light uppercase tracking-widest;
   }
@@ -58,6 +54,12 @@
 
   h6 {
     @apply font-serif text-lg md:text-xl font-medium tracking-[0.15em] uppercase;
+  }
+}
+
+@layer components {
+  .Tui-Typography {
+    @apply w-fit;
   }
 
   .Tui-Subtitle1 {
@@ -91,9 +93,11 @@
   .Tui-FieldValidation {
     @apply invalid:focus:border-[var(--error-color)] invalid:border-b-[var(--error-color)];
   }
-}
 
-@layer components {
+  .Tui-FieldGroup {
+    @apply grid gap-4;
+  }
+
   .Tui-Button {
     @apply w-full flex justify-center hover:bg-[rgba(var(--secondary-color),0.2)] active:bg-[rgba(var(--primary-color),0.2)] border-2 border-white transition-all duration-300 p-3 lg:p-4 uppercase disabled:opacity-50;
   }
@@ -139,7 +143,7 @@
   }
 
   .Tui-TextField[data-should-validate="true"] {
-    @apply field-validation;
+    @apply Tui-FieldValidation;
   }
 
   .Tui-Label {
@@ -163,7 +167,7 @@
   }
 
   .Tui-TextArea[data-should-validate="true"] {
-    @apply field-validation;
+    @apply Tui-FieldValidation;
   }
 }
 

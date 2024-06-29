@@ -15,11 +15,11 @@ export interface TextFieldProps extends ComponentPropsWithRef<"input"> {
 
 const TextField = forwardRef<HTMLInputElement, TextFieldProps>((props, ref) => {
   return (
-    <div className="group">
+    <div className="Tui-FieldGroup">
       <label htmlFor={props.name} className="label">
         {props.label}
       </label>
-      <input ref={ref} {...props} className="text-field" />
+      <input ref={ref} {...props} className="Tui-TextField" />
     </div>
   )
 })

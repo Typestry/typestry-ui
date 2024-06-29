@@ -15,14 +15,14 @@ export interface TextAreaProps extends ComponentPropsWithRef<"textarea"> {
 const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(
   (props, ref) => {
     return (
-      <div className="group">
+      <div className="Tui-FieldGroup">
         <label htmlFor={props.name}>{props.label}</label>
         <textarea
           ref={ref}
           {...props}
           id={props.name}
           data-should-validate={Boolean(props.value)}
-          className="text-area"
+          className="Tui-TextArea"
         />
       </div>
     )
