@@ -20618,7 +20618,7 @@ const Jk = uE, eO = ({
     }
   );
 }, JO = uO, oO = Ea(
-  (p, C) => /* @__PURE__ */ lo("div", { className: "group", children: [
+  (p, C) => /* @__PURE__ */ lo("div", { className: "Tui-FieldGroup", children: [
     /* @__PURE__ */ hn("label", { htmlFor: p.name, children: p.label }),
     /* @__PURE__ */ hn(
       "textarea",
@@ -20627,13 +20627,13 @@ const Jk = uE, eO = ({
         ...p,
         id: p.name,
         "data-should-validate": !!p.value,
-        className: "text-area"
+        className: "Tui-TextArea"
       }
     )
   ] })
-), eL = oO, sO = Ea((p, C) => /* @__PURE__ */ lo("div", { className: "group", children: [
+), eL = oO, sO = Ea((p, C) => /* @__PURE__ */ lo("div", { className: "Tui-FieldGroup", children: [
   /* @__PURE__ */ hn("label", { htmlFor: p.name, className: "label", children: p.label }),
-  /* @__PURE__ */ hn("input", { ref: C, ...p, className: "text-field" })
+  /* @__PURE__ */ hn("input", { ref: C, ...p, className: "Tui-TextField" })
 ] })), tL = sO, cO = Ea(
   function(C, m) {
     return /* @__PURE__ */ hn(
