@@ -7,6 +7,7 @@ import TextField from "./TextField"
 const meta: Meta<typeof TextField> = {
   component: TextField,
   args: {
+    name: "firstName",
     label: "First Name",
   },
   argTypes: {
@@ -20,4 +21,12 @@ type Story = StoryObj<typeof TextField>
 
 export const Example: Story = {
   render: (args) => <TextField {...args} />,
+}
+
+export const Error: Story = {
+  render: (args) => <TextField {...args} />,
+  args: {
+    error: true,
+    helperText: "This is an error message",
+  },
 }

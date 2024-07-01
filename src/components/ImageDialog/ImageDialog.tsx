@@ -2,12 +2,15 @@ import { FC, useEffect, useRef } from "react"
 import useKeyPress from "@/hooks/useKeyPress"
 import { createPortal } from "react-dom"
 import { ChevronLeft, ChevronRight, X } from "react-feather"
+import Typography from "../Typography"
+
+type ChangeReason = "next" | "prev"
 
 export interface ImageDialogProps {
   imgSrc: string
   isOpen: boolean
   onClose: () => void
-  onChange?: ({ reason }: { reason: "next" | "prev" }) => void
+  onChange?: ({ reason }: { reason: ChangeReason }) => void
 }
 
 export const ImageDialog: FC<ImageDialogProps> = ({
@@ -36,7 +39,6 @@ export const ImageDialog: FC<ImageDialogProps> = ({
         break
       case "Escape":
         onClose()
-        break
     }
   })
 
@@ -53,7 +55,7 @@ export const ImageDialog: FC<ImageDialogProps> = ({
           aria-label="Previous"
           onClick={handlePrev}
           strokeWidth={1}
-          className="hidden md:block self-center cursor-pointer md:h-24 md:w-24"
+          className="hidden md:block self-center dark:text-white cursor-pointer md:h-24 md:w-24"
         />
       )}
       <div className="flex justify-center">
@@ -66,8 +68,10 @@ export const ImageDialog: FC<ImageDialogProps> = ({
           }}
           className="absolute right-4 top-4 cursor-pointer z-50 flex items-center gap-2 md:gap-4"
         >
-          <X className="w-6 h-6" />
-          <p className="uppercase">Close</p>
+          <Typography variant="overline" className="flex gap-2 text-base">
+            <X />
+            Close
+          </Typography>
         </div>
         <img
           ref={modalRef}
@@ -81,7 +85,7 @@ export const ImageDialog: FC<ImageDialogProps> = ({
           aria-label="Next"
           onClick={handleNext}
           strokeWidth={1}
-          className="hidden md:block self-center cursor-pointer md:h-24 md:w-24"
+          className="hidden dark:text-white md:block self-center cursor-pointer md:h-24 md:w-24"
         />
       )}
     </div>,

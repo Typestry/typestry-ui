@@ -1,6 +1,7 @@
 /** @type {import('tailwindcss').Config} */
 export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
+  darkMode: ["class", '[data-mode="dark"]'],
   theme: {
     fontFamily: {
       serif: ["NotoSerif-Variable"],
@@ -9,18 +10,31 @@ export default {
     },
     extend: {
       colors: {
-        "french-pass": {
-          50: "#eff8ff",
-          100: "#dbedfe",
-          200: "#b8defe",
-          300: "#93cffd",
-          400: "#60b4fa",
-          500: "#3b94f6",
-          600: "#2576eb",
-          700: "#1d60d8",
-          800: "#1e4eaf",
-          900: "#1e458a",
-          950: "#172b54",
+        primary: {
+          50: "#f2f9f9",
+          100: "#ddeff0",
+          200: "#bfe0e2",
+          300: "#92cace",
+          400: "#5faab1",
+          500: "#438e96",
+          600: "#3b757f",
+          700: "#356169",
+          800: "#325158",
+          900: "#2d464c",
+          950: "#1a2c32",
+        },
+        secondary: {
+          50: "#f5f3ff",
+          100: "#edeafd",
+          200: "#ddd7fd",
+          300: "#c3b7fb",
+          400: "#a78ff6",
+          500: "#8a61f1",
+          600: "#7a40e7",
+          700: "#753dd6",
+          800: "#5926b1",
+          900: "#4a2191",
+          950: "#2d1362",
         },
       },
     },

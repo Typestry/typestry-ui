@@ -7,7 +7,8 @@ import TextArea from "./TextArea"
 const meta: Meta<typeof TextArea> = {
   component: TextArea,
   args: {
-    label: "First Name",
+    name: "message",
+    label: "Message",
   },
   argTypes: {
     onChange: { description: "onChange" },
@@ -20,4 +21,12 @@ type Story = StoryObj<typeof TextArea>
 
 export const Example: Story = {
   render: (args) => <TextArea {...args} />,
+}
+
+export const Error: Story = {
+  render: (args) => <TextArea {...args} />,
+  args: {
+    error: true,
+    helperText: "This is an error message",
+  },
 }

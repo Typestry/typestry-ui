@@ -1,30 +1,17 @@
-import {
-  ComponentPropsWithRef,
-  ComponentPropsWithoutRef,
-  forwardRef,
-} from "react"
+import { forwardRef } from "react"
+import FormGroup, { FormGroupProps } from "@/components/FormGroup"
 
-export interface TextAreaProps extends ComponentPropsWithRef<"textarea"> {
-  "aria-label": string
-  label: string
-  slotProps?: {
-    root?: ComponentPropsWithoutRef<"div">
-  }
-}
+export interface TextAreaProps extends FormGroupProps<"textarea"> {}
 
 const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(
   (props, ref) => {
     return (
-      <div className="Tui-FieldGroup">
-        <label htmlFor={props.name}>{props.label}</label>
-        <textarea
-          ref={ref}
-          {...props}
-          id={props.name}
-          data-should-validate={Boolean(props.value)}
-          className="Tui-TextArea"
-        />
-      </div>
+      <FormGroup
+        {...props}
+        ref={ref}
+        inputComponent="textarea"
+        slotProps={{ input: { className: "Tui-TextArea" } }}
+      />
     )
   },
 )

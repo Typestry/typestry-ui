@@ -1,5 +1,6 @@
 import { Meta, StoryObj } from "@storybook/react"
 import CardContent from "./CardContent"
+import Typography from "../Typography"
 
 const meta: Meta<typeof CardContent> = {
   title: "components/CardContent",
@@ -11,6 +12,6 @@ type Story = StoryObj<typeof CardContent>
 
 export const Example: Story = {
   args: {
-    children: "Card Content",
+    children: <Typography>Card Content</Typography>,
   },
 }

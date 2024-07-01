@@ -2,15 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --background-color: #181818;
-  --primary-color: 255, 255, 255;
-  /* RGB Numberical Values Only */
-  --secondary-color: 255, 255, 255;
-  --error-color: rgb(119 29 29);
-  --text-color: #ffffff;
-}
-
 @font-face {
   font-family: NotoSerif-Variable;
   font-weight: 100 900;
@@ -59,7 +50,7 @@
 
 @layer components {
   .Tui-Typography {
-    @apply w-fit;
+    @apply w-fit dark:text-white;
   }
 
   .Tui-Subtitle1 {
@@ -94,16 +85,16 @@
     @apply invalid:focus:border-[var(--error-color)] invalid:border-b-[var(--error-color)];
   }
 
-  .Tui-FieldGroup {
+  .Tui-FormGroup {
     @apply grid gap-4;
   }
 
   .Tui-Button {
-    @apply w-full flex justify-center hover:bg-[rgba(var(--secondary-color),0.2)] active:bg-[rgba(var(--primary-color),0.2)] border-2 border-white transition-all duration-300 p-3 lg:p-4 uppercase disabled:opacity-50;
+    @apply w-full flex justify-center hover:bg-primary-400 active:bg-primary-500 active:text-white bg-primary-300 dark:bg-primary-700 dark:hover:bg-primary-800 dark:active:bg-primary-900 dark:text-white border dark:border-white border-primary-950 text-primary-950 transition-all duration-300 p-3 lg:p-4 uppercase disabled:opacity-50;
   }
 
   .Tui-Card {
-    @apply p-4;
+    @apply p-4 dark:text-white;
   }
 
   .Tui-CardContent {
@@ -115,7 +106,7 @@
   }
 
   .Tui-CardBody {
-    @apply Tui-Body1;
+    @apply Tui-Typography Tui-Body1;
   }
 
   .Tui-CardMedia {
@@ -138,6 +129,10 @@
     @apply divider h-2;
   }
 
+  .Tui-HelperText {
+    @apply text-sm text-red-800 dark:text-red-200;
+  }
+
   .Tui-TextField {
     @apply rounded-none border-b-2 outline-none text-[#ffffff] border-t-0 border-l-0 border-r-0 border-[var(--background-color)] text-lg focus:ring-transparent transition-colors duration-500 focus:border-[rgba(var(--secondary-color))] hover:border-[rgba(var(--secondary-color))] block w-full p-4 bg-[rgba(var(--primary-color),0.2)] disabled:opacity-50;
   }
@@ -147,7 +142,7 @@
   }
 
   .Tui-Label {
-    @apply block group-focus-within:font-bold mb-2 text-base text-[var(--text-color)];
+    @apply block group-focus-within:font-bold mb-2 text-base dark:text-white;
   }
 
   .Tui-List {
@@ -155,7 +150,7 @@
   }
 
   .Tui-ListItem {
-    @apply flex text-left items-center list-none gap-4 py-4;
+    @apply flex text-left items-center list-none gap-4 py-4 dark:text-white;
   }
 
   .Tui-ListItemText {

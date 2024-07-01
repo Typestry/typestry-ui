@@ -11,6 +11,6 @@ type Story = StoryObj<typeof ListItem>
 
 export const Example: Story = {
   args: {
-    children: "ListItem",
+    children: "List Item",
   },
 }

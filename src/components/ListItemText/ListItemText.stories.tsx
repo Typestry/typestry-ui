@@ -11,6 +11,6 @@ type Story = StoryObj<typeof ListItemText>
 
 export const Example: Story = {
   args: {
-    children: "ListTypography",
+    children: "List Typography",
   },
 }
