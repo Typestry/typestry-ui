@@ -25,4 +25,4 @@ export const CardMedia = forwardRef<HTMLImageElement, CardMediaProps>(
       </>
     )
   },
-)
+) as (props: CardMediaProps) => JSX.Element

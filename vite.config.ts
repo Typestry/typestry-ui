@@ -13,6 +13,7 @@ export default defineConfig({
     react(),
     libInjectCss(),
     dts({
+      rollupTypes: true,
       include: ["src/**/*"],
       exclude: ["src/**/*.stories.tsx"],
     }),

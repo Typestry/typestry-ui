@@ -15,4 +15,4 @@ export const CardActions = forwardRef<HTMLDivElement, CardActionsProps>(
       </div>
     )
   },
-)
+) as (props: CardActionsProps) => JSX.Element

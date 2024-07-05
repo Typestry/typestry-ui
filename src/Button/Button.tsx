@@ -9,11 +9,6 @@ interface ButtonAsButtonProps extends ComponentPropsWithRef<"button"> {}
 
 export type ButtonProps = ButtonAsAnchorProps | ButtonAsButtonProps
 
-type ButtonComponent = {
-  (props: ButtonAsAnchorProps): JSX.Element
-  (props: ButtonAsButtonProps): JSX.Element
-}
-
 const isAnchor = (props: ButtonProps): props is ButtonAsAnchorProps =>
   "href" in props
 
@@ -28,4 +23,7 @@ export const Button = forwardRef<
   } else {
     return createElement("button", { ...props, ref, className }, props.children)
   }
-}) as ButtonComponent
+}) as {
+  (props: ButtonAsAnchorProps): JSX.Element
+  (props: ButtonAsButtonProps): JSX.Element
+}

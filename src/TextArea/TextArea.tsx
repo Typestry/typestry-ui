@@ -17,7 +17,7 @@ export interface TextAreaProps extends ComponentPropsWithRef<"textarea"> {
 }
 
 export const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(
-  ({ slotProps, ...props }, ref) => {
+  function TextArea({ slotProps, ...props }, ref) {
     return (
       <FormGroup {...slotProps?.root}>
         <Label {...slotProps?.label} htmlFor={props.name}>
@@ -35,4 +35,4 @@ export const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(
       </FormGroup>
     )
   },
-)
+) as (props: TextAreaProps) => JSX.Element

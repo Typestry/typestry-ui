@@ -30,4 +30,4 @@ export const CardHeader = forwardRef<HTMLDivElement, CardHeaderProps>(
       </div>
     )
   },
-)
+) as (props: CardHeaderProps) => JSX.Element

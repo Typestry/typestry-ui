@@ -13,4 +13,4 @@ export const HelperText = forwardRef<HTMLParagraphElement, HelperTextProps>(
       />
     )
   },
-)
+) as (props: HelperTextProps) => JSX.Element

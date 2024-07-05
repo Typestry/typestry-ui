@@ -13,4 +13,4 @@ export const ListItem = forwardRef<HTMLLIElement, ListItemProps>(
       />
     )
   },
-)
+) as (props: ListItemProps) => JSX.Element

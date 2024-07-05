@@ -15,4 +15,4 @@ export const CardBody = forwardRef<HTMLDivElement, CardBodyProps>(
       </div>
     )
   },
-)
+) as (props: CardBodyProps) => JSX.Element

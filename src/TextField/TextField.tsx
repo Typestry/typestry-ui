@@ -17,7 +17,7 @@ export interface TextFieldProps extends ComponentPropsWithRef<"input"> {
 }
 
 export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(
-  ({ slotProps, ...props }, ref) => {
+  function TextField({ slotProps, ...props }, ref) {
     return (
       <FormGroup {...slotProps?.root}>
         <Label {...slotProps?.label} htmlFor={props.name}>
@@ -35,4 +35,4 @@ export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(
       </FormGroup>
     )
   },
-)
+) as (props: TextFieldProps) => JSX.Element

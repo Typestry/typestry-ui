@@ -13,4 +13,4 @@ export const Label = forwardRef<HTMLLabelElement, LabelProps>(
       </label>
     )
   },
-)
+) as (props: LabelProps) => JSX.Element
