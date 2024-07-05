@@ -1,5 +1,5 @@
 import { ComponentPropsWithoutRef } from "react"
-import Typography, { TypographyProps } from "@/Typography"
+import { Typography, TypographyProps } from "@/Typography"
 import classNames from "classnames"
 
 export interface ListTypographyProps {

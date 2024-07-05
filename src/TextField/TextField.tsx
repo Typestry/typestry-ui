@@ -1,7 +1,7 @@
 import { ComponentPropsWithRef, forwardRef } from "react"
-import FormGroup from "@/FormGroup"
-import Label, { LabelProps } from "@/Label"
-import HelperText, { HelperTextProps } from "@/HelperText"
+import { FormGroup } from "@/FormGroup"
+import { Label, LabelProps } from "@/Label"
+import { HelperText, HelperTextProps } from "@/HelperText"
 import classNames from "classnames"
 
 export interface TextFieldProps extends ComponentPropsWithRef<"input"> {
@@ -16,7 +16,7 @@ export interface TextFieldProps extends ComponentPropsWithRef<"input"> {
   }
 }
 
-const TextField = forwardRef<HTMLInputElement, TextFieldProps>(
+export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(
   ({ slotProps, ...props }, ref) => {
     return (
       <FormGroup {...slotProps?.root}>

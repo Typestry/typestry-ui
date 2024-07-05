@@ -1,7 +1,7 @@
 import { ComponentPropsWithRef, forwardRef } from "react"
-import FormGroup from "@/FormGroup"
-import Label, { LabelProps } from "@/Label"
-import HelperText, { HelperTextProps } from "@/HelperText"
+import { FormGroup } from "@/FormGroup"
+import { Label, LabelProps } from "@/Label"
+import { HelperText, HelperTextProps } from "@/HelperText"
 import classNames from "classnames"
 
 export interface TextAreaProps extends ComponentPropsWithRef<"textarea"> {
@@ -16,7 +16,7 @@ export interface TextAreaProps extends ComponentPropsWithRef<"textarea"> {
   }
 }
 
-const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(
+export const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(
   ({ slotProps, ...props }, ref) => {
     return (
       <FormGroup {...slotProps?.root}>
