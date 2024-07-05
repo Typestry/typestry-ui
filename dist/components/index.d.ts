@@ -28,3 +28,5 @@ export { default as ImageDialog } from './ImageDialog';
 export * from './ImageDialog';
 export { default as Typography } from './Typography';
 export * from './Typography';
+export { default as HelperText } from './HelperText';
+export * from './HelperText';

@@ -1,11 +1,12 @@
 import { FC } from 'react';
 
+type ChangeReason = "next" | "prev";
 export interface ImageDialogProps {
     imgSrc: string;
     isOpen: boolean;
     onClose: () => void;
     onChange?: ({ reason }: {
-        reason: "next" | "prev";
+        reason: ChangeReason;
     }) => void;
 }
 export declare const ImageDialog: FC<ImageDialogProps>;
