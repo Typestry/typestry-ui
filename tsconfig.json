@@ -8,6 +8,7 @@
       "DOM.Iterable"
     ],
     "module": "ESNext",
+    "typeRoots": ["./dist/index.d.ts"],
     "skipLibCheck": true,
     /* Bundler mode */
     "moduleResolution": "bundler",

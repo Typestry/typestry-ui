@@ -12,7 +12,7 @@ export default defineConfig({
     react(),
     libInjectCss(),
     dts({
-      include: ["src"],
+      rollupTypes: true,
       exclude: ["src/**/*.stories.tsx"],
     }),
     svgr({ svgrOptions: { icon: true } }),
