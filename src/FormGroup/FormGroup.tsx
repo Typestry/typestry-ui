@@ -7,7 +7,7 @@ export interface FormGroupProps extends PropsWithChildren {
   }
 }
 
-function FormGroup({ slotProps, children }: FormGroupProps) {
+export function FormGroup({ slotProps, children }: FormGroupProps) {
   return (
     <div
       {...slotProps?.root}
@@ -17,5 +17,3 @@ function FormGroup({ slotProps, children }: FormGroupProps) {
     </div>
   )
 }
-
-export default FormGroup

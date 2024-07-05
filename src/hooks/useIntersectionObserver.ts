@@ -7,7 +7,7 @@ export interface UseIntersectionObserverProps {
   deps?: Array<unknown>
 }
 
-const useIntersectionObserver = ({
+export const useIntersectionObserver = ({
   callback,
   config,
   observables,
@@ -25,5 +25,3 @@ const useIntersectionObserver = ({
     }
   }, [deps, callback, config, observables])
 }
-
-export default useIntersectionObserver

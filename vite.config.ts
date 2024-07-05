@@ -1,22 +1,28 @@
 import { defineConfig } from "vite"
+import tsconfigPaths from "vite-tsconfig-paths"
 import react from "@vitejs/plugin-react"
 import { libInjectCss } from "vite-plugin-lib-inject-css"
-import tsconfigpaths from "vite-tsconfig-paths"
 import svgr from "vite-plugin-svgr"
 import dts from "vite-plugin-dts"
 import { resolve } from "path"
+import tailwindcss from "tailwindcss"
 
 export default defineConfig({
   plugins: [
-    tsconfigpaths(),
+    tsconfigPaths(),
     react(),
     libInjectCss(),
     dts({
-      rollupTypes: true,
+      include: ["src/**/*"],
       exclude: ["src/**/*.stories.tsx"],
     }),
     svgr({ svgrOptions: { icon: true } }),
   ],
+  css: {
+    postcss: {
+      plugins: [tailwindcss],
+    },
+  },
   build: {
     sourcemap: true,
     emptyOutDir: true,

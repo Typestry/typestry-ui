@@ -31,5 +31,3 @@ export const CardHeader = forwardRef<HTMLDivElement, CardHeaderProps>(
     )
   },
 )
-
-export default CardHeader

@@ -27,5 +27,3 @@ export const ListItemText = ({
     </div>
   )
 }
-
-export default ListItemText

@@ -14,5 +14,3 @@ export const ListItem = forwardRef<HTMLLIElement, ListItemProps>(
     )
   },
 )
-
-export default ListItem

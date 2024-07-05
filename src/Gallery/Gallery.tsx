@@ -1,5 +1,5 @@
 import { ComponentPropsWithoutRef, FC, useState } from "react"
-import ImageDialog from "@/ImageDialog"
+import { ImageDialog } from "@/ImageDialog"
 import classNames from "classnames"
 
 export interface GalleryProps {
@@ -10,7 +10,7 @@ export interface GalleryProps {
   }
 }
 
-const Gallery: FC<GalleryProps> = ({ images, slotProps }) => {
+export const Gallery: FC<GalleryProps> = ({ images, slotProps }) => {
   const [imageIndex, setImageIndex] = useState<number>(NaN)
 
   if (!images) return null
@@ -65,5 +65,3 @@ const Gallery: FC<GalleryProps> = ({ images, slotProps }) => {
     </div>
   )
 }
-
-export default Gallery

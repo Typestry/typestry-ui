@@ -14,5 +14,3 @@ export const CardContent = forwardRef<HTMLDivElement, CardContentProps>(
     )
   },
 )
-
-export default CardContent

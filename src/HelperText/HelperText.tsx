@@ -14,5 +14,3 @@ export const HelperText = forwardRef<HTMLParagraphElement, HelperTextProps>(
     )
   },
 )
-
-export default HelperText

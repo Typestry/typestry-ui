@@ -1,6 +1,6 @@
 import { useLayoutEffect } from "react"
 
-const useEventListener = (
+export const useEventListener = (
   ref: Element | Document | Window | null | undefined,
   type: string,
   callback: EventListenerOrEventListenerObject,
@@ -11,5 +11,3 @@ const useEventListener = (
     return () => ref?.removeEventListener(type, callback, options)
   }, [ref, type, callback, options])
 }
-
-export default useEventListener

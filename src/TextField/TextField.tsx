@@ -36,5 +36,3 @@ const TextField = forwardRef<HTMLInputElement, TextFieldProps>(
     )
   },
 )
-
-export default TextField

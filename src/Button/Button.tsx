@@ -17,20 +17,15 @@ type ButtonComponent = {
 const isAnchor = (props: ButtonProps): props is ButtonAsAnchorProps =>
   "href" in props
 
-const Button = forwardRef<HTMLButtonElement | HTMLAnchorElement, ButtonProps>(
-  function Button(props, ref) {
-    const className = classNames("Tui-Button", props.className)
+export const Button = forwardRef<
+  HTMLButtonElement | HTMLAnchorElement,
+  ButtonProps
+>(function Button(props, ref) {
+  const className = classNames("Tui-Button", props.className)
 
-    if (isAnchor(props)) {
-      return createElement("a", { ...props, ref, className }, props.children)
-    } else {
-      return createElement(
-        "button",
-        { ...props, ref, className },
-        props.children,
-      )
-    }
-  },
-) as ButtonComponent
-
-export default Button
+  if (isAnchor(props)) {
+    return createElement("a", { ...props, ref, className }, props.children)
+  } else {
+    return createElement("button", { ...props, ref, className }, props.children)
+  }
+}) as ButtonComponent

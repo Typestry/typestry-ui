@@ -1,4 +1,4 @@
-import useDisclosure from "@/hooks/useDisclosure"
+import { useDisclosure } from "@/hooks/useDisclosure"
 import classNames from "classnames"
 import { ComponentPropsWithRef, forwardRef } from "react"
 import ImageDialog from "@/ImageDialog"
@@ -26,5 +26,3 @@ export const CardMedia = forwardRef<HTMLImageElement, CardMediaProps>(
     )
   },
 )
-
-export default CardMedia

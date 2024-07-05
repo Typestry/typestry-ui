@@ -16,7 +16,7 @@ export interface UseFormReturn<Values extends FieldValues> {
   register: UseFormRegister<Values>
 }
 
-const useForm = <Values extends FieldValues>({
+export const useForm = <Values extends FieldValues>({
   onSubmit,
 }: UseFormArgs<Values>): UseFormReturn<Values> => {
   const [isError, setIsError] = useState(false)
@@ -43,5 +43,3 @@ const useForm = <Values extends FieldValues>({
 
   return { handleSubmit, isError, isSubmitting, register }
 }
-
-export default useForm

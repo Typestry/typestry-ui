@@ -7,5 +7,3 @@ export type BaseInputProps<Element extends ElementType> = {
   helperText: string
   label: string
 } & ComponentPropsWithRef<Element>
-
-export default BaseInputProps

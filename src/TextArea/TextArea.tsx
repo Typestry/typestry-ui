@@ -36,5 +36,3 @@ const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(
     )
   },
 )
-
-export default TextArea

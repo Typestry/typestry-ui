@@ -1,5 +1,5 @@
 import { Meta, StoryObj } from "@storybook/react"
-import CardMedia from "@/CardMedia"
+import { CardMedia } from "@/CardMedia"
 
 const meta: Meta<typeof CardMedia> = {
   title: "Components/CardMedia",

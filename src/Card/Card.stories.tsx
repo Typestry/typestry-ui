@@ -1,11 +1,11 @@
 import { Meta, StoryObj } from "@storybook/react"
-import Card from "@/Card"
-import CardContent from "@/CardContent"
-import CardActions from "@/CardActions"
-import Button from "@/Button"
-import CardHeader from "@/CardHeader"
-import CardBody from "@/CardBody"
-import CardMedia from "@/CardMedia"
+import { Card } from "@/Card"
+import { CardContent } from "@/CardContent"
+import { CardActions } from "@/CardActions"
+import { Button } from "@/Button"
+import { CardHeader } from "@/CardHeader"
+import { CardBody } from "@/CardBody"
+import { CardMedia } from "@/CardMedia"
 import { ComponentType } from "react"
 
 const meta = {

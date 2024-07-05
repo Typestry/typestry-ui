@@ -1,5 +1,5 @@
 import { Meta, StoryObj } from "@storybook/react"
-import CardBody from "@/CardBody"
+import { CardBody } from "@/CardBody"
 
 const meta: Meta = {
   title: "Components/CardBody",

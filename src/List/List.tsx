@@ -14,5 +14,3 @@ export const List = forwardRef<HTMLUListElement, ListProps>(
     )
   },
 )
-
-export default List

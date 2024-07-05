@@ -16,5 +16,3 @@ export const CardActions = forwardRef<HTMLDivElement, CardActionsProps>(
     )
   },
 )
-
-export default CardActions

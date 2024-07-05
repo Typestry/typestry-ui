@@ -92,5 +92,3 @@ export const ImageDialog: FC<ImageDialogProps> = ({
     document.body,
   )
 }
-
-export default ImageDialog
