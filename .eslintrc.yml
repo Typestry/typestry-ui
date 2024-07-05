@@ -6,7 +6,6 @@ extends:
   - "plugin:@typescript-eslint/recommended-requiring-type-checking"
   - "plugin:react-hooks/recommended"
   - "plugin:prettier/recommended"
-  - "plugin:@next/next/recommended"
   - "prettier"
 
 parserOptions:
@@ -26,9 +25,6 @@ plugins:
 
 rules:
   "prettier/prettier": "error"
-  "@typescript-eslint/indent":
-    - "error"
-    - 2
   "@typescript-eslint/no-unused-vars": "error"
   "@typescript-eslint/no-explicit-any": "error"
   "react-hooks/rules-of-hooks": "error"
