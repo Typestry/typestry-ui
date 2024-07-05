@@ -2,7 +2,7 @@ import { FC, useEffect, useRef } from "react"
 import useKeyPress from "@/hooks/useKeyPress"
 import { createPortal } from "react-dom"
 import { ChevronLeft, ChevronRight, X } from "react-feather"
-import Typography from "../Typography"
+import Typography from "@/Typography"
 
 type ChangeReason = "next" | "prev"
 

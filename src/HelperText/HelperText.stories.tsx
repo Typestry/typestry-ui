@@ -1,5 +1,5 @@
 import { Meta, StoryObj } from "@storybook/react"
-import HelperText from "."
+import HelperText from "@/HelperText"
 
 const meta: Meta<typeof HelperText> = {
   title: "Components/HelperText",

@@ -28,16 +28,13 @@ export default defineConfig({
     rollupOptions: {
       external: ["react", "react-dom", "tailwindcss"],
       output: {
+        assetFileNames: "assets/[name][extname]",
         globals: {
           react: "React",
           "react-dom": "ReactDOM",
           tailwindcss: "tailwindcss",
         },
       },
-      // output: {
-      //   assetFileNames: "assets/[name][extname]",
-      //   entryFileNames: "[name].js",
-      // },
     },
   },
 })

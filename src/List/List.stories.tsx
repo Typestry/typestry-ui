@@ -1,5 +1,5 @@
 import { Meta, StoryObj } from "@storybook/react"
-import List from "./List"
+import List from "@/List"
 import ListItem from "@/ListItem"
 import ListItemText from "@/ListItemText"
 import { ArrowUpRight, Calendar } from "react-feather"
