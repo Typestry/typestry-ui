@@ -1,7 +1,8 @@
-import type { Preview, StoryContext, StoryFn } from "@storybook/react"
+import type { StoryContext, StoryFn } from "@storybook/react"
 import React, { useEffect } from "react"
+import { withThemeByClassName } from "@storybook/addon-themes"
+
 import "../src/index.css"
-import { withThemeByDataAttribute } from "@storybook/addon-styling"
 
 const WithThemeProvider = (Story: StoryFn, context: StoryContext) => {
   useEffect(() => {
@@ -16,7 +17,7 @@ const WithThemeProvider = (Story: StoryFn, context: StoryContext) => {
   return <Story {...context} />
 }
 
-const preview: Preview = {
+const preview = {
   parameters: {
     backgrounds: {
       disable: true,
@@ -31,13 +32,12 @@ const preview: Preview = {
   },
   decorators: [
     WithThemeProvider,
-    withThemeByDataAttribute({
+    withThemeByClassName({
       themes: {
         light: "light",
         dark: "dark",
       },
-      defaultTheme: "dark",
-      attributeName: "data-mode",
+      defaultTheme: "light",
     }),
   ],
 }
