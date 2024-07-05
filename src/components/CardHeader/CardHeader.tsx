@@ -1,6 +1,6 @@
 import classNames from "classnames"
 import { ComponentPropsWithRef, forwardRef } from "react"
-import Typography, { TypographyProps } from "@/components/Typography"
+import Typography, { TypographyProps } from "@/Typography"
 
 export interface CardHeaderOwnProps {
   title: string

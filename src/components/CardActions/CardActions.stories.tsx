@@ -1,6 +1,6 @@
 import { Meta, StoryObj } from "@storybook/react"
 import CardActions from "./CardActions"
-import Button from "@/components/Button"
+import Button from "@/Button"
 
 const meta: Meta = {
   title: "Components/CardActions",

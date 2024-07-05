@@ -1,7 +1,7 @@
 import { ComponentPropsWithRef, forwardRef } from "react"
-import FormGroup from "@/components/FormGroup"
-import Label, { LabelProps } from "@/components/Label"
-import HelperText, { HelperTextProps } from "@/components/HelperText"
+import FormGroup from "@/FormGroup"
+import Label, { LabelProps } from "@/Label"
+import HelperText, { HelperTextProps } from "@/HelperText"
 import classNames from "classnames"
 
 export interface TextFieldProps extends ComponentPropsWithRef<"input"> {

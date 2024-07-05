@@ -1,7 +1,7 @@
 import { Meta, StoryObj } from "@storybook/react"
 import List from "./List"
-import ListItem from "@/components/ListItem"
-import ListItemText from "@/components/ListItemText"
+import ListItem from "@/ListItem"
+import ListItemText from "@/ListItemText"
 import { ArrowUpRight, Calendar } from "react-feather"
 
 const meta: Meta<typeof List> = {

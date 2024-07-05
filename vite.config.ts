@@ -18,16 +18,26 @@ export default defineConfig({
     svgr({ svgrOptions: { icon: true } }),
   ],
   build: {
+    sourcemap: true,
+    emptyOutDir: true,
     lib: {
       entry: resolve(__dirname, "src/index.ts"),
-      formats: ["es"],
+      name: "@typestry-ui/react",
+      fileName: (format) => `index.${format}.js`,
     },
     rollupOptions: {
-      external: ["react", "react/jsx-runtime"],
+      external: ["react", "react-dom", "tailwindcss"],
       output: {
-        assetFileNames: "assets/[name][extname]",
-        entryFileNames: "[name].js",
+        globals: {
+          react: "React",
+          "react-dom": "ReactDOM",
+          tailwindcss: "tailwindcss",
+        },
       },
+      // output: {
+      //   assetFileNames: "assets/[name][extname]",
+      //   entryFileNames: "[name].js",
+      // },
     },
   },
 })
