@@ -1,4 +1,4 @@
-import { ComponentPropsWithoutRef, FC } from 'react';
+import { ComponentPropsWithoutRef, FC } from '../../react';
 
 export interface GalleryProps {
     images: Array<string>;

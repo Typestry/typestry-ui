@@ -1,2 +1,2 @@
-export * from './HelperText';
-export { default } from './HelperText';
+export * from '../../HelperText';
+export { default } from '../../HelperText';

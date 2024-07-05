@@ -1,4 +1,4 @@
-import { ComponentPropsWithRef, ElementType } from 'react';
+import { ComponentPropsWithRef, ElementType } from '../react';
 
 export type BaseInputProps<Element extends ElementType> = {
     name: string;

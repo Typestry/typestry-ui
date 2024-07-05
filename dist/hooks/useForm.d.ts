@@ -1,5 +1,5 @@
-import { BaseSyntheticEvent } from 'react';
-import { FieldValues, UseFormRegister } from 'react-hook-form';
+import { BaseSyntheticEvent } from '../react';
+import { FieldValues, UseFormRegister } from '../react-hook-form';
 
 export interface UseFormArgs<Values> {
     onSubmit: (values: Values) => Promise<void>;

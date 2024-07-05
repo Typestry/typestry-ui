@@ -1,1 +1,1 @@
-export { default } from './isClient';
+export { default } from '../../isClient';

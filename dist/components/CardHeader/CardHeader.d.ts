@@ -1,5 +1,5 @@
-import { ComponentPropsWithRef } from 'react';
-import { TypographyProps } from '../Typography';
+import { ComponentPropsWithRef } from '../../react';
+import { TypographyProps } from '../../@/Typography';
 
 export interface CardHeaderOwnProps {
     title: string;
@@ -11,5 +11,5 @@ export interface CardHeaderOwnProps {
 }
 export interface CardHeaderProps extends Omit<ComponentPropsWithRef<"div">, "title">, CardHeaderOwnProps {
 }
-export declare const CardHeader: import('react').ForwardRefExoticComponent<Omit<CardHeaderProps, "ref"> & import('react').RefAttributes<HTMLDivElement>>;
+export declare const CardHeader: import('../../react').ForwardRefExoticComponent<Omit<CardHeaderProps, "ref"> & import('../../react').RefAttributes<HTMLDivElement>>;
 export default CardHeader;

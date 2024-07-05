@@ -1,6 +1,6 @@
-import { ComponentPropsWithRef } from 'react';
-import { LabelProps } from '../Label';
-import { HelperTextProps } from '../HelperText';
+import { ComponentPropsWithRef } from '../../react';
+import { LabelProps } from '../../@/Label';
+import { HelperTextProps } from '../../@/HelperText';
 
 export interface TextAreaProps extends ComponentPropsWithRef<"textarea"> {
     name: string;
@@ -13,5 +13,5 @@ export interface TextAreaProps extends ComponentPropsWithRef<"textarea"> {
         helperText?: HelperTextProps;
     };
 }
-declare const TextArea: import('react').ForwardRefExoticComponent<Omit<TextAreaProps, "ref"> & import('react').RefAttributes<HTMLTextAreaElement>>;
+declare const TextArea: import('../../react').ForwardRefExoticComponent<Omit<TextAreaProps, "ref"> & import('../../react').RefAttributes<HTMLTextAreaElement>>;
 export default TextArea;

@@ -1,2 +1,2 @@
-export * from './CardMedia';
-export { default } from './CardMedia';
+export * from '../../CardMedia';
+export { default } from '../../CardMedia';

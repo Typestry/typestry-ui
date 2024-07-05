@@ -1,2 +1,2 @@
-export * from './CardContent';
-export { default } from './CardContent';
+export * from '../../CardContent';
+export { default } from '../../CardContent';

@@ -1,1 +1,1 @@
-export { default } from './raise';
+export { default } from '../../raise';

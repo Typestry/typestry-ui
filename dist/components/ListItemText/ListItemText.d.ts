@@ -1,5 +1,5 @@
-import { ComponentPropsWithoutRef } from 'react';
-import { TypographyProps } from '../Typography';
+import { ComponentPropsWithoutRef } from '../../react';
+import { TypographyProps } from '../../@/Typography';
 
 export interface ListTypographyProps {
     variant?: TypographyProps["variant"];

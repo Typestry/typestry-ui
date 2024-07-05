@@ -1,6 +1,6 @@
-import { ComponentPropsWithRef } from 'react';
-import { LabelProps } from '../Label';
-import { HelperTextProps } from '../HelperText';
+import { ComponentPropsWithRef } from '../../react';
+import { LabelProps } from '../../@/Label';
+import { HelperTextProps } from '../../@/HelperText';
 
 export interface TextFieldProps extends ComponentPropsWithRef<"input"> {
     name: string;
@@ -13,5 +13,5 @@ export interface TextFieldProps extends ComponentPropsWithRef<"input"> {
         helperText?: HelperTextProps;
     };
 }
-declare const TextField: import('react').ForwardRefExoticComponent<Omit<TextFieldProps, "ref"> & import('react').RefAttributes<HTMLInputElement>>;
+declare const TextField: import('../../react').ForwardRefExoticComponent<Omit<TextFieldProps, "ref"> & import('../../react').RefAttributes<HTMLInputElement>>;
 export default TextField;

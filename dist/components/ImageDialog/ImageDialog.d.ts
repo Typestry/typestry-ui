@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC } from '../../react';
 
 type ChangeReason = "next" | "prev";
 export interface ImageDialogProps {

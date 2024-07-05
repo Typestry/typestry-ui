@@ -1,4 +1,4 @@
-import { ComponentPropsWithRef } from 'react';
+import { ComponentPropsWithRef } from '../../react';
 
 interface ButtonAsAnchorProps extends ComponentPropsWithRef<"a"> {
     href: string;
