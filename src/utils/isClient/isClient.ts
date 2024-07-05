@@ -1,3 +1,3 @@
-const isClient = () => {
+export const isClient = () => {
   return typeof window !== "undefined"
 }

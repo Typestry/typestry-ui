@@ -1,1 +1,1 @@
-export { default } from "./isClient"
+export * from "./isClient"
