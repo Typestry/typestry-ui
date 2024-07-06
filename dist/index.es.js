@@ -1,6 +1,6 @@
 import X, { forwardRef as be, createElement as Qe, useEffect as rr, useRef as en, useState as er, useLayoutEffect as rn, useCallback as gt } from "react";
 import { createPortal as tn } from "react-dom";
-import './assets/index.css';function bt(e) {
+import './index.css';function bt(e) {
   return e && e.__esModule && Object.prototype.hasOwnProperty.call(e, "default") ? e.default : e;
 }
 var pt = { exports: {} };

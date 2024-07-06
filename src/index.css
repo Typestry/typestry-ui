@@ -86,7 +86,7 @@
   }
 
   .Tui-FormGroup {
-    @apply grid gap-4;
+    @apply grid gap-2 relative;
   }
 
   .Tui-Button {
@@ -134,7 +134,7 @@
   }
 
   .Tui-TextField {
-    @apply rounded-none border-b-2 outline-none border-t-0 border-l-0 border-r-0 Tui-Body1 focus:ring-transparent transition-colors duration-500 dark:text-white bg-transparent focus:border-primary-400 dark:focus:border-primary-700 hover:border-primary-400 dark:hover:border-primary-700 block w-full p-4 disabled:opacity-50;
+    @apply rounded-none border-primary-950 dark:border-white border-b-2 outline-none border-t-0 border-l-0 border-r-0 Tui-Body1 focus:ring-transparent transition-colors duration-500 dark:text-white bg-transparent focus:border-primary-400 dark:focus:border-primary-700 hover:border-primary-400 dark:hover:border-primary-700 block w-full p-4 disabled:opacity-50;
   }
 
   .Tui-TextField[data-should-validate="true"] {
@@ -142,7 +142,7 @@
   }
 
   .Tui-Label {
-    @apply block group-focus-within:font-bold text-base dark:text-white;
+    @apply text-primary-950 dark:text-white transition-all duration-300 ease-in-out;
   }
 
   .Tui-List {
@@ -164,27 +164,4 @@
   .Tui-TextArea[data-should-validate="true"] {
     @apply Tui-FieldValidation;
   }
-}
-
-html {
-  height: 100%;
-  box-sizing: border-box;
-  scroll-behavior: smooth;
-}
-
-html *,
-html *:before,
-html *:after {
-  box-sizing: inherit;
-}
-
-body {
-  margin: 0;
-  padding: 0;
-  position: relative;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  height: 100%;
-  background: var(--background-color);
-  color: var(--text-color);
 }

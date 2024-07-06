@@ -3,6 +3,7 @@
 import type { Meta, StoryObj } from "@storybook/react"
 
 import { TextField } from "@/TextField"
+import { useState } from "react"
 
 const meta: Meta<typeof TextField> = {
   component: TextField,
@@ -19,8 +20,20 @@ const meta: Meta<typeof TextField> = {
 export default meta
 type Story = StoryObj<typeof TextField>
 
-export const Example: Story = {
-  render: (args) => <TextField {...args} />,
+export const ExampleControlled: Story = {
+  render: (args) => {
+    function Controlled() {
+      const [value, setValue] = useState("")
+      return (
+        <TextField
+          {...args}
+          value={value}
+          onChange={(e) => setValue(e.target.value)}
+        />
+      )
+    }
+    return <Controlled />
+  },
 }
 
 export const Error: Story = {

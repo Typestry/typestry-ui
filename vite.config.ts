@@ -2,6 +2,7 @@ import { defineConfig } from "vite"
 import tsconfigPaths from "vite-tsconfig-paths"
 import react from "@vitejs/plugin-react"
 import { libInjectCss } from "vite-plugin-lib-inject-css"
+import copy from "rollup-plugin-copy"
 import svgr from "vite-plugin-svgr"
 import dts from "vite-plugin-dts"
 import { resolve } from "path"
@@ -18,6 +19,10 @@ export default defineConfig({
       exclude: ["src/**/*.stories.tsx"],
     }),
     svgr({ svgrOptions: { icon: true } }),
+    copy({
+      targets: [{ src: "src/assets/fonts/*", dest: "dist/assets/fonts" }],
+      hook: "writeBundle",
+    }),
   ],
   css: {
     postcss: {
@@ -35,7 +40,6 @@ export default defineConfig({
     rollupOptions: {
       external: ["react", "react-dom", "tailwindcss"],
       output: {
-        assetFileNames: "assets/[name][extname]",
         globals: {
           react: "React",
           "react-dom": "ReactDOM",
