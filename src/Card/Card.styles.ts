@@ -1,4 +1,4 @@
-import { TypestryComponents } from "@/types/Theme"
+import { TypestryComponents } from "@/theme/types"
 
 export const TuiCard: TypestryComponents["TuiCard"] = (theme) => ({
   padding: theme("spacing.4"),

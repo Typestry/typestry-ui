@@ -1,4 +1,4 @@
-import { TypestryComponents } from "@/types/Theme"
+import { TypestryComponents } from "@/theme/types"
 
 export const TuiTypography: TypestryComponents["TuiTypography"] = (theme) => ({
   width: "fit-content",

@@ -1,4 +1,4 @@
-import { TypestryComponents } from "@/types/Theme"
+import { TypestryComponents } from "@/theme/types"
 
 export const TuiCardActionArea: TypestryComponents["TuiCardActionArea"] = (
   theme,

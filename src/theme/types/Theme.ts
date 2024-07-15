@@ -1,6 +1,6 @@
 import { ThemeConfig, CSSRuleObject } from "tailwindcss/types/config"
 import { theme } from "@/theme"
-import { PathOf } from "./PathOf"
+import { PathOf } from "@/types/PathOf"
 
 type Theme = typeof theme
 
