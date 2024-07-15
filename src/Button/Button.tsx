@@ -16,7 +16,7 @@ export const Button = forwardRef<
   HTMLButtonElement | HTMLAnchorElement,
   ButtonProps
 >(function Button(props, ref) {
-  const className = classNames("Tui-Button", props.className)
+  const className = classNames("TuiButton", props.className)
 
   if (isAnchor(props)) {
     return createElement("a", { ...props, ref, className }, props.children)

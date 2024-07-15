@@ -64,7 +64,6 @@
     "eslint-plugin-storybook": "^0.8.0",
     "log-update": "^6.0.0",
     "postcss": "^8.4.28",
-    "postcss-nesting": "^12.1.5",
     "prettier": "^3.0.0",
     "rollup-plugin-copy": "^3.5.0",
     "sass": "^1.69.5",
@@ -82,7 +81,7 @@
     "classnames": "^2.3.2",
     "react-feather": "^2.0.10",
     "react-hook-form": "^7.45.4",
-    "typescript": "^5.1.6"
+    "typescript": "^5.5.3"
   },
   "eslintConfig": {
     "extends": [

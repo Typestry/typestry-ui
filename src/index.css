@@ -49,119 +49,119 @@
 }
 
 @layer components {
-  .Tui-Typography {
+  /* .TuiTypography {
     @apply w-fit dark:text-white;
-  }
-
-  .Tui-Subtitle1 {
+  } */
+/* 
+  .TuiSubtitle1 {
     @apply font-sans tracking-tighter text-base;
   }
 
-  .Tui-Subtitle2 {
+  .TuiSubtitle2 {
     @apply font-sans text-sm font-medium tracking-tight;
   }
 
-  .Tui-Subtitle2 {
+  .TuiSubtitle2 {
     @apply font-sans text-sm font-medium;
   }
 
-  .Tui-Body1 {
+  .TuiBody1 {
     @apply font-sans text-base;
   }
 
-  .Tui-Body2 {
+  .TuiBody2 {
     @apply font-sans text-sm;
   }
 
-  .Tui-Caption {
+  .TuiCaption {
     @apply font-sans text-xs tracking-wider;
   }
 
-  .Tui-Overline {
+  .TuiOverline {
     @apply font-sans text-xs tracking-wider uppercase decoration-transparent;
+  } */
+
+  .TuiFieldValidation {
+    @apply border-red-800 dark:border-red-200;
   }
 
-  .Tui-FieldValidation {
-    @apply invalid:focus:border-[var(--error-color)] invalid:border-b-[var(--error-color)];
-  }
-
-  .Tui-FormGroup {
+  .TuiFormGroup {
     @apply grid gap-2 relative;
   }
 
-  .Tui-Button {
+  /* .TuiButton {
     @apply w-full flex justify-center hover:bg-primary-400 active:bg-primary-500 active:text-white bg-primary-300 dark:bg-primary-700 dark:hover:bg-primary-800 dark:active:bg-primary-900 dark:text-white border dark:border-white border-primary-950 text-primary-950 transition-all duration-300 p-3 lg:p-4 uppercase disabled:opacity-50;
-  }
+  } */
 
-  .Tui-Card {
+  /* .TuiCard {
     @apply p-4 dark:text-white;
-  }
+  } */
 
-  .Tui-CardContent {
+  .TuiCardContent {
     @apply grid gap-4;
   }
 
-  .Tui-CardHeader {
+  .TuiCardHeader {
     @apply grid gap-y-2;
   }
 
-  .Tui-CardBody {
-    @apply Tui-Typography Tui-Body1;
+  .TuiCardBody {
+    @apply TuiTypography TuiBody1;
   }
 
-  .Tui-CardMedia {
+  .TuiCardMedia {
     @apply w-full h-64 object-cover object-center cursor-pointer;
   }
 
-  .Tui-CardActionArea {
+  /* .TuiCardActionArea {
     @apply grid md:flex items-center gap-4;
-  }
+  } */
 
-  .Tui-Divider {
+  .TuiDivider {
     @apply h-1 w-full bg-[rgba(var(--secondary-color))];
   }
 
-  .Tui-DividerLight {
+  .TuiDividerLight {
     @apply divider h-0.5;
   }
 
-  .Tui-DividerThick {
+  .TuiDividerThick {
     @apply divider h-2;
   }
 
-  .Tui-HelperText {
+  .TuiHelperText {
     @apply text-sm text-red-800 dark:text-red-200;
   }
 
-  .Tui-TextField {
-    @apply rounded-none border-primary-950 dark:border-white border-b-2 outline-none border-t-0 border-l-0 border-r-0 Tui-Body1 focus:ring-transparent transition-colors duration-500 dark:text-white bg-transparent focus:border-primary-400 dark:focus:border-primary-700 hover:border-primary-400 dark:hover:border-primary-700 block w-full p-4 disabled:opacity-50;
+  .TuiTextField {
+    @apply rounded-none dark:border-white border-b-2 outline-none border-t-0 border-l-0 border-r-0 TuiBody1 focus:ring-transparent transition-colors duration-500 dark:text-white bg-transparent focus:border-primary-400 dark:focus:border-primary-700 hover:border-primary-400 dark:hover:border-primary-700 block w-full p-4 disabled:opacity-50;
   }
 
-  .Tui-TextField[data-should-validate="true"] {
-    @apply Tui-FieldValidation;
+  .TuiTextField[data-should-validate="true"] {
+    @apply TuiFieldValidation;
   }
 
-  .Tui-Label {
+  .TuiLabel {
     @apply text-primary-950 dark:text-white transition-all duration-300 ease-in-out;
   }
 
-  .Tui-List {
+  .TuiList {
     @apply list-none grid gap-4 px-4;
   }
 
-  .Tui-ListItem {
+  .TuiListItem {
     @apply flex text-left items-center list-none gap-4 py-4 dark:text-white;
   }
 
-  .Tui-ListItemText {
+  .TuiListItemText {
     @apply flex-1;
   }
 
-  .Tui-TextArea {
+  .TuiTextArea {
     @apply rounded-none resize-none border-b-2 outline-none border-t-0 border-l-0 border-r-0 text-lg focus:ring-transparent transition-colors duration-500 dark:text-white bg-transparent focus:border-primary-400 dark:focus:border-primary-700 hover:border-primary-400 dark:hover:border-primary-700 block w-full p-4 disabled:opacity-50;
   }
 
-  .Tui-TextArea[data-should-validate="true"] {
-    @apply Tui-FieldValidation;
+  .TuiTextArea[data-should-validate="true"] {
+    @apply TuiFieldValidation;
   }
 }

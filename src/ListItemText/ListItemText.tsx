@@ -19,7 +19,7 @@ export const ListItemText = ({
   return (
     <div
       {...slotProps?.root}
-      className={classNames("Tui-ListItemText", slotProps?.root?.className)}
+      className={classNames("TuiListItemText", slotProps?.root?.className)}
     >
       <Typography variant={variant} {...slotProps?.typography}>
         {children}

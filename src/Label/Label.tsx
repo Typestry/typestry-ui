@@ -8,7 +8,7 @@ export interface LabelProps extends ComponentPropsWithRef<"label"> {
 export const Label = forwardRef<HTMLLabelElement, LabelProps>(
   function Label(props) {
     return (
-      <label {...props} className={classNames("Tui-Label", props.className)}>
+      <label {...props} className={classNames("TuiLabel", props.className)}>
         {props.children}
       </label>
     )

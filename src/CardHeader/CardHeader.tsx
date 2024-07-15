@@ -21,7 +21,7 @@ export const CardHeader = forwardRef<HTMLDivElement, CardHeaderProps>(
       <div
         ref={ref}
         {...props}
-        className={classNames("Tui-CardHeader", props.className)}
+        className={classNames("TuiCardHeader", props.className)}
       >
         <Typography variant="h6">{props.title}</Typography>
         {props.subtitle && (

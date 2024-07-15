@@ -3,7 +3,7 @@ import { CardContent } from "@/CardContent"
 import { Typography } from "@/Typography"
 
 const meta: Meta<typeof CardContent> = {
-  title: "components/CardContent",
+  title: "Components/CardContent",
   component: CardContent,
 }
 

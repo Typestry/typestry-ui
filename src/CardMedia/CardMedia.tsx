@@ -20,7 +20,7 @@ export const CardMedia = forwardRef<HTMLImageElement, CardMediaProps>(
           {...props}
           onClick={onOpen}
           ref={ref}
-          className={classNames("Tui-CardMedia", props.className)}
+          className={classNames("TuiCardMedia", props.className)}
         />
       </>
     )

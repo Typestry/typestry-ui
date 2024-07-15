@@ -11,7 +11,7 @@ export function FormGroup({ slotProps, children }: FormGroupProps) {
   return (
     <div
       {...slotProps?.root}
-      className={classNames("Tui-FormGroup group", slotProps?.root?.className)}
+      className={classNames("TuiFormGroup group", slotProps?.root?.className)}
     >
       {children}
     </div>

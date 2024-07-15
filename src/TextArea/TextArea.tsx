@@ -20,20 +20,23 @@ export const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(
   function TextArea({ slotProps, ...props }, ref) {
     return (
       <FormGroup {...slotProps?.root}>
-        <Label
-          className="group-focus-within:font-medium transition-all ease-in-out duration-300"
-          {...slotProps?.label}
-          htmlFor={props.name}
-        >
-          {props.label}
-        </Label>
-        <textarea
-          {...props}
-          id={props.name}
-          placeholder=" "
-          className={classNames("Tui-TextArea peer", props.className)}
-          ref={ref}
-        />
+        <div className="flex flex-col-reverse">
+          <textarea
+            {...props}
+            id={props.name}
+            placeholder=" "
+            className={classNames("TuiTextArea peer", props.className)}
+            data-should-validate={Boolean(props.error)}
+            ref={ref}
+          />
+          <Label
+            className="peer-focus:font-medium peer-focus:TuiCaption peer-placeholder-shown:TuiBody1 TuiCaption transition-all ease-in-out duration-300"
+            {...slotProps?.label}
+            htmlFor={props.name}
+          >
+            {props.label}
+          </Label>
+        </div>
         {props.error && (
           <HelperText {...slotProps?.helperText}>{props.helperText}</HelperText>
         )}

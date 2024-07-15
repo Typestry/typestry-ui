@@ -6,6 +6,7 @@ import { TextField } from "@/TextField"
 import { useState } from "react"
 
 const meta: Meta<typeof TextField> = {
+  title: "Components/TextField",
   component: TextField,
   args: {
     name: "firstName",

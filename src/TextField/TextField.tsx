@@ -26,11 +26,12 @@ export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(
             {...props}
             id={props.name}
             placeholder=" "
-            className={classNames("Tui-TextField peer", props.className)}
+            className={classNames("TuiTextField peer", props.className)}
+            data-should-validate={Boolean(props.error)}
             ref={ref}
           />
           <Label
-            className="peer-focus:-translate-y-8 peer-focus:Tui-Caption peer-placeholder-shown:Tui-Body1 peer-placeholder-shown:translate-y-0 Tui-Caption -translate-y-8 absolute bottom-4"
+            className="group-focus-within:font-medium group-focus-within:TuiCaption peer-focus:-translate-y-8 peer-focus:TuiCaption peer-placeholder-shown:TuiBody1 peer-placeholder-shown:translate-y-0 TuiCaption -translate-y-8 absolute bottom-4"
             {...slotProps?.label}
             htmlFor={props.name}
           >

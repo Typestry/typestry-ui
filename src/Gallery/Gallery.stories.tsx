@@ -1,10 +1,10 @@
 // ListShow.stories.ts|tsx
-
 import type { Meta, StoryObj } from "@storybook/react"
 
 import { Gallery } from "@/Gallery"
 
 const meta: Meta<typeof Gallery> = {
+  title: "Components/Gallery",
   component: Gallery,
 }
 

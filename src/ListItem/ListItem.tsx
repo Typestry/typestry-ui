@@ -9,7 +9,7 @@ export const ListItem = forwardRef<HTMLLIElement, ListItemProps>(
       <li
         ref={ref}
         {...props}
-        className={classNames("Tui-ListItem", props.className)}
+        className={classNames("TuiListItem", props.className)}
       />
     )
   },

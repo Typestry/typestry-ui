@@ -1,5 +1,6 @@
 import "./index.css"
 export * from "./Button"
+export * from "./plugins"
 export * from "./Gallery"
 export * from "./List"
 export * from "./ListItem"

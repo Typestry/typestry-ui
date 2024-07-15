@@ -9,7 +9,7 @@ export const HelperText = forwardRef<HTMLParagraphElement, HelperTextProps>(
       <p
         ref={ref}
         {...props}
-        className={classNames("Tui-HelperText", props.className)}
+        className={classNames("TuiHelperText", props.className)}
       />
     )
   },
