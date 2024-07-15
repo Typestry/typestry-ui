@@ -16,6 +16,12 @@ const isSemanticTag = (tag: string): tag is SemanticTag => {
 }
 
 export const TypographyClasses = {
+  h1: "TuiHeading1",
+  h2: "TuiHeading2",
+  h3: "TuiHeading3",
+  h4: "TuiHeading4",
+  h5: "TuiHeading5",
+  h6: "TuiHeading6",
   subtitle1: "TuiSubtitle1",
   subtitle2: "TuiSubtitle2",
   body1: "TuiBody1",
@@ -36,7 +42,14 @@ export const Typography = ({
   if (isSemanticTag(variant)) {
     return createElement(
       variant,
-      { ...props, className: classNames("TuiTypography", props.className) },
+      {
+        ...props,
+        className: classNames(
+          TypographyClasses[variant],
+          "TuiTypography",
+          props.className,
+        ),
+      },
       children,
     ) as JSX.Element
   } else {
